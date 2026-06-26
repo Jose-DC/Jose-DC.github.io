@@ -98,3 +98,368 @@
       text-transform: uppercase;
       font-size: 13px;
       letter-spacing: 0;
+      margin: 0 0 12px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      font-size: 19px;
+      color: var(--muted);
+      max-width: 740px;
+      margin: 0 0 24px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .button.secondary {
+      background: #ffffff;
+      color: var(--accent-strong);
+    }
+
+    .profile-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .avatar {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 18px;
+      border: 4px solid var(--soft);
+    }
+
+    .profile-panel h2 {
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+
+    .profile-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 20px 0 0;
+    }
+
+    .fact {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--accent-strong);
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    h2 {
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 0 0 18px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 0 22px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stack span {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 8px 11px;
+      font-weight: 700;
+      color: var(--code);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .item small {
+      display: block;
+      color: var(--warm);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .item h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    footer {
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding: 24px 0 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-facts,
+      .grid,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav aria-label="Navegacion principal">
+        <div class="brand">Jose Diaz</div>
+        <div class="nav-links">
+          <a href="#perfil">Perfil</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="perfil">
+        <div>
+          <p class="eyebrow">Ingeniero Civil Telematico - Cloud & Infraestructura</p>
+          <h1>Soporte cloud, infraestructura TI y camino DevOps.</h1>
+          <p class="lead">
+            Soy Jose Patricio Diaz Concha, Ingeniero Civil Telematico titulado en la Universidad de La Frontera.
+            Estoy iniciando mi carrera profesional en soporte e infraestructura cloud, trabajando con Azure, AKS,
+            Kubernetes, Docker, Helm y Linux, mientras construyo proyectos practicos para crecer hacia Cloud Operations,
+            DevOps Junior, Plataforma o SRE Junior.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://www.linkedin.com/in/jose-patricio-diaz/" target="_blank" rel="noreferrer">Ver LinkedIn</a>
+            <a class="button secondary" href="https://github.com/Jose-DC" target="_blank" rel="noreferrer">Ver GitHub</a>
+          </div>
+        </div>
+
+        <aside class="profile-panel" aria-label="Resumen breve">
+          <img class="avatar" src="https://github.com/Jose-DC.png" alt="Foto de perfil de Jose Diaz en GitHub" />
+          <h2>Jose Diaz</h2>
+          <p>
+            Perfil junior con base real en operacion, soporte, diagnostico de incidencias,
+            documentacion tecnica y aprendizaje aplicado en infraestructura moderna.
+          </p>
+        </aside>
+      </section>
+
+      <div class="quick-facts" aria-label="Datos destacados">
+        <div class="fact">
+          <strong>2026</strong>
+          Inicio profesional en soporte e infraestructura cloud.
+        </div>
+        <div class="fact">
+          <strong>AKS</strong>
+          Experiencia actual con Kubernetes, Docker, Helm y Azure.
+        </div>
+        <div class="fact">
+          <strong>90%</strong>
+          Reduccion aproximada de tiempos de despliegue en practica con automatizacion.
+        </div>
+      </div>
+
+      <section id="experiencia">
+        <h2>Experiencia y foco actual</h2>
+        <p class="section-intro">
+          Mi punto fuerte es conectar soporte tecnico, infraestructura y mejora operacional:
+          entender incidentes, revisar logs, documentar procedimientos y convertir aprendizajes en soluciones reproducibles.
+        </p>
+        <div class="timeline">
+          <article class="item">
+            <small>Mayo 2026 - presente</small>
+            <h3>Ingeniero de Soporte e Infraestructura Cloud - Transformapp</h3>
+            <p>
+              Apoyo la operacion de infraestructura cloud en Microsoft Azure y AKS, incluyendo monitoreo,
+              diagnostico de aplicaciones, revision de logs, continuidad operativa e implementacion de clientes y puntos de venta.
+            </p>
+          </article>
+          <article class="item">
+            <small>2025</small>
+            <h3>Practica profesional - Infraestructura TI y Automatizacion, UFRO</h3>
+            <p>
+              Disene una plataforma centralizada con Docker y desarrolle scripts en Python para automatizar tareas repetitivas,
+              reduciendo tiempos de despliegue de horas a minutos.
+            </p>
+          </article>
+          <article class="item">
+            <small>2020 - 2025</small>
+            <h3>Ingenieria Civil Telematica - Universidad de La Frontera</h3>
+            <p>
+              Formacion en redes, sistemas, software e infraestructura. Distinciones academicas como Mejor Titulado,
+              Alumno Integral de la promocion 2025 y mejor promedio de carrera 2023-2024.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Stack y areas de aprendizaje</h2>
+        <p class="section-intro">
+          Diferencio entre tecnologias que uso laboralmente y tecnologias que estoy fortaleciendo en laboratorios personales.
+        </p>
+        <div class="stack" aria-label="Tecnologias">
+          <span>Microsoft Azure</span>
+          <span>AKS</span>
+          <span>Kubernetes</span>
+          <span>Docker</span>
+          <span>Helm</span>
+          <span>Linux</span>
+          <span>Python</span>
+          <span>Bash</span>
+          <span>PowerShell</span>
+          <span>GitHub Actions</span>
+          <span>Prometheus</span>
+          <span>Grafana</span>
+          <span>Terraform</span>
+        </div>
+      </section>
+
+      <section id="proyectos">
+        <h2>Proyectos que estoy construyendo</h2>
+        <p class="section-intro">
+          Este portafolio va a crecer con laboratorios documentados, simples de ejecutar y orientados a problemas reales de soporte,
+          cloud, automatizacion y observabilidad.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Secret scanner</h3>
+            <p>CLI en Python para detectar posibles secretos o archivos sensibles antes de subir codigo a GitHub.</p>
+          </article>
+          <article class="card">
+            <h3>AKS + Helm lab</h3>
+            <p>Laboratorio para desplegar una aplicacion demo en Kubernetes usando contenedores, Helm y buenas practicas basicas.</p>
+          </article>
+          <article class="card">
+            <h3>Revision de logs</h3>
+            <p>Script para buscar errores comunes en logs y generar una salida clara para tareas de troubleshooting.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contact">
+          <article class="card">
+            <h3>LinkedIn</h3>
+            <p><a href="https://www.linkedin.com/in/jose-patricio-diaz/" target="_blank" rel="noreferrer">linkedin.com/in/jose-patricio-diaz</a></p>
+          </article>
+          <article class="card">
+            <h3>Correo</h3>
+            <p><a href="mailto:jose_diaz2000@hotmail.com">jose_diaz2000@hotmail.com</a></p>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        Portafolio en construccion. Ultima actualizacion: 2026.
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
