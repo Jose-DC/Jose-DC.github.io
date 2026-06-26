@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Portafolio técnico de José Díaz: proyectos, laboratorios y notas sobre Cloud, infraestructura, Azure, AKS, Kubernetes y automatización."
+    content="Portafolio técnico de José Díaz: proyectos y laboratorios sobre Cloud, infraestructura, Azure, AKS, Kubernetes y automatización."
   />
   <title>José Díaz | Portafolio técnico</title>
   <link rel="stylesheet" href="assets/styles.css" />
@@ -23,82 +23,72 @@
   </header>
 
   <main>
-    <section class="home-hero">
-      <div class="home-copy">
-        <p class="eyebrow">Cloud, infraestructura y automatización</p>
-        <h1>José Díaz</h1>
-        <p class="hero-subtitle">
-          Ingeniero Civil Telemático, titulado en la Universidad de La Frontera.
-          Estoy empezando mi vida laboral en soporte e infraestructura cloud, trabajando con Azure,
+    <section class="hero">
+      <div class="hero-main">
+        <p class="kicker">Cloud · Infraestructura · Automatización</p>
+        <h1>Portafolio técnico en desarrollo.</h1>
+        <p class="lead">
+          Soy José Díaz, Ingeniero Civil Telemático titulado en la Universidad de La Frontera.
+          Actualmente estoy comenzando mi carrera en soporte e infraestructura cloud, con foco en Azure,
           AKS, Kubernetes, Docker, Helm y Linux.
         </p>
-        <p class="hero-note">
-          Este sitio no es una vitrina perfecta. Es mi cuaderno público: proyectos, decisiones,
-          errores, comandos útiles y aprendizajes reales mientras avanzo hacia Cloud & DevOps.
-        </p>
-        <div class="actions">
-          <a class="button" href="proyectos.html">Explorar proyectos</a>
-          <a class="button ghost" href="https://github.com/Jose-DC" target="_blank" rel="noreferrer">GitHub</a>
+        <div class="hero-actions">
+          <a class="button primary" href="proyectos.html">Ver proyectos</a>
+          <a class="button secondary" href="https://github.com/Jose-DC" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </div>
 
-      <aside class="lab-card" aria-label="Estado del portafolio">
-        <div class="lab-card-top">
-          <img class="avatar" src="https://github.com/Jose-DC.png" alt="Foto de perfil de José Díaz en GitHub" />
-          <div>
-            <strong>Portafolio en progreso</strong>
-            <span>Actualizado por proyecto, no por plantilla.</span>
-          </div>
-        </div>
-        <dl class="lab-stats">
-          <div>
-            <dt>Foco</dt>
-            <dd>Cloud / DevOps junior</dd>
-          </div>
-          <div>
-            <dt>Base</dt>
-            <dd>Soporte e infraestructura</dd>
-          </div>
-          <div>
-            <dt>Stack actual</dt>
-            <dd>Azure, AKS, Kubernetes, Linux</dd>
-          </div>
-        </dl>
+      <aside class="profile-summary" aria-label="Resumen técnico">
+        <p class="summary-label">Foco actual</p>
+        <h2>Cloud / DevOps junior</h2>
+        <p>
+          Este sitio irá reuniendo laboratorios, notas y evidencias técnicas. Por ahora los proyectos están
+          en etapa inicial y se irán completando a medida que los desarrolle.
+        </p>
       </aside>
     </section>
 
-    <section class="projects-preview" aria-labelledby="proyectos-title">
-      <div class="section-kicker">
-        <p class="eyebrow">Lo importante</p>
-        <h2 id="proyectos-title">Proyectos documentados como bitácora técnica</h2>
+    <section class="section">
+      <div class="section-header">
+        <p class="kicker">Proyectos</p>
+        <h2>Laboratorios iniciales</h2>
         <p>
-          La idea es que cada proyecto tenga contexto, pasos, capturas, comandos, problemas encontrados
-          y qué aprendí. No solo el resultado bonito.
+          Estos son los primeros tres proyectos que voy a usar para ordenar aprendizaje y demostrar criterio
+          técnico. Aún no están terminados; la idea es documentarlos con pasos, comandos, capturas y decisiones.
         </p>
       </div>
 
-      <div class="project-strip">
-        <a class="project-tile featured" href="proyectos/secret-scanner.html">
-          <span class="status">En construcción</span>
+      <div class="cards three-columns">
+        <article class="card">
+          <span class="tag">Idea inicial</span>
           <h3>Secret scanner</h3>
-          <p>Una herramienta en Python para revisar repos antes de publicarlos.</p>
-        </a>
-        <a class="project-tile" href="proyectos/aks-helm-lab.html">
-          <span class="status muted">Planeado</span>
+          <p>
+            Herramienta en Python para revisar repositorios antes de publicarlos y detectar posibles secretos,
+            tokens o archivos sensibles.
+          </p>
+        </article>
+        <article class="card">
+          <span class="tag">Planeado</span>
           <h3>AKS + Helm lab</h3>
-          <p>Un laboratorio para mostrar despliegue, valores, logs y troubleshooting.</p>
-        </a>
-        <a class="project-tile" href="proyectos/revision-logs.html">
-          <span class="status muted">Planeado</span>
+          <p>
+            Laboratorio para desplegar una aplicación demo en Kubernetes y documentar uso de Helm,
+            valores, logs y troubleshooting básico.
+          </p>
+        </article>
+        <article class="card">
+          <span class="tag">Planeado</span>
           <h3>Revisión de logs</h3>
-          <p>Un script pequeño, útil para soporte y análisis de incidentes.</p>
-        </a>
+          <p>
+            Script simple para analizar logs, detectar errores frecuentes y generar un resumen útil para soporte
+            o escalamiento técnico.
+          </p>
+        </article>
       </div>
 
-      <a class="text-link" href="proyectos.html">Ver índice completo de proyectos</a>
+      <a class="inline-link" href="proyectos.html">Ver detalle de proyectos</a>
     </section>
 
-    <section class="focus-band" aria-label="Temas del portafolio">
+    <section class="stack-section" aria-label="Tecnologías de interés">
       <span>Azure</span>
       <span>AKS</span>
       <span>Kubernetes</span>
@@ -107,15 +97,17 @@
       <span>Linux</span>
       <span>Python</span>
       <span>GitHub Actions</span>
-      <span>Observabilidad</span>
     </section>
 
     <section id="contacto" class="contact-section">
       <div>
-        <p class="eyebrow">Contacto</p>
-        <h2>Disponible para conversar sobre roles Cloud, infraestructura o soporte avanzado.</h2>
+        <p class="kicker">Contacto</p>
+        <h2>Hablemos</h2>
+        <p>
+          Puedes contactarme por LinkedIn, correo o GitHub.
+        </p>
       </div>
-      <div class="contact-actions">
+      <div class="contact-links">
         <a href="https://www.linkedin.com/in/jose-patricio-diaz/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="mailto:jose_diaz2000@hotmail.com">Correo</a>
         <a href="https://github.com/Jose-DC" target="_blank" rel="noreferrer">GitHub</a>
@@ -124,7 +116,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Portafolio técnico de José Díaz. Hecho para documentar proyectos, no para sonar perfecto.</p>
+    <p>© 2026 José Díaz</p>
   </footer>
 </body>
 </html>
