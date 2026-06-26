@@ -12,10 +12,4 @@ Sitio publicado: https://jose-dc.github.io/
 - `assets/styles.css`: estilos compartidos.
 - `assets/img/`: capturas, diagramas e imágenes de proyectos.
 
-## Uso local
 
-Este repo está clonado dentro de:
-
-`C:\Users\jose_\Documents\Carrera\05_proyectos_github\Jose-DC.github.io`
-
-Desde esa carpeta se pueden agregar imágenes, editar páginas y publicar con Git.
