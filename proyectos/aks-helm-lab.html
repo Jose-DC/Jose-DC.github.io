@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Proyecto AKS + Helm lab de José Díaz: laboratorio de Kubernetes, Azure y despliegues documentados."
+  />
+  <title>AKS + Helm lab | José Díaz</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="../index.html">José Díaz</a>
+      <div class="nav-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../proyectos.html">Proyectos</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="doc-hero">
+      <p class="eyebrow">Capítulo 02 - Cloud y Kubernetes</p>
+      <h1>AKS + Helm lab</h1>
+      <p class="lead narrow">
+        Laboratorio para documentar el flujo de despliegue de una aplicación demo en Kubernetes usando contenedores,
+        Helm y conceptos básicos de operación en AKS.
+      </p>
+    </section>
+
+    <section class="doc-grid">
+      <article class="doc-card">
+        <h2>Problema</h2>
+        <p>
+          Muchos portafolios dicen “Kubernetes” sin mostrar el proceso real: manifiestos, valores de Helm, comandos,
+          logs, errores encontrados y decisiones de despliegue.
+        </p>
+      </article>
+      <article class="doc-card">
+        <h2>Objetivo</h2>
+        <p>
+          Construir un laboratorio claro que muestre cómo se empaqueta, despliega, revisa y documenta una app demo
+          en un entorno Kubernetes.
+        </p>
+      </article>
+      <article class="doc-card">
+        <h2>Stack</h2>
+        <ul>
+          <li>Azure Kubernetes Service como contexto cloud.</li>
+          <li>Docker para contenerizar la aplicación.</li>
+          <li>Helm para parametrizar el despliegue.</li>
+          <li>Kubectl para diagnóstico y revisión de estado.</li>
+        </ul>
+      </article>
+      <article class="doc-card">
+        <h2>Evidencia esperada</h2>
+        <ul>
+          <li>Arquitectura simple del laboratorio.</li>
+          <li>Comandos principales de despliegue y rollback.</li>
+          <li>Capturas o salidas de `kubectl get pods`, logs y eventos.</li>
+        </ul>
+      </article>
+      <article class="doc-card">
+        <h2>Próximos pasos</h2>
+        <ol>
+          <li>Definir una app demo pequeña y fácil de ejecutar.</li>
+          <li>Crear chart Helm con `values.yaml` documentado.</li>
+          <li>Agregar sección de troubleshooting real.</li>
+        </ol>
+      </article>
+      <article class="doc-card">
+        <h2>Estado</h2>
+        <p>
+          Planeado. Este capítulo quedará como plantilla para documentar el laboratorio cuando empiece la implementación.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="../proyectos.html">Volver al índice de proyectos</a></p>
+  </footer>
+</body>
+</html>

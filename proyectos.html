@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Índice de proyectos técnicos de José Díaz: laboratorios Cloud, DevOps, Kubernetes, automatización y soporte avanzado."
+  />
+  <title>Proyectos | José Díaz</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="index.html">José Díaz</a>
+      <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="proyectos.html" aria-current="page">Proyectos</a>
+        <a href="index.html#experiencia">Experiencia</a>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <p class="eyebrow">Índice de capítulos</p>
+      <h1>Proyectos y laboratorios técnicos</h1>
+      <p class="lead narrow">
+        Esta sección funciona como un cuaderno técnico público. Cada proyecto tendrá su problema, contexto,
+        tecnologías usadas, comandos relevantes, capturas o evidencia, aprendizajes y próximos pasos.
+      </p>
+    </section>
+
+    <section class="book-layout">
+      <aside class="toc" aria-label="Tabla de contenidos">
+        <h2>Ruta inicial</h2>
+        <a href="#automatizacion">Automatización</a>
+        <a href="#cloud">Cloud y Kubernetes</a>
+        <a href="#observabilidad">Troubleshooting</a>
+      </aside>
+
+      <div class="chapter-list">
+        <section id="automatizacion" class="chapter-section">
+          <h2>Automatización y buenas prácticas</h2>
+          <article class="chapter-row">
+            <div>
+              <span class="status">En construcción</span>
+              <h3>Secret scanner para repositorios</h3>
+              <p>
+                Herramienta CLI en Python para revisar carpetas antes de subir código a GitHub y detectar patrones
+                típicos de secretos, tokens, archivos sensibles o malas prácticas básicas.
+              </p>
+              <div class="meta-line">
+                <span>Python</span>
+                <span>Git</span>
+                <span>Seguridad básica</span>
+              </div>
+            </div>
+            <a class="button secondary" href="proyectos/secret-scanner.html">Abrir</a>
+          </article>
+        </section>
+
+        <section id="cloud" class="chapter-section">
+          <h2>Cloud y Kubernetes</h2>
+          <article class="chapter-row">
+            <div>
+              <span class="status muted">Planeado</span>
+              <h3>AKS + Helm lab</h3>
+              <p>
+                Laboratorio para contenerizar una app demo, desplegarla en Kubernetes y documentar el flujo de Helm,
+                values, namespaces, logs y troubleshooting inicial.
+              </p>
+              <div class="meta-line">
+                <span>Azure</span>
+                <span>AKS</span>
+                <span>Kubernetes</span>
+                <span>Helm</span>
+              </div>
+            </div>
+            <a class="button secondary" href="proyectos/aks-helm-lab.html">Abrir</a>
+          </article>
+        </section>
+
+        <section id="observabilidad" class="chapter-section">
+          <h2>Troubleshooting y operación</h2>
+          <article class="chapter-row">
+            <div>
+              <span class="status muted">Planeado</span>
+              <h3>Revisión de logs</h3>
+              <p>
+                Script para analizar archivos de log, detectar errores frecuentes, resumir hallazgos y generar una
+                salida útil para soporte técnico o escalamiento.
+              </p>
+              <div class="meta-line">
+                <span>Python</span>
+                <span>Linux</span>
+                <span>Logs</span>
+                <span>Soporte</span>
+              </div>
+            </div>
+            <a class="button secondary" href="proyectos/revision-logs.html">Abrir</a>
+          </article>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="index.html">Volver al inicio</a></p>
+  </footer>
+</body>
+</html>
