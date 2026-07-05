@@ -595,7 +595,6 @@ main {
 
   .lead {
     font-size: 16px;
-    text-align: left;
   }
 
   .role {
@@ -604,13 +603,6 @@ main {
 
   .kicker {
     font-size: 12px;
-  }
-
-  .profile-summary p:not(.summary-label),
-  .section-header p:not(.kicker),
-  .card p,
-  .focus-grid p {
-    text-align: left;
   }
 
   .button {
