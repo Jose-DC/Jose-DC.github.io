@@ -189,10 +189,12 @@ main {
 .lead {
   color: var(--muted);
   font-size: 18px;
+  hyphens: auto;
   line-height: 1.55;
   margin-top: 18px;
   max-width: 680px;
-  text-align: left;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .hero-actions {
@@ -264,8 +266,10 @@ main {
 
 .profile-summary p:not(.summary-label) {
   color: var(--muted);
+  hyphens: auto;
   margin-top: 16px;
-  text-align: left;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .section {
@@ -291,9 +295,11 @@ main {
 .section-header p:not(.kicker) {
   color: var(--muted);
   font-size: 17px;
+  hyphens: auto;
   margin-top: 14px;
   max-width: 680px;
-  text-align: left;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .cards {
@@ -339,8 +345,10 @@ main {
 }
 
 .card p {
+  hyphens: auto;
   margin-top: 12px;
-  text-align: left;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .inline-link {
@@ -373,8 +381,10 @@ main {
 
 .focus-grid p {
   color: var(--muted);
+  hyphens: auto;
   margin-top: 10px;
-  text-align: left;
+  text-align: justify;
+  text-align-last: left;
 }
 
 .stack-section {
@@ -387,21 +397,26 @@ main {
 }
 
 .tech-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   margin-top: 22px;
 }
 
 .tech-list span,
 .meta span {
+  align-items: center;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 8px;
   color: var(--accent);
+  display: inline-flex;
   font-size: 14px;
   font-weight: 700;
+  justify-content: center;
+  min-height: 38px;
   padding: 7px 11px;
+  text-align: center;
 }
 
 .contact-section {
@@ -593,7 +608,8 @@ main {
 
   .profile-summary p:not(.summary-label),
   .section-header p:not(.kicker),
-  .card p {
+  .card p,
+  .focus-grid p {
     text-align: left;
   }
 
