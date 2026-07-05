@@ -320,6 +320,8 @@ main {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   min-height: 190px;
   min-width: 0;
@@ -327,6 +329,7 @@ main {
 }
 
 .tag {
+  align-self: flex-start;
   background: var(--warn-soft);
   border-radius: 6px;
   color: var(--accent);
@@ -349,6 +352,24 @@ main {
   margin-top: 12px;
   text-align: justify;
   text-align-last: left;
+}
+
+.card-link {
+  align-self: flex-start;
+  background: var(--accent);
+  border-radius: 6px;
+  color: #ffffff;
+  display: inline-flex;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 750;
+  justify-content: center;
+  margin-top: auto;
+  padding: 9px 12px;
+}
+
+.card-link:hover {
+  text-decoration: none;
 }
 
 .inline-link {
