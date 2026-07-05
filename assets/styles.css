@@ -10,6 +10,8 @@
   --accent-soft: #e8f4f7;
   --warn-soft: #eef6f8;
   --shadow: 0 18px 44px rgba(23, 32, 51, 0.09);
+  --font-heading: "Segoe UI", Arial, sans-serif;
+  --font-body: Arial, sans-serif;
 }
 
 * {
@@ -24,7 +26,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.55;
   overflow-x: hidden;
 }
@@ -50,6 +52,7 @@ p {
 h1,
 h2,
 h3 {
+  font-family: var(--font-heading);
   letter-spacing: 0;
 }
 
@@ -66,6 +69,10 @@ h2 {
 h3 {
   font-size: 20px;
   line-height: 1.25;
+}
+
+.focus-grid h3 {
+  color: var(--accent);
 }
 
 .site-header {
@@ -96,15 +103,17 @@ h3 {
   border: 1px solid transparent;
   border-radius: 6px;
   color: var(--muted);
+  font-family: var(--font-heading);
   font-size: 14px;
+  font-weight: 750;
   padding: 8px 10px;
 }
 
 .nav-links a[aria-current="page"],
 .nav-links a:hover {
-  background: var(--surface);
-  border-color: var(--line);
-  color: var(--ink);
+  background: var(--accent-soft);
+  border-color: #b8d9e2;
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -142,10 +151,23 @@ main {
   min-height: 360px;
   min-width: 0;
   padding: clamp(28px, 5vw, 56px);
+  position: relative;
+}
+
+.hero-copy::before {
+  background: var(--accent);
+  border-radius: 999px;
+  content: "";
+  height: 72px;
+  left: 0;
+  position: absolute;
+  top: 48px;
+  width: 5px;
 }
 
 .kicker {
   color: var(--accent-strong);
+  font-family: var(--font-heading);
   font-size: 13px;
   font-weight: 750;
   line-height: 1.35;
@@ -156,6 +178,7 @@ main {
 
 .role {
   color: var(--ink);
+  font-family: var(--font-heading);
   font-size: clamp(20px, 2vw, 24px);
   font-weight: 700;
   line-height: 1.25;
@@ -168,7 +191,8 @@ main {
   font-size: 18px;
   line-height: 1.55;
   margin-top: 18px;
-  max-width: 760px;
+  max-width: 680px;
+  text-align: left;
 }
 
 .hero-actions {
@@ -182,6 +206,7 @@ main {
   align-items: center;
   border-radius: 8px;
   display: inline-flex;
+  font-family: var(--font-heading);
   font-size: 15px;
   font-weight: 700;
   justify-content: center;
@@ -190,7 +215,7 @@ main {
 }
 
 .button.primary {
-  background: var(--ink);
+  background: var(--accent);
   color: #ffffff;
 }
 
@@ -233,12 +258,14 @@ main {
 }
 
 .profile-summary h2 {
+  color: var(--accent);
   font-size: 24px;
 }
 
 .profile-summary p:not(.summary-label) {
   color: var(--muted);
   margin-top: 16px;
+  text-align: left;
 }
 
 .section {
@@ -265,6 +292,8 @@ main {
   color: var(--muted);
   font-size: 17px;
   margin-top: 14px;
+  max-width: 680px;
+  text-align: left;
 }
 
 .cards {
@@ -311,6 +340,7 @@ main {
 
 .card p {
   margin-top: 12px;
+  text-align: left;
 }
 
 .inline-link {
@@ -319,16 +349,18 @@ main {
 }
 
 .focus-grid {
-  border-top: 1px solid var(--line);
   display: grid;
-  gap: 22px;
+  gap: 14px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 28px;
-  padding-top: 24px;
+  margin-top: 24px;
 }
 
 .focus-grid > div {
+  background: var(--accent-soft);
+  border: 1px solid #c7e3ea;
+  border-radius: 8px;
   min-width: 0;
+  padding: 18px;
 }
 
 .number {
@@ -342,25 +374,33 @@ main {
 .focus-grid p {
   color: var(--muted);
   margin-top: 10px;
+  text-align: left;
 }
 
 .stack-section {
-  background: transparent;
-  border-top: 1px solid var(--line);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 10px 26px rgba(23, 32, 51, 0.05);
+  margin: 20px 0 24px;
+  padding: 30px;
+}
+
+.tech-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 10px 0 24px;
-  padding-top: 24px;
+  margin-top: 22px;
 }
 
-.stack-section span,
+.tech-list span,
 .meta span {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--accent);
   font-size: 14px;
+  font-weight: 700;
   padding: 7px 11px;
 }
 
@@ -540,6 +580,7 @@ main {
 
   .lead {
     font-size: 16px;
+    text-align: left;
   }
 
   .role {
@@ -548,6 +589,12 @@ main {
 
   .kicker {
     font-size: 12px;
+  }
+
+  .profile-summary p:not(.summary-label),
+  .section-header p:not(.kicker),
+  .card p {
+    text-align: left;
   }
 
   .button {
