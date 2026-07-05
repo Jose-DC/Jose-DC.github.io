@@ -1,12 +1,14 @@
 :root {
-  --bg: #f7f7f5;
+  --bg: #f6f8fb;
   --surface: #ffffff;
-  --ink: #111827;
-  --muted: #5f6673;
-  --line: #e1e4e8;
+  --ink: #172033;
+  --muted: #596579;
+  --line: #dfe5ee;
   --accent: #0f766e;
+  --accent-strong: #2563eb;
   --accent-soft: #e7f3f1;
-  --shadow: 0 18px 40px rgba(17, 24, 39, 0.06);
+  --warn-soft: #fff7e6;
+  --shadow: 0 16px 34px rgba(23, 32, 51, 0.08);
 }
 
 * {
@@ -23,6 +25,7 @@ body {
   color: var(--ink);
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.55;
+  overflow-x: hidden;
 }
 
 a {
@@ -40,6 +43,7 @@ h2,
 h3,
 p {
   margin: 0;
+  overflow-wrap: break-word;
 }
 
 h1,
@@ -49,8 +53,8 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(42px, 6vw, 72px);
-  line-height: 1;
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 0.98;
 }
 
 h2 {
@@ -64,7 +68,7 @@ h3 {
 }
 
 .site-header {
-  background: rgba(247, 247, 245, 0.94);
+  background: rgba(246, 248, 251, 0.94);
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -86,6 +90,7 @@ h3 {
   color: var(--ink);
   font-size: 16px;
   font-weight: 750;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -109,20 +114,19 @@ h3 {
 
 main {
   margin: 0 auto;
-  max-width: 1080px;
-  padding: 56px 24px 72px;
+  max-width: 1120px;
+  padding: 48px 24px 72px;
 }
 
 .hero {
+  align-items: center;
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.65fr);
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: 40px;
+  padding: 22px 0 42px;
 }
 
-.hero-main,
 .profile-summary,
-.section,
 .contact-section,
 .page-heading,
 .project-row,
@@ -130,30 +134,41 @@ main {
 .doc-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
-.hero-main {
-  min-height: 420px;
-  padding: clamp(32px, 5vw, 56px);
+.hero-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 360px;
+  min-width: 0;
 }
 
 .kicker {
-  color: var(--accent);
+  color: var(--accent-strong);
   font-size: 13px;
   font-weight: 750;
+  line-height: 1.35;
   margin-bottom: 14px;
+  overflow-wrap: anywhere;
   text-transform: uppercase;
+}
+
+.role {
+  color: var(--ink);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 18px;
+  max-width: 720px;
 }
 
 .lead {
   color: var(--muted);
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.55;
-  margin-top: 22px;
+  margin-top: 18px;
   max-width: 760px;
 }
 
@@ -191,15 +206,26 @@ main {
 }
 
 .profile-summary {
-  padding: 28px;
   display: flex;
+  gap: 18px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 24px;
   box-shadow: var(--shadow);
 }
 
+.avatar {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  height: 96px;
+  object-fit: cover;
+  width: 96px;
+}
+
 .summary-label {
-  color: var(--accent);
+  color: var(--accent-strong);
   font-size: 13px;
   font-weight: 750;
   margin-bottom: 12px;
@@ -207,7 +233,7 @@ main {
 }
 
 .profile-summary h2 {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .profile-summary p:not(.summary-label) {
@@ -215,7 +241,11 @@ main {
   margin-top: 16px;
 }
 
-.section,
+.section {
+  margin-top: 24px;
+  padding: 28px 0;
+}
+
 .contact-section,
 .page-heading {
   margin-top: 24px;
@@ -223,7 +253,8 @@ main {
 }
 
 .section-header {
-  max-width: 760px;
+  max-width: 720px;
+  min-width: 0;
 }
 
 .section-header p:not(.kicker) {
@@ -242,18 +273,23 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .card {
-  background: #fbfbfa;
+  background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 8px;
   height: 100%;
-  min-height: 224px;
+  min-height: 190px;
+  min-width: 0;
   padding: 22px;
 }
 
 .tag {
-  background: var(--accent-soft);
-  border-radius: 999px;
+  background: var(--warn-soft);
+  border-radius: 6px;
   color: var(--accent);
   display: inline-block;
   font-size: 12px;
@@ -278,11 +314,39 @@ main {
   margin-top: 20px;
 }
 
+.focus-grid {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 28px;
+  padding-top: 24px;
+}
+
+.focus-grid > div {
+  min-width: 0;
+}
+
+.number {
+  color: var(--accent);
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.focus-grid p {
+  color: var(--muted);
+  margin-top: 10px;
+}
+
 .stack-section {
+  border-top: 1px solid var(--line);
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 24px 0;
+  margin: 10px 0 24px;
+  padding-top: 24px;
 }
 
 .stack-section span,
@@ -300,6 +364,7 @@ main {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 24px;
   align-items: center;
+  min-width: 0;
 }
 
 .contact-section p:not(.kicker) {
@@ -315,7 +380,7 @@ main {
 
 .contact-links a {
   background: var(--accent-soft);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 9px 12px;
 }
 
@@ -393,45 +458,91 @@ main {
 @media (max-width: 860px) {
   .hero,
   .three-columns,
+  .two-columns,
+  .focus-grid,
   .contact-section,
   .project-row,
   .doc-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero-main {
+  .hero-copy {
     min-height: auto;
   }
 }
 
 @media (max-width: 560px) {
   main {
-    padding: 36px 16px 56px;
+    padding: 34px 16px 56px;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 390px;
   }
 
   .nav {
     align-items: flex-start;
     flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 390px;
     padding: 14px 16px;
   }
 
   .nav-links {
+    gap: 4px;
     width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    padding: 8px 9px;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  .hero {
+    gap: 18px;
+    padding: 8px 0 28px;
+  }
+
+  .hero-actions {
+    gap: 8px;
+  }
+
+  .profile-summary {
+    padding: 20px;
+  }
+
+  .avatar {
+    height: 76px;
+    width: 76px;
   }
 
   .lead {
-    font-size: 17px;
+    font-size: 16px;
+  }
+
+  .role {
+    font-size: 19px;
+  }
+
+  .kicker {
+    font-size: 12px;
   }
 
   .button {
-    width: 100%;
+    flex: 1 1 100%;
+    min-width: 0;
+    width: auto;
   }
 
   .card {
-    min-height: 250px;
+    min-height: 0;
   }
 }

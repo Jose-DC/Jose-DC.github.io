@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Portafolio técnico de José Díaz: proyectos y laboratorios sobre Cloud, infraestructura, Azure, AKS, Kubernetes y automatización."
+    content="Portafolio técnico de José Díaz: soporte cloud, infraestructura TI, Azure, AKS/Kubernetes, Linux, automatización y aprendizaje aplicado."
   />
   <title>José Díaz | Portafolio técnico</title>
   <link rel="stylesheet" href="assets/styles.css" />
@@ -24,68 +24,94 @@
 
   <main>
     <section class="hero">
-      <div class="hero-main">
-        <p class="kicker">Cloud · Infraestructura · Automatización</p>
-        <h1>Portafolio técnico en desarrollo.</h1>
+      <div class="hero-copy">
+        <p class="kicker">Soporte cloud · Infraestructura TI · Aprendizaje aplicado</p>
+        <h1>José Díaz</h1>
+        <p class="role">Ingeniero Civil Telemático orientado a soporte cloud e infraestructura TI.</p>
         <p class="lead">
-          Soy José Díaz, Ingeniero Civil Telemático titulado en la Universidad de La Frontera.
-          Actualmente estoy comenzando mi carrera en soporte e infraestructura cloud, con foco en Azure,
-          AKS, Kubernetes, Docker, Helm y Linux.
+          Trabajo con operación y soporte de entornos cloud, con foco en Azure, AKS/Kubernetes,
+          Docker, Helm, Linux, revisión de logs, monitoreo y documentación técnica. Este portafolio
+          ordena mi aprendizaje y próximos proyectos sin presentar como terminado lo que aún está en desarrollo.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions" aria-label="Enlaces principales">
           <a class="button primary" href="proyectos.html">Ver proyectos</a>
           <a class="button secondary" href="https://github.com/Jose-DC" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/jose-patricio-diaz/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
 
-      <aside class="profile-summary" aria-label="Resumen técnico">
-        <p class="summary-label">Foco actual</p>
-        <h2>Cloud / DevOps junior</h2>
-        <p>
-          Este sitio irá reuniendo laboratorios, notas y evidencias técnicas. Por ahora los proyectos están
-          en etapa inicial y se irán completando a medida que los desarrolle.
-        </p>
+      <aside class="profile-summary" aria-label="Resumen de perfil">
+        <img class="avatar" src="assets/img/jose-diaz-avatar.png" alt="Foto de José Díaz" width="96" height="96" />
+        <div>
+          <p class="summary-label">Foco actual</p>
+          <h2>Cloud Operations / DevOps Junior</h2>
+          <p>
+            Perfil en crecimiento: soporte avanzado, continuidad operativa, troubleshooting,
+            automatización y documentación técnica.
+          </p>
+        </div>
       </aside>
     </section>
 
-    <section class="section">
+    <section class="section focus-section">
       <div class="section-header">
-        <p class="kicker">Proyectos</p>
-        <h2>Laboratorios iniciales</h2>
+        <p class="kicker">Base técnica</p>
+        <h2>Áreas que estoy fortaleciendo</h2>
         <p>
-          Estos son los primeros tres proyectos que voy a usar para ordenar aprendizaje y demostrar criterio
-          técnico. Aún no están terminados; la idea es documentarlos con pasos, comandos, capturas y decisiones.
+          El objetivo es mostrar una ruta técnica ordenada para roles de soporte cloud,
+          infraestructura, Cloud Operations y DevOps Junior realista.
         </p>
       </div>
 
-      <div class="cards three-columns">
+      <div class="focus-grid">
+        <div>
+          <span class="number">01</span>
+          <h3>Operación cloud</h3>
+          <p>Azure, AKS/Kubernetes, continuidad de servicios y revisión de incidencias.</p>
+        </div>
+        <div>
+          <span class="number">02</span>
+          <h3>Automatización</h3>
+          <p>Python, Bash, PowerShell y scripts simples para apoyar tareas repetitivas.</p>
+        </div>
+        <div>
+          <span class="number">03</span>
+          <h3>Documentación</h3>
+          <p>Procedimientos claros, validación, rollback, troubleshooting y evidencias.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section project-preview">
+      <div class="section-header">
+        <p class="kicker">Proyectos</p>
+        <h2>En preparación</h2>
+        <p>
+          Por ahora uso estas fichas como muestra visual del portafolio. Los proyectos se irán
+          completando con pasos, comandos, capturas y limitaciones reales.
+        </p>
+      </div>
+
+      <div class="cards two-columns">
         <article class="card">
-          <span class="tag">Idea inicial</span>
-          <h3>Secret scanner</h3>
+          <span class="tag">Muestra</span>
+          <h3>Proyecto 01</h3>
           <p>
-            Herramienta en Python para revisar repositorios antes de publicarlos y detectar posibles secretos,
-            tokens o archivos sensibles.
+            Laboratorio de automatización para revisar archivos, generar un reporte simple y
+            documentar decisiones técnicas paso a paso.
           </p>
         </article>
         <article class="card">
-          <span class="tag">Planeado</span>
-          <h3>AKS + Helm lab</h3>
+          <span class="tag">Muestra</span>
+          <h3>Proyecto 02</h3>
           <p>
-            Laboratorio para desplegar una aplicación demo en Kubernetes y documentar uso de Helm,
-            valores, logs y troubleshooting básico.
-          </p>
-        </article>
-        <article class="card">
-          <span class="tag">Planeado</span>
-          <h3>Revisión de logs</h3>
-          <p>
-            Script simple para analizar logs, detectar errores frecuentes y generar un resumen útil para soporte
-            o escalamiento técnico.
+            Ejercicio de operación cloud para practicar despliegue, revisión de logs,
+            validación básica y troubleshooting.
           </p>
         </article>
       </div>
 
-      <a class="inline-link" href="proyectos.html">Ver detalle de proyectos</a>
+      <a class="inline-link" href="proyectos.html">Ver estructura de proyectos</a>
     </section>
 
     <section class="stack-section" aria-label="Tecnologías de interés">
@@ -96,15 +122,18 @@
       <span>Helm</span>
       <span>Linux</span>
       <span>Python</span>
+      <span>Bash</span>
+      <span>PowerShell</span>
       <span>GitHub Actions</span>
     </section>
 
     <section id="contacto" class="contact-section">
       <div>
         <p class="kicker">Contacto</p>
-        <h2>Hablemos</h2>
+        <h2>Contacto</h2>
         <p>
-          Puedes contactarme por LinkedIn, correo o GitHub.
+          Disponible para conversaciones sobre soporte cloud, infraestructura TI,
+          operaciones y roles junior orientados a DevOps o Cloud Operations.
         </p>
       </div>
       <div class="contact-links">
