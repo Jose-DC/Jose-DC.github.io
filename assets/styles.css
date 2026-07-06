@@ -414,13 +414,11 @@ main {
 }
 
 .experience-section .section-header,
-.docs-preview .section-header,
 .stack-section .section-header {
   max-width: none;
 }
 
 .experience-section .section-header p:not(.kicker),
-.docs-preview .section-header p:not(.kicker),
 .stack-section .section-header p:not(.kicker) {
   max-width: 920px;
 }
@@ -461,7 +459,7 @@ main {
   line-height: 1.68;
   margin-top: 16px;
   max-width: 960px;
-  text-align: justify;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -499,33 +497,6 @@ main {
   padding: 7px 10px;
 }
 
-.compact-cards {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.compact-cards .card {
-  min-height: 0;
-}
-
-.notes-grid {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  margin-top: 30px;
-}
-
-.notes-grid .card {
-  background: var(--surface);
-  min-height: 126px;
-  padding: 20px;
-}
-
-.notes-grid h3 {
-  font-size: 17px;
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
 .inline-link {
   display: inline-block;
   margin-top: 20px;
@@ -542,8 +513,10 @@ main {
   background: var(--accent-soft);
   border: 1px solid #c7e3ea;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-  padding: 18px;
+  padding: 22px;
 }
 
 .number {
@@ -551,13 +524,13 @@ main {
   display: inline-block;
   font-size: 13px;
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .focus-grid p {
   color: var(--muted);
   hyphens: auto;
-  margin-top: 10px;
+  margin-top: 12px;
   line-height: 1.6;
   text-align: left;
   text-align-last: left;
@@ -755,8 +728,7 @@ main {
   .project-row,
   .doc-grid,
   .prepared-card,
-  .tech-category-grid,
-  .notes-grid {
+  .tech-category-grid {
     grid-template-columns: 1fr;
   }
 
@@ -872,7 +844,4 @@ main {
     gap: 10px;
   }
 
-  .notes-grid .card {
-    min-height: 0;
-  }
 }
