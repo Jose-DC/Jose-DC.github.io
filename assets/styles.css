@@ -227,6 +227,11 @@ main {
   color: var(--ink);
 }
 
+.button.secondary:hover {
+  border-color: #b8d9e2;
+  color: var(--accent);
+}
+
 .button:hover {
   text-decoration: none;
 }
@@ -349,6 +354,7 @@ main {
 
 .card p {
   hyphens: auto;
+  margin-bottom: 22px;
   margin-top: 12px;
   text-align: justify;
   text-align-last: left;
@@ -370,6 +376,11 @@ main {
 
 .card-link:hover {
   text-decoration: none;
+}
+
+.section-actions {
+  display: flex;
+  margin-top: 18px;
 }
 
 .inline-link {
@@ -420,7 +431,7 @@ main {
 .tech-list {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   margin-top: 22px;
 }
 
