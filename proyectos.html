@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Proyectos técnicos de José Díaz sobre Cloud, DevOps, Kubernetes, automatización y soporte avanzado."
+    content="Proyectos técnicos de José Díaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatización y documentación."
   />
   <title>Proyectos | José Díaz</title>
   <link rel="stylesheet" href="assets/styles.css" />
@@ -14,8 +14,11 @@
   <header class="site-header">
     <nav class="nav" aria-label="Navegación principal">
       <div class="nav-links">
-        <a href="index.html">Inicio</a>
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#experiencia">Experiencia</a>
         <a href="proyectos.html" aria-current="page">Proyectos</a>
+        <a href="index.html#documentacion">Documentación</a>
+        <a href="index.html#tecnologias">Tecnologías</a>
         <a href="index.html#contacto">Contacto</a>
       </div>
     </nav>
@@ -24,71 +27,60 @@
   <main>
     <section class="page-heading">
       <p class="kicker">Proyectos</p>
-      <h1>Proyectos personales y laboratorios</h1>
+      <h1>Proyectos técnicos en preparación</h1>
       <p class="lead">
-        Estos proyectos fueron creados para practicar, documentar aprendizaje técnico y mostrar
-        trabajo propio en distintas áreas. Algunos nacen de pruebas personales, otros de experiencia
-        académica o práctica profesional, y cada ficha irá reuniendo objetivo, tecnologías, validación
-        y evidencia disponible.
+        Esta página queda preparada para documentar proyectos reales con objetivo, contexto,
+        tecnologías, pasos de validación, evidencias, limitaciones y aprendizajes. Por ahora
+        no se presentan proyectos como terminados si aún no tienen documentación disponible.
       </p>
     </section>
 
     <section class="project-list">
-      <article class="project-row">
+      <article class="project-row detailed-project">
         <div>
-          <span class="tag">Idea inicial</span>
-          <h2>Secret scanner para repositorios</h2>
+          <span class="tag">En preparación</span>
+          <h2>Plataforma centralizada - Práctica profesional</h2>
           <p>
-            Proyecto pensado para crear una herramienta CLI en Python que revise una carpeta antes de subirla
-            a GitHub. El objetivo es detectar archivos `.env`, claves privadas, tokens o patrones básicos de
-            credenciales expuestas.
+            Primer proyecto a documentar desde la práctica profesional. La ficha queda lista
+            para completar información real sobre Docker, Linux, automatización con Python,
+            plataforma centralizada y documentación técnica.
           </p>
           <div class="meta">
-            <span>Python</span>
-            <span>Git</span>
-            <span>Seguridad básica</span>
-          </div>
-        </div>
-        <a class="button secondary" href="proyectos/secret-scanner.html">Ver ficha</a>
-      </article>
-
-      <article class="project-row">
-        <div>
-          <span class="tag">Planeado</span>
-          <h2>AKS + Helm lab</h2>
-          <p>
-            Laboratorio para practicar despliegues en Kubernetes usando Helm. La idea es documentar una app demo,
-            el chart, los values, comandos de despliegue, revisión de pods, logs y errores comunes.
-          </p>
-          <div class="meta">
-            <span>Azure</span>
-            <span>AKS</span>
-            <span>Kubernetes</span>
-            <span>Helm</span>
-          </div>
-        </div>
-        <a class="button secondary" href="proyectos/aks-helm-lab.html">Ver ficha</a>
-      </article>
-
-      <article class="project-row">
-        <div>
-          <span class="tag">Planeado</span>
-          <h2>Revisión de logs</h2>
-          <p>
-            Script orientado a soporte técnico para leer archivos de log, identificar errores frecuentes,
-            agrupar mensajes relevantes y generar un resumen útil para diagnóstico o escalamiento.
-          </p>
-          <div class="meta">
-            <span>Python</span>
+            <span>Docker</span>
             <span>Linux</span>
-            <span>Logs</span>
-            <span>Troubleshooting</span>
+            <span>Python</span>
+            <span>Automatización</span>
+            <span>Documentación técnica</span>
           </div>
         </div>
-        <a class="button secondary" href="proyectos/revision-logs.html">Ver ficha</a>
+        <div class="project-status">
+          <h3>Estado actual</h3>
+          <p>Pendiente de documentar con evidencia real.</p>
+        </div>
+      </article>
+
+      <article class="project-row project-template-row">
+        <div>
+          <span class="tag">Estructura base</span>
+          <h2>Plantilla de documentación para cada proyecto</h2>
+          <p>
+            Cada proyecto futuro debería completarse con una estructura breve y verificable,
+            evitando textos genéricos o resultados no demostrados.
+          </p>
+          <div class="project-template">
+            <span>Problema abordado</span>
+            <span>Contexto y alcance</span>
+            <span>Tecnologías utilizadas</span>
+            <span>Qué hice</span>
+            <span>Como se valida</span>
+            <span>Evidencia disponible</span>
+            <span>Limitaciones</span>
+            <span>Aprendizajes</span>
+            <span>Próximos pasos</span>
+          </div>
+        </div>
       </article>
     </section>
   </main>
-
 </body>
 </html>

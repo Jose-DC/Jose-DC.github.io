@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Portafolio técnico de José Díaz: soporte cloud, infraestructura TI, Azure, AKS/Kubernetes, Linux y automatización."
+    content="Portafolio técnico de José Díaz: soporte cloud, infraestructura TI, operaciones, Azure, AKS/Kubernetes, Linux, Docker y automatización."
   />
   <title>José Díaz | Portafolio técnico</title>
   <link rel="stylesheet" href="assets/styles.css" />
@@ -14,27 +14,30 @@
   <header class="site-header">
     <nav class="nav" aria-label="Navegación principal">
       <div class="nav-links">
-        <a href="index.html" aria-current="page">Inicio</a>
-        <a href="proyectos.html">Proyectos</a>
+        <a href="#inicio" aria-current="page">Inicio</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#documentacion">Documentación</a>
+        <a href="#tecnologias">Tecnologías</a>
         <a href="#contacto">Contacto</a>
       </div>
     </nav>
   </header>
 
-  <main>
+  <main id="inicio">
     <section class="hero">
       <div class="hero-copy">
-        <p class="kicker">Soporte cloud · Infraestructura TI</p>
+        <p class="kicker">Soporte Cloud - Infraestructura TI - Operaciones</p>
         <h1>José Díaz</h1>
-        <p class="role">Ingeniero Civil Telemático orientado a soporte cloud e infraestructura TI.</p>
+        <p class="role">Ingeniero Civil Telemático orientado a soporte cloud, infraestructura TI y operaciones.</p>
         <p class="lead">
-          Trabajo en soporte técnico e infraestructura, combinando diagnóstico de incidencias,
-          revisión de logs, monitoreo, continuidad operativa y apoyo sobre entornos cloud.
-          Mi experiencia incluye Azure, AKS/Kubernetes, Linux, Docker, redes, automatización
-          y documentación técnica.
+          Trabajo en soporte técnico e infraestructura cloud, combinando diagnóstico de incidencias,
+          revisión de logs, monitoreo, continuidad operativa y documentación técnica. Mi foco actual
+          está en Azure, AKS/Kubernetes, Linux, Docker, automatización y soporte de servicios en producción.
         </p>
         <div class="hero-actions" aria-label="Enlaces principales">
-          <a class="button primary" href="proyectos.html">Ver proyectos</a>
+          <a class="button primary" href="#proyectos">Ver proyectos</a>
+          <a class="button secondary" href="#experiencia">Ver experiencia</a>
         </div>
       </div>
 
@@ -56,8 +59,8 @@
         <p class="kicker">Base técnica</p>
         <h2>Áreas principales</h2>
         <p>
-          El objetivo es mostrar una base técnica real para soporte cloud, infraestructura TI,
-          soporte N2/N3, operaciones y crecimiento hacia DevOps Junior.
+          El portafolio ordena una base técnica real para soporte cloud, infraestructura TI,
+          soporte N2/N3, operaciones y crecimiento hacia roles Cloud o DevOps Junior.
         </p>
       </div>
 
@@ -65,85 +68,206 @@
         <div>
           <span class="number">01</span>
           <h3>Soporte e infraestructura</h3>
-          <p>Diagnóstico de incidencias, continuidad operativa, monitoreo y escalamiento técnico.</p>
+          <p>Diagnóstico de incidencias, continuidad operativa, monitoreo, escalamiento y soporte técnico.</p>
         </div>
         <div>
           <span class="number">02</span>
-          <h3>Automatización operativa</h3>
-          <p>Python, Bash, PowerShell y aprendizaje aplicado para reducir tareas repetitivas.</p>
+          <h3>Cloud y contenedores</h3>
+          <p>Trabajo y aprendizaje aplicado con Azure, AKS/Kubernetes, Linux, Docker y servicios cloud.</p>
         </div>
         <div>
           <span class="number">03</span>
-          <h3>Cloud, Linux y redes</h3>
-          <p>Azure, AKS/Kubernetes, Linux, VPN, respaldos, redes y documentación técnica.</p>
+          <h3>Automatización y documentación</h3>
+          <p>Uso de Python, Bash y documentación técnica para ordenar procesos, validaciones y soporte.</p>
         </div>
       </div>
     </section>
 
-    <section class="section project-preview">
+    <section id="experiencia" class="section experience-section">
+      <div class="section-header">
+        <p class="kicker">Experiencia</p>
+        <h2>Experiencia técnica</h2>
+        <p>
+          Resumen breve de experiencia laboral y práctica, enfocado en responsabilidades técnicas
+          relevantes para soporte cloud, infraestructura, operaciones y automatización.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <span class="tag">Actual</span>
+          <h3>Transformapp - Ingeniero de Soporte e Infraestructura Cloud</h3>
+          <p>
+            Soporte cloud e infraestructura con foco en Azure, AKS/Kubernetes, monitoreo,
+            revisión de logs, continuidad operativa, implementación de clientes/PDV y documentación técnica.
+          </p>
+        </article>
+        <article class="timeline-item">
+          <span class="tag">Práctica profesional</span>
+          <h3>Instituto de Informática Educativa UFRO</h3>
+          <p>
+            Apoyo en una plataforma centralizada usando Docker, Linux, Python, automatización
+            y documentación técnica para ordenar procesos y validaciones.
+          </p>
+        </article>
+        <article class="timeline-item">
+          <span class="tag">Prácticas TI</span>
+          <h3>DINFO UFRO - Infraestructura TI y redes</h3>
+          <p>
+            Soporte TI e infraestructura en entorno universitario, con tareas asociadas a datacenter,
+            redes, VPN, respaldos, RackTables y operación técnica.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="proyectos" class="section project-preview">
       <div class="section-header">
         <p class="kicker">Proyectos</p>
         <h2>Proyectos técnicos</h2>
         <p>
-          Esta sección está pensada para mostrar laboratorios y proyectos personales con problema,
-          solución, tecnologías utilizadas, pasos de validación y evidencia técnica.
+          Espacio preparado para documentar proyectos reales con problema abordado, tecnologías,
+          acciones realizadas, evidencia, aprendizajes y estado actual. No se presentan resultados
+          como terminados mientras no exista documentación disponible.
         </p>
       </div>
 
-      <div class="cards two-columns">
-        <article class="card">
-          <h3>Proyecto 01</h3>
+      <article class="prepared-card">
+        <div>
+          <span class="tag">En preparación</span>
+          <h3>Plataforma centralizada - Práctica profesional</h3>
           <p>
-            Laboratorio de automatización para revisar archivos, generar un reporte simple y
-            documentar decisiones técnicas paso a paso.
+            Proyecto que será documentado a partir de la práctica profesional, relacionado con Docker,
+            Linux y automatización con Python. La ficha queda preparada para completar información real.
           </p>
-          <a class="card-link" href="proyectos/secret-scanner.html">Ver proyecto</a>
-        </article>
-        <article class="card">
-          <h3>Proyecto 02</h3>
-          <p>
-            Ejercicio de operación cloud para practicar despliegue, revisión de logs,
-            validación básica y troubleshooting.
-          </p>
-          <a class="card-link" href="proyectos/aks-helm-lab.html">Ver proyecto</a>
-        </article>
-      </div>
+        </div>
+        <div class="project-template">
+          <span>Problema abordado</span>
+          <span>Tecnologías utilizadas</span>
+          <span>Qué hice</span>
+          <span>Evidencia pendiente</span>
+          <span>Aprendizajes</span>
+          <span>Estado actual</span>
+        </div>
+      </article>
 
       <div class="section-actions">
-        <a class="button secondary" href="proyectos.html">Ver más proyectos</a>
+        <a class="button secondary" href="proyectos.html">Ver página de proyectos</a>
       </div>
     </section>
 
-    <section class="stack-section" aria-label="Tecnologías de interés">
+    <section id="documentacion" class="section docs-preview">
+      <div class="section-header">
+        <p class="kicker">Documentación</p>
+        <h2>Documentación técnica</h2>
+        <p>
+          Sección preparada para futuras notas, procedimientos y guías técnicas. Por ahora queda
+          marcada como contenido pendiente, sin simular documentación terminada.
+        </p>
+      </div>
+
+      <div class="cards three-columns compact-cards">
+        <article class="card">
+          <span class="tag">Pendiente</span>
+          <h3>Checklist de troubleshooting</h3>
+          <p>Guía futura para ordenar revisión inicial, síntomas, validaciones y escalamiento.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Pendiente</span>
+          <h3>Revision de logs</h3>
+          <p>Nota futura para documentar búsqueda de errores, patrones y evidencia técnica.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Pendiente</span>
+          <h3>Validación básica en Kubernetes</h3>
+          <p>Procedimiento futuro para revisar recursos, pods, eventos, logs y estado general.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Próximamente</span>
+          <h3>Procedimiento de despliegue</h3>
+          <p>Plantilla futura para prerequisitos, pasos, validación, rollback y troubleshooting.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Próximamente</span>
+          <h3>Monitoreo y continuidad operativa</h3>
+          <p>Nota futura para criterios de revisión, alertas, síntomas y acciones de soporte.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="tecnologias" class="stack-section" aria-label="Tecnologías de interés">
       <div class="section-header">
         <p class="kicker">Tecnologías</p>
         <h2>Herramientas y conocimientos</h2>
+        <p>
+          Tecnologías agrupadas por área para mostrar el contexto de trabajo y aprendizaje,
+          sin porcentajes ni niveles inflados.
+        </p>
       </div>
-      <div class="tech-list">
-        <span>Azure</span>
-        <span>AKS</span>
-        <span>Kubernetes</span>
-        <span>Docker</span>
-        <span>Helm</span>
-        <span>Linux</span>
-        <span>Proxmox</span>
-        <span>VirtualBox</span>
-        <span>Respaldos</span>
-        <span>Python</span>
-        <span>Bash</span>
-        <span>PowerShell</span>
-        <span>Java</span>
-        <span>SQL/PostgreSQL</span>
-        <span>MySQL</span>
-        <span>Git</span>
-        <span>GitHub</span>
-        <span>Redes</span>
-        <span>VPN</span>
-        <span>RJ-45</span>
-        <span>Monitoreo</span>
-        <span>GitHub Actions</span>
-        <span>Prometheus</span>
-        <span>Grafana</span>
+
+      <div class="tech-category-grid">
+        <article class="tech-category">
+          <h3>Cloud</h3>
+          <div class="tech-list compact">
+            <span>Azure</span>
+            <span>AKS</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Contenedores</h3>
+          <div class="tech-list compact">
+            <span>Docker</span>
+            <span>Kubernetes</span>
+            <span>Helm</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Sistemas</h3>
+          <div class="tech-list compact">
+            <span>Linux</span>
+            <span>Proxmox</span>
+            <span>Respaldos</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Automatización</h3>
+          <div class="tech-list compact">
+            <span>Python</span>
+            <span>Bash</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Bases de datos</h3>
+          <div class="tech-list compact">
+            <span>PostgreSQL</span>
+            <span>MySQL</span>
+            <span>SQL</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Redes</h3>
+          <div class="tech-list compact">
+            <span>VPN</span>
+            <span>Fundamentos de redes</span>
+            <span>RJ-45</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Monitoreo</h3>
+          <div class="tech-list compact">
+            <span>Prometheus</span>
+            <span>Grafana</span>
+            <span>Logs</span>
+          </div>
+        </article>
+        <article class="tech-category">
+          <h3>Gestión</h3>
+          <div class="tech-list compact">
+            <span>Jira</span>
+            <span>GitHub</span>
+            <span>GitHub Actions</span>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -151,20 +275,20 @@
       <div>
         <h2>Contacto</h2>
         <p>
-          Abierto a oportunidades donde pueda aportar desde soporte técnico, infraestructura,
-          operación cloud, automatización, redes, documentación o áreas TI relacionadas.
+          Abierto a oportunidades en soporte técnico, infraestructura, operaciones cloud,
+          automatización, redes, documentación o áreas TI relacionadas.
         </p>
       </div>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/jose-patricio-diaz/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="mailto:jose_diaz2000@hotmail.com">Correo</a>
         <a href="https://github.com/Jose-DC" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="mailto:jose_diaz2000@hotmail.com">Correo</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 José Díaz</p>
+    <p>&copy; 2026 José Díaz</p>
   </footer>
 </body>
 </html>
