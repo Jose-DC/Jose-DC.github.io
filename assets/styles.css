@@ -328,7 +328,7 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 190px;
+  min-height: 240px;
   min-width: 0;
   padding: 22px;
 }
@@ -354,7 +354,7 @@ main {
 
 .card p {
   hyphens: auto;
-  margin-bottom: 22px;
+  margin-bottom: 0;
   margin-top: 12px;
   text-align: justify;
   text-align-last: left;
@@ -370,7 +370,7 @@ main {
   font-size: 14px;
   font-weight: 750;
   justify-content: center;
-  margin-top: auto;
+  margin-top: 32px;
   padding: 9px 12px;
 }
 
@@ -380,7 +380,18 @@ main {
 
 .section-actions {
   display: flex;
-  margin-top: 18px;
+  justify-content: flex-end;
+  margin-top: 32px;
+}
+
+.section-actions .button.secondary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.section-actions .button.secondary:hover {
+  color: #ffffff;
 }
 
 .inline-link {
