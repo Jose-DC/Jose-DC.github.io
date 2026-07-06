@@ -151,7 +151,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 360px;
+  min-height: 0;
   min-width: 0;
   padding: clamp(28px, 5vw, 56px);
   position: relative;
@@ -196,7 +196,7 @@ main {
   line-height: 1.55;
   margin-top: 18px;
   max-width: 680px;
-  text-align: justify;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -276,13 +276,13 @@ main {
   color: var(--muted);
   hyphens: auto;
   margin-top: 16px;
-  text-align: justify;
+  text-align: left;
   text-align-last: left;
 }
 
 .section {
-  margin-top: 20px;
-  padding: 30px;
+  margin-top: 28px;
+  padding: clamp(28px, 4vw, 36px);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -296,7 +296,7 @@ main {
 }
 
 .section-header {
-  max-width: 720px;
+  max-width: none;
   min-width: 0;
 }
 
@@ -305,8 +305,8 @@ main {
   font-size: 17px;
   hyphens: auto;
   margin-top: 14px;
-  max-width: 680px;
-  text-align: justify;
+  max-width: 920px;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -318,10 +318,14 @@ main {
   max-width: 100%;
 }
 
+.focus-section .section-header p:not(.kicker) {
+  max-width: 100%;
+}
+
 .cards {
   display: grid;
   gap: 16px;
-  margin-top: 28px;
+  margin-top: 30px;
 }
 
 .three-columns {
@@ -339,9 +343,9 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 240px;
+  min-height: 0;
   min-width: 0;
-  padding: 22px;
+  padding: 24px;
 }
 
 .tag {
@@ -352,8 +356,12 @@ main {
   display: inline-block;
   font-size: 12px;
   font-weight: 750;
-  margin-bottom: 14px;
+  margin: 0;
   padding: 5px 9px;
+}
+
+.card > .tag {
+  margin-bottom: 14px;
 }
 
 .card p,
@@ -367,7 +375,7 @@ main {
   hyphens: auto;
   margin-bottom: 0;
   margin-top: 12px;
-  text-align: justify;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -392,7 +400,7 @@ main {
 .section-actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 32px;
+  margin-top: 36px;
 }
 
 .section-actions .button.secondary {
@@ -419,8 +427,8 @@ main {
 
 .timeline {
   display: grid;
-  gap: 14px;
-  margin-top: 28px;
+  gap: 18px;
+  margin-top: 34px;
 }
 
 .timeline-item {
@@ -428,7 +436,20 @@ main {
   border: 1px solid var(--line);
   border-left: 4px solid var(--accent);
   border-radius: 8px;
-  padding: 22px;
+  padding: 24px 26px;
+}
+
+.timeline-heading,
+.card-heading {
+  align-items: flex-start;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+}
+
+.timeline-heading h3,
+.card-heading h3 {
+  min-width: 0;
 }
 
 .timeline-item h3 {
@@ -437,9 +458,10 @@ main {
 
 .timeline-item p {
   color: var(--muted);
-  margin-top: 10px;
+  line-height: 1.6;
+  margin-top: 14px;
   max-width: 900px;
-  text-align: justify;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -450,14 +472,15 @@ main {
   display: grid;
   gap: 24px;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-  margin-top: 28px;
-  padding: 24px;
+  margin-top: 30px;
+  padding: 26px;
 }
 
 .prepared-card p,
 .project-status p {
   color: var(--muted);
-  margin-top: 12px;
+  line-height: 1.6;
+  margin-top: 14px;
 }
 
 .project-template {
@@ -481,7 +504,26 @@ main {
 }
 
 .compact-cards .card {
-  min-height: 190px;
+  min-height: 0;
+}
+
+.notes-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 30px;
+}
+
+.notes-grid .card {
+  background: var(--surface);
+  min-height: 126px;
+  padding: 20px;
+}
+
+.notes-grid h3 {
+  font-size: 17px;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .inline-link {
@@ -491,9 +533,9 @@ main {
 
 .focus-grid {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 24px;
+  margin-top: 30px;
 }
 
 .focus-grid > div {
@@ -516,7 +558,8 @@ main {
   color: var(--muted);
   hyphens: auto;
   margin-top: 10px;
-  text-align: justify;
+  line-height: 1.6;
+  text-align: left;
   text-align-last: left;
 }
 
@@ -525,8 +568,8 @@ main {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 10px 26px rgba(23, 32, 51, 0.05);
-  margin: 20px 0 24px;
-  padding: 30px;
+  margin: 28px 0 28px;
+  padding: clamp(28px, 4vw, 36px);
 }
 
 .tech-list {
@@ -563,9 +606,9 @@ main {
 
 .tech-category-grid {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 24px;
+  margin-top: 30px;
 }
 
 .tech-category {
@@ -592,6 +635,10 @@ main {
   gap: 24px;
   align-items: center;
   min-width: 0;
+}
+
+.contact-section h2 {
+  margin: 0;
 }
 
 .contact-section p:not(.kicker) {
@@ -625,8 +672,8 @@ main {
 
 .project-list {
   display: grid;
-  gap: 16px;
-  margin-top: 24px;
+  gap: 18px;
+  margin-top: 30px;
 }
 
 .project-row {
@@ -634,7 +681,7 @@ main {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 24px;
   align-items: center;
-  padding: 28px;
+  padding: 30px;
 }
 
 .project-row h2 {
@@ -642,7 +689,8 @@ main {
 }
 
 .project-row p {
-  margin-top: 12px;
+  line-height: 1.6;
+  margin-top: 14px;
   max-width: 780px;
 }
 
@@ -707,7 +755,8 @@ main {
   .project-row,
   .doc-grid,
   .prepared-card,
-  .tech-category-grid {
+  .tech-category-grid,
+  .notes-grid {
     grid-template-columns: 1fr;
   }
 
@@ -815,5 +864,15 @@ main {
   .project-row,
   .tech-category {
     padding: 18px;
+  }
+
+  .timeline-heading,
+  .card-heading {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .notes-grid .card {
+    min-height: 0;
   }
 }
