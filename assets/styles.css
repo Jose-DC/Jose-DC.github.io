@@ -8,6 +8,7 @@
   --accent: #155e75;
   --accent-strong: #155e75;
   --accent-soft: #e8f4f7;
+  --accent-tint: #dff0f4;
   --warn-soft: #eef6f8;
   --shadow: 0 18px 44px rgba(23, 32, 51, 0.09);
   --font-heading: "Segoe UI", Arial, sans-serif;
@@ -307,6 +308,14 @@ main {
   text-align-last: left;
 }
 
+.project-preview .section-header {
+  max-width: none;
+}
+
+.project-preview .section-header p:not(.kicker) {
+  max-width: 100%;
+}
+
 .cards {
   display: grid;
   gap: 16px;
@@ -431,7 +440,7 @@ main {
 }
 
 .stack-section {
-  background: var(--surface);
+  background: linear-gradient(180deg, var(--surface) 0%, #fbfdfe 100%);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: 0 10px 26px rgba(23, 32, 51, 0.05);
@@ -460,6 +469,15 @@ main {
   min-height: 38px;
   padding: 7px 11px;
   text-align: center;
+}
+
+.tech-list span:nth-child(even) {
+  background: var(--accent-tint);
+  border-color: #bddfe7;
+}
+
+.tech-list span:nth-child(odd) {
+  background: var(--surface);
 }
 
 .contact-section {
@@ -642,6 +660,15 @@ main {
 
   .role {
     font-size: 19px;
+  }
+
+  .lead,
+  .profile-summary p:not(.summary-label),
+  .section-header p:not(.kicker),
+  .card p,
+  .focus-grid p {
+    text-align: left;
+    text-align-last: left;
   }
 
   .kicker {
