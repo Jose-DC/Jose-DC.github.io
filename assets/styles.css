@@ -28,6 +28,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
+  hyphens: none;
   line-height: 1.55;
   overflow-x: hidden;
 }
@@ -47,7 +48,17 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+h1,
+h2,
+h3 {
   overflow-wrap: break-word;
+}
+
+p {
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 h1,
@@ -175,7 +186,7 @@ main {
   font-weight: 750;
   line-height: 1.35;
   margin-bottom: 14px;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   text-transform: uppercase;
 }
 
@@ -192,10 +203,10 @@ main {
 .lead {
   color: var(--muted);
   font-size: 18px;
-  hyphens: auto;
+  hyphens: none;
   line-height: 1.55;
   margin-top: 18px;
-  max-width: 680px;
+  max-width: 100%;
   text-align: justify;
   text-align-last: left;
 }
@@ -274,7 +285,7 @@ main {
 
 .profile-summary p:not(.summary-label) {
   color: var(--muted);
-  hyphens: auto;
+  hyphens: none;
   margin-top: 16px;
   text-align: justify;
   text-align-last: left;
@@ -303,9 +314,9 @@ main {
 .section-header p:not(.kicker) {
   color: var(--muted);
   font-size: 17px;
-  hyphens: auto;
+  hyphens: none;
   margin-top: 14px;
-  max-width: 920px;
+  max-width: 100%;
   text-align: justify;
   text-align-last: left;
 }
@@ -369,7 +380,7 @@ main {
 .doc-card p,
 .doc-card li {
   color: var(--muted);
-  hyphens: auto;
+  hyphens: none;
   text-align: justify;
   text-align-last: left;
 }
@@ -420,7 +431,7 @@ main {
 
 .experience-section .section-header p:not(.kicker),
 .stack-section .section-header p:not(.kicker) {
-  max-width: 920px;
+  max-width: 100%;
 }
 
 .timeline {
@@ -456,10 +467,10 @@ main {
 
 .timeline-item p {
   color: var(--muted);
-  hyphens: auto;
+  hyphens: none;
   line-height: 1.68;
   margin-top: 16px;
-  max-width: 960px;
+  max-width: 100%;
   text-align: justify;
   text-align-last: left;
 }
@@ -478,7 +489,7 @@ main {
 .prepared-card p,
 .project-status p {
   color: var(--muted);
-  hyphens: auto;
+  hyphens: none;
   line-height: 1.6;
   margin-top: 14px;
   text-align: justify;
@@ -533,7 +544,7 @@ main {
 
 .focus-grid p {
   color: var(--muted);
-  hyphens: auto;
+  hyphens: none;
   margin-top: 12px;
   line-height: 1.6;
   text-align: justify;
@@ -666,10 +677,10 @@ main {
 }
 
 .project-row p {
-  hyphens: auto;
+  hyphens: none;
   line-height: 1.6;
   margin-top: 14px;
-  max-width: 780px;
+  max-width: 100%;
   text-align: justify;
   text-align-last: left;
 }
