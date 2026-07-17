@@ -1026,6 +1026,46 @@ main {
   margin-top: 12px;
 }
 
+.chapter-intro code {
+  background: var(--accent-soft);
+  border-radius: 4px;
+  color: var(--ink);
+  font-family: Consolas, monospace;
+  font-size: 0.9em;
+  padding: 2px 5px;
+}
+
+.validation-strip {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+.validation-strip div {
+  border-left: 2px solid var(--accent);
+  min-width: 0;
+  padding: 0 18px;
+}
+
+.validation-strip strong {
+  color: var(--ink);
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.validation-strip span {
+  color: var(--muted);
+  display: block;
+  font-size: 14px;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+
 .chapter-evidence-grid {
   display: grid;
   gap: 16px;
@@ -1086,12 +1126,17 @@ main {
 @media (max-width: 860px) {
   .chapter-evidence-grid,
   .case-chapter-single,
-  .learning-list {
+  .learning-list,
+  .validation-strip {
     grid-template-columns: 1fr;
   }
 
   .learning-list {
     gap: 14px;
+  }
+
+  .validation-strip {
+    gap: 16px;
   }
 }
 
