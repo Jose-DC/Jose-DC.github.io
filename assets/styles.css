@@ -1083,3 +1083,242 @@ main {
     width: auto;
   }
 }
+
+/* Shared visual system: one typographic scale and one restrained teal palette. */
+:root {
+  --bg: #f6f8fa;
+  --surface: #ffffff;
+  --surface-soft: #f1f7f8;
+  --ink: #142033;
+  --muted: #526277;
+  --line: #d8e1e8;
+  --accent: #17657a;
+  --accent-strong: #17657a;
+  --accent-soft: #eaf4f6;
+  --accent-tint: #eaf4f6;
+  --warn-soft: #eaf4f6;
+  --shadow: 0 10px 30px rgba(20, 32, 51, 0.06);
+  --font-heading: "Segoe UI", Arial, sans-serif;
+  --font-body: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(40px, 4.6vw, 56px);
+  line-height: 1.06;
+}
+
+h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.nav-links a,
+.button,
+.tag,
+.kicker,
+.eyebrow,
+.number,
+.project-at-a-glance dt {
+  font-weight: 700;
+}
+
+.nav-links a {
+  font-size: 14px;
+}
+
+.lead,
+.section-header p:not(.kicker),
+.project-row p,
+.prepared-card p,
+.profile-summary p:not(.summary-label),
+.timeline-item p,
+.focus-grid p,
+.doc-card p,
+.doc-card li {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+  text-align: left;
+  text-align-last: left;
+}
+
+.hero-copy,
+.profile-summary,
+.contact-section,
+.page-heading,
+.project-row,
+.doc-hero,
+.doc-card,
+.section,
+.stack-section,
+.prepared-card,
+.timeline-item,
+.tech-category,
+.case-overview article,
+.evidence-section {
+  border-color: var(--line);
+  box-shadow: var(--shadow);
+}
+
+.section,
+.stack-section,
+.prepared-card {
+  background: var(--surface);
+}
+
+.page-heading {
+  max-width: 900px;
+}
+
+.page-heading h1 {
+  font-size: clamp(38px, 4vw, 48px);
+}
+
+.page-heading .lead {
+  max-width: 720px;
+}
+
+.section-header {
+  max-width: 760px;
+}
+
+.section-header p:not(.kicker) {
+  max-width: 680px;
+}
+
+.kicker,
+.eyebrow,
+.summary-label {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.tag {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.button {
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.button.primary,
+.section-actions .button.secondary {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.button.secondary {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.focus-grid > div,
+.tech-category {
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+.focus-grid h3,
+.tech-category h3,
+.profile-summary h2 {
+  color: var(--ink);
+}
+
+.tech-list span,
+.tech-list span:nth-child(even),
+.tech-list span:nth-child(odd),
+.meta span {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.project-preview .section-header h2 {
+  font-size: clamp(30px, 3vw, 38px);
+}
+
+.project-highlight,
+.project-feature {
+  align-items: stretch;
+  background: var(--surface);
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+}
+
+.project-highlight .project-preview-copy h3 {
+  font-size: 24px;
+  margin-top: 8px;
+  max-width: 650px;
+}
+
+.project-highlight .project-preview-copy > p:not(.eyebrow) {
+  margin-top: 12px;
+  max-width: 650px;
+}
+
+.project-at-a-glance {
+  background: var(--surface-soft);
+  border-color: #c9e1e7;
+}
+
+.project-at-a-glance dl {
+  margin-top: 16px;
+}
+
+.project-at-a-glance dd {
+  font-size: 15px;
+}
+
+.doc-hero h1 {
+  font-size: clamp(38px, 4vw, 50px);
+}
+
+@media (max-width: 860px) {
+  .project-highlight,
+  .project-feature {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  h1,
+  .page-heading h1,
+  .doc-hero h1 {
+    font-size: 38px;
+  }
+
+  .lead,
+  .section-header p:not(.kicker),
+  .project-row p,
+  .prepared-card p,
+  .profile-summary p:not(.summary-label),
+  .timeline-item p,
+  .focus-grid p,
+  .doc-card p,
+  .doc-card li {
+    font-size: 16px;
+  }
+}
