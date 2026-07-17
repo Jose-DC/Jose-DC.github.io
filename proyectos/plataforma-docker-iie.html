@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ficha del proyecto Plataforma Docker Lab de Jose Diaz, basado en una practica profesional con Docker, Linux, Python, monitoreo y seguridad." />
-  <title>Plataforma Docker Lab | Jose Diaz</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260717-practica-v2" />
+  <meta name="description" content="Caso de estudio de Plataforma Docker Lab: generación de stacks, operación, monitoreo y revisión de imágenes." />
+  <title>Plataforma Docker Lab | José Díaz</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260717-flow" />
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav" aria-label="Navegacion principal">
+    <nav class="nav" aria-label="Navegación principal">
       <div class="nav-links">
         <a href="../index.html">Inicio</a>
         <a href="../proyectos.html" aria-current="page">Proyectos</a>
@@ -23,7 +23,7 @@
     <section class="doc-hero">
       <p class="kicker">Caso de práctica profesional</p>
       <h1>Plataforma Docker Lab</h1>
-      <p class="lead">Un laboratorio de infraestructura para estandarizar el despliegue de servicios Docker, darles observabilidad y dejar un flujo reproducible para futuras pruebas.</p>
+      <p class="lead">Laboratorio de infraestructura para ordenar el despliegue de servicios Docker, observar su operación y revisar imágenes antes de reutilizarlas en nuevas pruebas.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/plataforma-docker-lab" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -31,30 +31,18 @@
     </section>
 
     <section class="case-overview" aria-label="Resumen del caso">
-      <article>
-        <p class="eyebrow">Situación</p>
-        <h2>Problema</h2>
-        <p>Levantar servicios Docker de forma manual puede repetir pasos sensibles: crear carpetas, preparar variables, conectar redes, publicar servicios y revisar estado.</p>
-      </article>
-      <article>
-        <p class="eyebrow">Resultado</p>
-        <h2>Qué resuelve</h2>
-        <p>Reúne módulos reutilizables y una automatización de generación de stacks para que la preparación de un entorno sea más consistente y fácil de revisar.</p>
-      </article>
-      <article>
-        <p class="eyebrow">Alcance real</p>
-        <h2>Estado</h2>
-        <p>Primera versión funcional de laboratorio. La configuración se validó con Docker Compose; no se presenta como una plataforma productiva terminada.</p>
-      </article>
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>Preparar servicios Docker manualmente repite tareas como organizar archivos, seleccionar variables, conectar redes y revisar el estado de cada componente.</p></article>
+      <article><p class="eyebrow">Propuesta</p><h2>Qué resuelve</h2><p>Reúne plantillas reutilizables, módulos de operación y controles básicos para hacer el flujo de laboratorio más consistente y fácil de revisar.</p></article>
+      <article><p class="eyebrow">Alcance real</p><h2>Estado</h2><p>Laboratorio funcional validado con Docker Compose. No se presenta como una plataforma productiva terminada ni como un servicio expuesto a Internet.</p></article>
     </section>
 
     <section class="architecture-section">
       <div class="section-copy">
         <p class="kicker">Diseño del laboratorio</p>
         <h2>Componentes organizados por función</h2>
-        <p>La estructura separa el despliegue de servicios de su administración, observabilidad y revisión de seguridad.</p>
+        <p>La estructura separa la preparación del stack, la administración de contenedores, la observabilidad y la revisión de seguridad.</p>
       </div>
-      <div class="architecture-flow" aria-label="Flujo de componentes del laboratorio">
+      <div class="architecture-flow" aria-label="Componentes del laboratorio">
         <div><strong>Plantillas</strong><span>Stacks Docker Compose</span></div>
         <div><strong>Generador Python</strong><span>Entornos reproducibles</span></div>
         <div><strong>Servicios</strong><span>Aplicaciones y bases de datos</span></div>
@@ -64,53 +52,42 @@
       </div>
     </section>
 
-    <section class="evidence-section">
-      <div class="section-copy">
-        <p class="kicker">Evidencia</p>
-        <h2>Monitoreo del host de laboratorio</h2>
-        <p>Captura de Grafana con métricas de RAM, CPU, disco, red y carga del servidor durante las pruebas.</p>
+    <section class="workflow-section" aria-labelledby="workflow-title">
+      <div class="section-copy workflow-heading">
+        <p class="kicker">Recorrido de la práctica</p>
+        <h2 id="workflow-title">Del stack a la evidencia operacional</h2>
+        <p>Las capturas siguientes muestran el flujo de trabajo del laboratorio. Son evidencias de práctica y fueron seleccionadas sin credenciales, dominios privados ni accesos administrativos.</p>
       </div>
-      <figure class="evidence-figure">
-        <img src="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" alt="Panel de Grafana con métricas de recursos del host de laboratorio" />
-        <figcaption>Captura sanitizada de monitoreo. No incluye accesos administrativos ni datos de producción.</figcaption>
-      </figure>
+
+      <ol class="evidence-flow">
+        <li class="evidence-step">
+          <div class="evidence-copy"><span class="step-number">01</span><p class="eyebrow">Preparar</p><h3>Revisar las plantillas disponibles</h3><p>El comando <code>make stacks</code> permite consultar las combinaciones de aplicación y base de datos disponibles antes de generar un entorno de prueba.</p></div>
+          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/make-stacks.png" alt="Terminal con el listado de plantillas de stacks Docker disponibles" /><figcaption>Listado de stacks disponibles desde el módulo de automatización.</figcaption></figure>
+        </li>
+        <li class="evidence-step evidence-step-reverse">
+          <div class="evidence-copy"><span class="step-number">02</span><p class="eyebrow">Operar</p><h3>Revisar stacks y contenedores</h3><p>Portainer entrega una vista operativa del entorno Docker para revisar inventario, estado de contenedores, imágenes, volúmenes y redes durante las pruebas.</p></div>
+          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/portainer-dashboard.png" alt="Panel de Portainer con resumen de stacks, contenedores, imágenes, volúmenes y redes" /><figcaption>Panel operativo usado para inspeccionar el entorno de contenedores.</figcaption></figure>
+        </li>
+        <li class="evidence-step">
+          <div class="evidence-copy"><span class="step-number">03</span><p class="eyebrow">Validar</p><h3>Confirmar la recolección de métricas</h3><p>Antes de interpretar dashboards, Prometheus permite comprobar que los targets de cAdvisor, Node Exporter y el propio servidor de métricas están en estado <strong>UP</strong>.</p></div>
+          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/prometheus-targets.png" alt="Pantalla de Prometheus con targets de monitoreo en estado UP" /><figcaption>Targets de monitoreo disponibles durante la prueba.</figcaption></figure>
+        </li>
+        <li class="evidence-step evidence-step-reverse">
+          <div class="evidence-copy"><span class="step-number">04</span><p class="eyebrow">Observar</p><h3>Analizar el comportamiento del host</h3><p>Grafana reúne RAM, CPU, disco, red y carga para observar el comportamiento del servidor durante las pruebas del laboratorio.</p></div>
+          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" alt="Panel de Grafana con métricas de recursos del host de laboratorio" /><figcaption>Captura sanitizada de monitoreo del host de laboratorio.</figcaption></figure>
+        </li>
+        <li class="evidence-step">
+          <div class="evidence-copy"><span class="step-number">05</span><p class="eyebrow">Revisar</p><h3>Escanear imágenes con Trivy</h3><p>El módulo de seguridad ejecuta revisiones de vulnerabilidades y conserva reportes locales rotados. Esta etapa ayuda a visibilizar riesgos antes de reutilizar una imagen.</p></div>
+          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" alt="Terminal con ejecución de Trivy y guardado de reportes de análisis" /><figcaption>Ejecución de análisis y rotación de reportes del módulo Trivy.</figcaption></figure>
+        </li>
+      </ol>
     </section>
 
     <section class="doc-grid">
-      <article class="doc-card">
-        <h2>Qué hice</h2>
-        <ul>
-          <li>Organicé módulos para proxy, monitoreo, Portainer, n8n, seguridad y automatización.</li>
-          <li>Documenté el flujo de despliegue con Docker Compose y variables locales.</li>
-          <li>Incluí plantillas para distintas combinaciones de aplicación y base de datos.</li>
-          <li>Dejé accesos administrativos pensados para túnel SSH y no exposición directa de paneles.</li>
-        </ul>
-      </article>
-      <article class="doc-card">
-        <h2>Tecnologías</h2>
-        <ul>
-          <li>Linux</li>
-          <li>Docker y Docker Compose</li>
-          <li>Python</li>
-          <li>Nginx Proxy Manager</li>
-          <li>Prometheus, Grafana y Alertmanager</li>
-          <li>Trivy</li>
-          <li>PostgreSQL y MySQL en plantillas de laboratorio</li>
-        </ul>
-      </article>
-      <article class="doc-card">
-        <h2>Seguridad y límites</h2>
-        <ul>
-          <li>No se publican archivos `.env`, tokens, certificados privados ni respaldos.</li>
-          <li>Los ejemplos usan `.env.example` y valores demostrativos.</li>
-          <li>El acceso a paneles administrativos se plantea por `127.0.0.1` y túnel SSH.</li>
-          <li>El uso de `/var/run/docker.sock` queda declarado como punto sensible.</li>
-        </ul>
-      </article>
-      <article class="doc-card">
-        <h2>Aprendizajes</h2>
-        <p>El proyecto demuestra criterio operacional: separar servicios, documentar variables, pensar en monitoreo desde el inicio y declarar limitaciones reales antes de reutilizar una solución en otro entorno.</p>
-      </article>
+      <article class="doc-card"><h2>Qué hice</h2><ul><li>Organicé módulos para proxy, monitoreo, Portainer, n8n, seguridad y automatización.</li><li>Documenté el flujo de despliegue con Docker Compose y variables locales.</li><li>Incluí plantillas para distintas combinaciones de aplicación y base de datos.</li><li>Dejé accesos administrativos pensados para túnel SSH y no exposición directa de paneles.</li></ul></article>
+      <article class="doc-card"><h2>Tecnologías</h2><ul><li>Linux</li><li>Docker y Docker Compose</li><li>Python</li><li>Nginx Proxy Manager</li><li>Prometheus, Grafana y Alertmanager</li><li>Trivy</li><li>PostgreSQL y MySQL en plantillas de laboratorio</li></ul></article>
+      <article class="doc-card"><h2>Seguridad y límites</h2><ul><li>No se publican archivos <code>.env</code>, tokens, certificados privados ni respaldos.</li><li>Los ejemplos usan <code>.env.example</code> y valores demostrativos.</li><li>El acceso a paneles administrativos se plantea por <code>127.0.0.1</code> y túnel SSH.</li><li>El uso de <code>/var/run/docker.sock</code> queda declarado como punto sensible.</li></ul></article>
+      <article class="doc-card"><h2>Aprendizajes</h2><p>El valor del laboratorio no está solo en levantar contenedores: está en dejar un proceso revisable, con observabilidad y límites de seguridad documentados antes de reutilizarlo en otro entorno.</p></article>
     </section>
   </main>
 </body>
