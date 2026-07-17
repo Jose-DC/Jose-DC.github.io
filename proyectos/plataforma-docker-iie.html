@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Caso de estudio de Plataforma Docker Lab: generación de stacks, operación, monitoreo y revisión de imágenes." />
   <title>Plataforma Docker Lab | José Díaz</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260717-final-polish" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260717-visual-flow" />
 </head>
 <body>
   <header class="site-header">
@@ -68,7 +68,7 @@
       <div class="case-chapters">
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">01</span><p class="eyebrow">Crear el entorno</p><h3>Pasar de una plantilla a un stack operativo</h3><p>Primero se consulta la combinación requerida. Luego ejecuté <code>make crear</code> con nombre, stack y versiones: el generador copia la plantilla, crea el <code>.env</code>, reemplaza variables, crea una red externa, registra esa red en el proxy y levanta los contenedores con Docker Compose.</p></div>
-          <div class="chapter-evidence-grid">
+          <div class="chapter-evidence-grid chapter-evidence-grid-start">
             <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/make-stacks.png" alt="Terminal con el listado de plantillas de stacks Docker disponibles" /><figcaption>Plantillas disponibles desde el módulo de automatización.</figcaption></figure>
             <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/stack-generation.png" alt="Salida del generador mostrando creación de entorno Docker, red, contenedores y conexión del proxy" /><figcaption>Salida del generador: plantilla, variables, red, contenedores saludables y conexión del proxy.</figcaption></figure>
           </div>
@@ -105,10 +105,11 @@
         <h2 id="learning-title">Lo que me dejó este laboratorio</h2>
       </div>
       <ul class="learning-list">
-        <li>Separar generación, operación y monitoreo.</li>
-        <li>Probar varias plantillas antes de mostrar Portainer.</li>
-        <li>Validar Prometheus antes de interpretar Grafana.</li>
-        <li>Usar Trivy como revisión básica antes de reutilizar imágenes.</li>
+        <li>Mejoré el uso de Docker Compose para levantar servicios con redes, volúmenes y variables.</li>
+        <li>Practiqué escritura de Dockerfiles y construcción de imágenes para entornos reproducibles.</li>
+        <li>Automaticé la creación de stacks con Python para reducir pasos manuales.</li>
+        <li>Fortalecí monitoreo básico con Prometheus y Grafana para revisar estado y recursos.</li>
+        <li>Sumé revisión de imágenes con Trivy antes de reutilizarlas en nuevas pruebas.</li>
       </ul>
     </section>
   </main>

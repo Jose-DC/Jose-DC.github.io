@@ -1768,6 +1768,18 @@ h3 {
   object-position: top center;
 }
 
+.chapter-evidence-grid-start {
+  align-items: start;
+}
+
+.chapter-evidence-grid-start .evidence-figure {
+  justify-content: flex-start;
+}
+
+.chapter-evidence-grid-start img {
+  height: 390px;
+}
+
 .learning-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -1826,6 +1838,71 @@ h3 {
 
 .evidence-figure img {
   box-shadow: inset 0 0 0 1px rgba(23, 32, 51, 0.04);
+}
+
+/* Homepage visual lift: technical, restrained, and less flat. */
+.hero-copy {
+  background:
+    linear-gradient(135deg, rgba(234, 244, 246, 0.88), rgba(255, 255, 255, 0.98) 54%),
+    linear-gradient(90deg, rgba(23, 101, 122, 0.16), transparent 44%);
+  border-top: 4px solid var(--accent);
+}
+
+.profile-summary {
+  background: var(--ink);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.profile-summary h2,
+.profile-summary .summary-label {
+  color: #ffffff;
+}
+
+.profile-summary p:not(.summary-label) {
+  color: #d6e2e7;
+}
+
+.avatar {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.hero-signal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.hero-signal-list span {
+  background: #ffffff;
+  border: 1px solid #c9e1e7;
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 9px 11px;
+}
+
+.section,
+.stack-section {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdfe 100%);
+}
+
+.focus-grid > div,
+.tech-category {
+  background: #fbfdfe;
+  border-top: 3px solid var(--accent);
+}
+
+.timeline-item {
+  background: #fbfdfe;
+}
+
+.project-highlight {
+  background:
+    linear-gradient(135deg, #ffffff 0%, #f2f8fa 100%);
 }
 
 @media (max-width: 860px) {
