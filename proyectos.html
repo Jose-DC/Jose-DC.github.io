@@ -3,19 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Proyectos de Jose Diaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatizacion y documentacion."
-  />
+  <meta name="description" content="Proyectos de Jose Diaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatizacion y documentacion." />
   <meta property="og:title" content="Proyectos | Jose Diaz" />
-  <meta
-    property="og:description"
-    content="Proyectos de Jose Diaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatizacion y documentacion."
-  />
+  <meta property="og:description" content="Proyectos de Jose Diaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatizacion y documentacion." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jose-dc.github.io/proyectos.html" />
   <title>Proyectos | Jose Diaz</title>
-  <link rel="stylesheet" href="assets/styles.css?v=20260717-proyectos" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260717-proyectos-v2" />
 </head>
 <body>
   <header class="site-header">
@@ -33,39 +27,40 @@
   <main>
     <section class="page-heading">
       <p class="kicker">Proyectos</p>
-      <h1>Proyectos tecnicos</h1>
-      <p class="lead">
-        Laboratorios y proyectos documentados para mostrar trabajo practico en soporte cloud,
-        infraestructura TI, Docker, Linux, automatizacion, monitoreo y operacion de servicios.
-      </p>
+      <h1>Proyectos técnicos</h1>
+      <p class="lead">Proyectos documentados a partir de problemas reales de infraestructura, automatización y operación de servicios.</p>
     </section>
 
     <section class="project-list">
-      <article class="project-row detailed-project">
-        <div>
-          <span class="tag">Publicado</span>
+      <article class="project-row project-feature">
+        <div class="project-content">
+          <p class="tag">Laboratorio documentado</p>
           <h2>Plataforma Docker Lab</h2>
-          <p>
-            Laboratorio basado en mi practica profesional para ordenar el despliegue de
-            entornos Docker con generacion de stacks, proxy inverso, monitoreo, Portainer
-            y escaneo de imagenes con Trivy.
+          <p class="project-summary">
+            Proyecto basado en mi práctica profesional para ordenar el despliegue de entornos Docker:
+            generación de stacks, administración de contenedores, monitoreo y revisión básica de imágenes.
           </p>
-          <div class="meta">
-            <span>Docker</span>
+          <div class="meta" aria-label="Tecnologías principales">
             <span>Docker Compose</span>
             <span>Python</span>
             <span>Linux</span>
-            <span>Prometheus</span>
-            <span>Grafana</span>
+            <span>Prometheus + Grafana</span>
             <span>Trivy</span>
-            <span>Portainer</span>
           </div>
-          <a class="inline-link" href="https://github.com/Jose-DC/plataforma-docker-lab" target="_blank" rel="noreferrer">Ver repositorio</a>
+          <div class="project-actions">
+            <a class="button primary" href="proyectos/plataforma-docker-iie.html">Ver detalles del proyecto</a>
+            <a class="button secondary" href="https://github.com/Jose-DC/plataforma-docker-lab" target="_blank" rel="noreferrer">Ver repositorio</a>
+          </div>
         </div>
-        <div class="project-status">
-          <h3>Estado actual</h3>
-          <p>Repositorio publico listo. Siguiente paso: agregar capturas y diagrama sanitizados en la ficha del proyecto.</p>
-        </div>
+        <aside class="project-at-a-glance" aria-label="Resumen del proyecto">
+          <p class="eyebrow">Qué resuelve</p>
+          <p>Reduce pasos manuales repetitivos al preparar entornos de laboratorio con Docker.</p>
+          <dl>
+            <div><dt>Estado</dt><dd>Laboratorio funcional</dd></div>
+            <div><dt>Enfoque</dt><dd>Infraestructura y operación</dd></div>
+            <div><dt>Evidencia</dt><dd>Monitoreo y configuración validada</dd></div>
+          </dl>
+        </aside>
       </article>
     </section>
   </main>
