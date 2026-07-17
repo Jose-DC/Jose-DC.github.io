@@ -905,6 +905,7 @@ main {
   border-bottom: 1px solid var(--line);
   color: var(--muted);
   font-size: 16px;
+  line-height: 1.55;
   padding: 0 0 12px 28px;
   position: relative;
 }
@@ -1764,11 +1765,29 @@ h3 {
 .case-chapter-single .evidence-figure img {
   height: 340px;
   object-fit: contain;
-  object-position: center center;
+  object-position: top center;
 }
 
 .learning-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.learning-list li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+  padding: 14px 16px 14px 34px;
+}
+
+.learning-list li::before {
+  content: "-";
+  font-size: 18px;
+  left: 16px;
+  top: 14px;
 }
 
 .learning-list p {
@@ -1785,6 +1804,28 @@ h3 {
 
 .project-actions {
   margin-top: 32px;
+}
+
+.doc-hero,
+.page-heading,
+.case-chapter,
+.project-feature {
+  background: #fbfdfe;
+}
+
+.case-overview article,
+.project-at-a-glance,
+.validation-strip div,
+.architecture-tool-list span {
+  background-color: rgba(234, 244, 246, 0.42);
+}
+
+.case-chapter:nth-child(even) {
+  background: #f8fbfc;
+}
+
+.evidence-figure img {
+  box-shadow: inset 0 0 0 1px rgba(23, 32, 51, 0.04);
 }
 
 @media (max-width: 860px) {
