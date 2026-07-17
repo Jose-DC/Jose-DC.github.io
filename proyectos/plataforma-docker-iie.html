@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Caso de estudio de Plataforma Docker Lab: generación de stacks, operación, monitoreo y revisión de imágenes." />
   <title>Plataforma Docker Lab | José Díaz</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260717-flow" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260717-polish" />
 </head>
 <body>
   <header class="site-header">
@@ -53,7 +53,7 @@
       <div class="architecture-tools" aria-label="Tecnologías aplicadas">
         <p class="eyebrow">Tecnologías aplicadas</p>
         <div class="architecture-tool-list">
-          <span>Linux</span><span>Docker Compose</span><span>Python</span><span>Portainer</span><span>Prometheus</span><span>Grafana</span><span>Trivy</span>
+          <span>Linux</span><span>Docker Compose</span><span>Python</span><span>Nginx Proxy Manager</span><span>Proxy inverso</span><span>Portainer</span><span>Prometheus</span><span>Grafana</span><span>Trivy</span>
         </div>
       </div>
     </section>
@@ -104,7 +104,7 @@
         <p class="kicker">Aprendizajes</p>
         <h2 id="learning-title">Lo que me dejó este laboratorio</h2>
       </div>
-      <div class="learning-list"><p>Separar la generación de entornos de su operación hace más fácil repetir y revisar las pruebas.</p><p>Validar los targets antes de mirar dashboards evita interpretar métricas incompletas.</p><p>El monitoreo y el análisis de imágenes aportan evidencia útil para tomar decisiones técnicas.</p></div>
+      <div class="learning-list"><p>Separar generación, operación y monitoreo ayudó a entender el laboratorio como un flujo completo, no solo como contenedores levantados.</p><p>Probar varias plantillas permitió detectar si el generador realmente servía para repetir entornos con distintas combinaciones de servicios.</p><p>Revisar Portainer, Prometheus y Grafana en ese orden hizo más clara la diferencia entre estado operativo, disponibilidad de métricas e interpretación visual.</p><p>Agregar Trivy dejó una validación básica antes de reutilizar imágenes, manteniendo el proyecto honesto como laboratorio y no como plataforma productiva.</p></div>
     </section>
   </main>
 </body>

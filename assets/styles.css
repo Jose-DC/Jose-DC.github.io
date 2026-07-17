@@ -1721,3 +1721,80 @@ h3 {
     font-size: 16px;
   }
 }
+
+/* Portfolio polish rules: justified descriptive text and balanced cards. */
+.doc-hero .lead,
+.case-overview p:not(.eyebrow),
+.section-copy > p:not(.kicker),
+.chapter-intro > p:not(.eyebrow),
+.project-summary,
+.project-at-a-glance > p:not(.eyebrow),
+.learning-list p,
+.project-row p {
+  max-width: none;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.architecture-section .section-copy > p:not(.kicker),
+.workflow-heading,
+.chapter-intro,
+.page-heading,
+.page-heading .lead,
+.project-summary {
+  max-width: none;
+}
+
+.case-chapter-single {
+  align-items: center;
+}
+
+.case-chapter-single .evidence-figure {
+  align-self: center;
+}
+
+.chapter-evidence-grid .evidence-figure,
+.case-chapter-single .evidence-figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chapter-evidence-grid img,
+.case-chapter-single .evidence-figure img {
+  height: 340px;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.learning-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.learning-list p {
+  padding-bottom: 4px;
+}
+
+.project-feature {
+  align-items: center;
+}
+
+.project-content {
+  justify-content: center;
+}
+
+.project-actions {
+  margin-top: 32px;
+}
+
+@media (max-width: 860px) {
+  .chapter-evidence-grid img,
+  .case-chapter-single .evidence-figure img {
+    height: auto;
+    max-height: 360px;
+  }
+
+  .learning-list {
+    grid-template-columns: 1fr;
+  }
+}
