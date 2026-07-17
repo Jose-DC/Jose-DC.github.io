@@ -875,6 +875,54 @@ main {
   margin-top: 24px;
 }
 
+.technology-section,
+.learning-section {
+  margin-top: 24px;
+}
+
+.technology-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.project-tech-list {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin-top: 20px;
+}
+
+.learning-list {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.learning-list li {
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 16px;
+  padding: 0 0 12px 28px;
+  position: relative;
+}
+
+.learning-list li::before {
+  color: var(--accent);
+  content: "•";
+  font-size: 22px;
+  left: 6px;
+  line-height: 1;
+  position: absolute;
+  top: 1px;
+}
+
+.learning-list li:last-child {
+  border-bottom: 0;
+}
+
 .workflow-heading {
   max-width: 760px;
 }
@@ -971,6 +1019,10 @@ main {
 
   .evidence-copy h3 {
     font-size: 22px;
+  }
+
+  .technology-section {
+    padding: 20px;
   }
 }
 
