@@ -1922,3 +1922,9 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep the homepage focus introduction aligned with the full section width. */
+.focus-section .section-header,
+.focus-section .section-header p:not(.kicker) {
+  max-width: none;
+}
