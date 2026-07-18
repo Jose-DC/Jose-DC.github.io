@@ -1746,6 +1746,12 @@ h3 {
   max-width: none;
 }
 
+/* The focus introduction should use the full section width before the cards. */
+.focus-section .section-header,
+.focus-section .section-header p:not(.kicker) {
+  max-width: none;
+}
+
 .case-chapter-single {
   align-items: center;
 }
