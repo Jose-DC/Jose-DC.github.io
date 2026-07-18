@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Proyectos de Jose Diaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatizacion y documentacion." />
-  <meta property="og:title" content="Proyectos | Jose Diaz" />
-  <meta property="og:description" content="Proyectos de Jose Diaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatizacion y documentacion." />
+  <meta name="description" content="Proyectos de José Díaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatización y documentación." />
+  <meta property="og:title" content="Proyectos | José Díaz" />
+  <meta property="og:description" content="Proyectos de José Díaz sobre soporte cloud, infraestructura TI, Docker, Linux, automatización y documentación." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jose-dc.github.io/proyectos.html" />
-  <title>Proyectos | Jose Diaz</title>
+  <title>Proyectos | José Díaz</title>
   <link rel="stylesheet" href="assets/styles.css?v=20260717-visual-flow" />
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav" aria-label="Navegacion principal">
+    <nav class="nav" aria-label="Navegación principal">
       <div class="nav-links">
         <a href="index.html">Inicio</a>
         <a href="index.html#experiencia">Experiencia</a>
         <a href="proyectos.html" aria-current="page">Proyectos</a>
-        <a href="index.html#tecnologias">Tecnologias</a>
+        <a href="index.html#tecnologias">Tecnologías</a>
         <a href="index.html#contacto">Contacto</a>
       </div>
     </nav>
@@ -28,7 +28,7 @@
     <section class="page-heading">
       <p class="kicker">Proyectos</p>
       <h1>Proyectos técnicos</h1>
-      <p class="lead">Proyectos documentados a partir de problemas reales de infraestructura, automatización y operación de servicios.</p>
+      <p class="lead">Proyectos documentados a partir de problemas reales de infraestructura, automatización y operación de servicios. Cada ficha indica su estado real, alcance y evidencia disponible.</p>
     </section>
 
     <section class="project-list">
@@ -62,6 +62,45 @@
             <div><dt>Evidencia</dt><dd>Monitoreo y configuración validada</dd></div>
           </dl>
         </aside>
+      </article>
+
+      <article class="project-row detailed-project">
+        <div>
+          <span class="tag">Planeado</span>
+          <h2>AKS + Helm Lab</h2>
+          <p>Laboratorio para practicar despliegues en Kubernetes sobre Azure AKS, documentando charts de Helm, revisión de pods, logs, eventos y decisiones básicas de configuración.</p>
+          <div class="meta" aria-label="Tecnologías del proyecto">
+            <span>Azure AKS</span><span>Kubernetes</span><span>Docker</span><span>Helm</span>
+          </div>
+          <div class="project-actions"><a class="button secondary" href="proyectos/aks-helm-lab.html">Ver ficha del proyecto</a></div>
+        </div>
+        <aside class="project-status"><h3>Estado actual</h3><p>Proyecto definido, todavía no implementado. La ficha describe el alcance esperado sin presentarlo como experiencia terminada.</p></aside>
+      </article>
+
+      <article class="project-row detailed-project">
+        <div>
+          <span class="tag">Planeado</span>
+          <h2>Revisión de logs</h2>
+          <p>Herramienta en Python para apoyar troubleshooting: leer logs, detectar errores frecuentes, agrupar mensajes relevantes y generar un resumen para diagnóstico o escalamiento.</p>
+          <div class="meta" aria-label="Tecnologías del proyecto">
+            <span>Python</span><span>Linux</span><span>Logs</span><span>Markdown</span>
+          </div>
+          <div class="project-actions"><a class="button secondary" href="proyectos/revision-logs.html">Ver ficha del proyecto</a></div>
+        </div>
+        <aside class="project-status"><h3>Estado actual</h3><p>Proyecto definido, todavía no implementado. Se documentarán patrones de prueba y límites del análisis cuando exista una versión funcional.</p></aside>
+      </article>
+
+      <article class="project-row detailed-project">
+        <div>
+          <span class="tag">Idea inicial</span>
+          <h2>Secret Scanner</h2>
+          <p>Herramienta CLI para revisar repositorios antes de publicarlos, detectando archivos o patrones sensibles como `.env`, tokens y posibles credenciales.</p>
+          <div class="meta" aria-label="Tecnologías del proyecto">
+            <span>Python</span><span>Git</span><span>Seguridad</span><span>Markdown</span>
+          </div>
+          <div class="project-actions"><a class="button secondary" href="proyectos/secret-scanner.html">Ver ficha del proyecto</a></div>
+        </div>
+        <aside class="project-status"><h3>Estado actual</h3><p>Idea inicial, todavía no implementada. Los ejemplos futuros deberán usar datos ficticios y no incluir secretos reales.</p></aside>
       </article>
     </section>
   </main>
