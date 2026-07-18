@@ -1,6 +1,8 @@
 # Portafolio técnico
 
-Sitio web estático de José Díaz para documentar proyectos, laboratorios y notas técnicas relacionadas con Cloud, infraestructura TI, Azure, AKS, Kubernetes y automatización.
+Sitio web estático de José Díaz para presentar su experiencia en soporte funcional y técnico, infraestructura TI y operación cloud, junto con proyectos y laboratorios documentados sobre Docker, Linux, automatización y monitoreo.
+
+El contenido diferencia experiencia laboral, proyectos funcionales y tecnologías en aprendizaje. No publica nombres de clientes, arquitectura interna ni configuraciones operacionales sensibles.
 
 Sitio publicado: https://jose-dc.github.io/
 
