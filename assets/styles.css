@@ -1967,3 +1967,32 @@ h3 {
   font-size: 14px;
   line-height: 1.4;
 }
+
+/* Justify all descriptive copy while keeping UI labels and controls readable. */
+p:not(.kicker):not(.eyebrow):not(.summary-label),
+li,
+blockquote {
+  hyphens: auto;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.project-list .project-at-a-glance > p:not(.eyebrow),
+.lead,
+.role,
+.section-header p:not(.kicker),
+.profile-summary p:not(.summary-label),
+.focus-grid p,
+.timeline-item p,
+.project-row p,
+.prepared-card p:not(.eyebrow),
+.doc-card p,
+.doc-card li,
+.section-copy > p:not(.kicker),
+.chapter-intro > p:not(.eyebrow),
+.case-overview p:not(.eyebrow),
+.learning-list p {
+  hyphens: auto;
+  text-align: justify;
+  text-align-last: left;
+}

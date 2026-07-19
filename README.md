@@ -1,6 +1,6 @@
 # Portafolio técnico
 
-Sitio web estático de José Díaz para presentar su experiencia en soporte funcional y técnico, infraestructura TI y operación cloud, junto con proyectos y laboratorios documentados sobre Docker, Linux, automatización y monitoreo.
+Sitio web estático de José Díaz para presentar su experiencia en Cloud Operations, soporte cloud, Azure/AKS, observabilidad y continuidad operativa, junto con proyectos documentados sobre Docker, Linux, automatización y monitoreo.
 
 El contenido diferencia experiencia laboral, proyectos funcionales y tecnologías en aprendizaje. No publica nombres de clientes, arquitectura interna ni configuraciones operacionales sensibles.
 
