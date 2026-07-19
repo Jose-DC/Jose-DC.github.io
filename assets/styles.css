@@ -1968,11 +1968,11 @@ h3 {
   line-height: 1.4;
 }
 
-/* Justify all descriptive copy while keeping UI labels and controls readable. */
+/* Justificar textos descriptivos sin afectar etiquetas, botones ni controles. */
 p:not(.kicker):not(.eyebrow):not(.summary-label),
 li,
 blockquote {
-  hyphens: auto;
+  hyphens: none;
   text-align: justify;
   text-align-last: left;
 }
@@ -1992,7 +1992,7 @@ blockquote {
 .chapter-intro > p:not(.eyebrow),
 .case-overview p:not(.eyebrow),
 .learning-list p {
-  hyphens: auto;
+  hyphens: none;
   text-align: justify;
   text-align-last: left;
 }
