@@ -1928,3 +1928,42 @@ h3 {
 .focus-section .section-header p:not(.kicker) {
   max-width: none;
 }
+
+/* Keep project list cards visually consistent and secondary panels quieter. */
+.project-list .project-actions {
+  align-items: center;
+}
+
+.project-list .button.inactive {
+  cursor: default;
+  opacity: 0.78;
+}
+
+.project-list .button.inactive:hover {
+  border-color: var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.project-list .project-at-a-glance {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-list .project-at-a-glance > p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: left;
+  text-align-last: left;
+}
+
+.project-list .project-at-a-glance dt {
+  font-size: 11px;
+}
+
+.project-list .project-at-a-glance dd {
+  font-size: 14px;
+  line-height: 1.4;
+}
