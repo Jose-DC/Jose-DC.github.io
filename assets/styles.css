@@ -1996,3 +1996,10 @@ blockquote {
   text-align: justify;
   text-align-last: left;
 }
+
+/* Las columnas estrechas se leen mejor sin justificar el espacio entre palabras. */
+.profile-summary p:not(.summary-label),
+.project-at-a-glance > p:not(.eyebrow) {
+  text-align: left;
+  text-align-last: left;
+}
