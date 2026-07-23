@@ -517,6 +517,42 @@ main {
   box-shadow: none;
 }
 
+.tech-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tech-group {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.tech-group h3 {
+  margin-bottom: 14px;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.tech-group:nth-child(1) {
+  border-top: 3px solid var(--accent);
+}
+
+.tech-group:nth-child(2) {
+  border-top: 3px solid var(--functional);
+}
+
+.tech-group:nth-child(3) {
+  border-top: 3px solid var(--planned);
+}
+
+.tech-group:nth-child(4) {
+  border-top: 3px solid var(--idea);
+}
+
 .core-tech-list span {
   flex: 1 1 135px;
   min-height: 48px;
@@ -891,7 +927,7 @@ code {
   .project-summary,
   .chapter-intro > p:not(.eyebrow),
   .doc-hero .lead {
-    text-align: justify;
+    text-align: left;
     text-align-last: left;
   }
 }
@@ -1054,6 +1090,10 @@ code {
 
   .core-tech-list span {
     flex-basis: calc(50% - 8px);
+  }
+
+  .tech-groups {
+    grid-template-columns: 1fr;
   }
 
   .contact-section {
