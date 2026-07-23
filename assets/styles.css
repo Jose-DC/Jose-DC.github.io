@@ -560,6 +560,8 @@ main {
   align-items: center;
   justify-content: center;
   background: var(--surface);
+  line-height: 1.25;
+  text-align: center;
 }
 
 .contact-section {
