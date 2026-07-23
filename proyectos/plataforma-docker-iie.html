@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Caso de estudio de Plataforma Docker Lab: generación de stacks, operación, monitoreo y revisión de imágenes." />
   <title>Plataforma Docker Lab | José Díaz</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260719-profile-flexible" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260722-redesign" />
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Navegación principal">
       <div class="nav-links">
         <a href="../index.html">Inicio</a>
+        <a href="../experiencia.html">Experiencia</a>
         <a href="../proyectos.html" aria-current="page">Proyectos</a>
-        <a href="../index.html#experiencia">Experiencia</a>
         <a href="../index.html#contacto">Contacto</a>
       </div>
     </nav>
@@ -69,8 +69,8 @@
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">01</span><p class="eyebrow">Crear el entorno</p><h3>Pasar de una plantilla a un stack operativo</h3><p>Primero se consulta la combinación requerida. Luego ejecuté <code>make crear</code> con nombre, stack y versiones: el generador copia la plantilla, crea el <code>.env</code>, reemplaza variables, crea una red externa, registra esa red en el proxy y levanta los contenedores con Docker Compose.</p></div>
           <div class="chapter-evidence-grid chapter-evidence-grid-start">
-            <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/make-stacks.png" alt="Terminal con el listado de plantillas de stacks Docker disponibles" /><figcaption>Plantillas disponibles desde el módulo de automatización.</figcaption></figure>
-            <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/stack-generation.png" alt="Salida del generador mostrando creación de entorno Docker, red, contenedores y conexión del proxy" /><figcaption>Salida del generador: plantilla, variables, red, contenedores saludables y conexión del proxy.</figcaption></figure>
+            <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/make-stacks.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/make-stacks.png" alt="Terminal con el listado de plantillas de stacks Docker disponibles" loading="lazy" /></a><figcaption>Plantillas disponibles desde el módulo de automatización. Abrir para ampliar.</figcaption></figure>
+            <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/stack-generation.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/stack-generation.png" alt="Salida del generador mostrando creación de entorno Docker, red, contenedores y conexión del proxy" loading="lazy" /></a><figcaption>Salida del generador: plantilla, variables, red, contenedores saludables y conexión del proxy. Abrir para ampliar.</figcaption></figure>
           </div>
         </article>
         <article class="case-chapter">
@@ -83,18 +83,18 @@
         </article>
         <article class="case-chapter case-chapter-single">
           <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Comprobar el despliegue</p><h3>Usar Portainer como vista de operación</h3><p>Después de levantar los entornos, Portainer se usó como una consola visual para inspeccionar lo que ya estaba corriendo: stacks, contenedores, imágenes, volúmenes y redes. No es el mecanismo que crea el laboratorio, sino una ayuda para revisar rápidamente estado, distribución y recursos cuando hay varias pruebas activas.</p></div>
-          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/portainer-dashboard.png" alt="Panel de Portainer con resumen de stacks, contenedores, imágenes, volúmenes y redes" /><figcaption>Vista operativa posterior al despliegue, no el mecanismo que crea el stack.</figcaption></figure>
+          <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/portainer-dashboard.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/portainer-dashboard.png" alt="Panel de Portainer con resumen de stacks, contenedores, imágenes, volúmenes y redes" loading="lazy" /></a><figcaption>Vista operativa posterior al despliegue, no el mecanismo que crea el stack. Abrir para ampliar.</figcaption></figure>
         </article>
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Monitorear el sistema</p><h3>Validar targets antes de interpretar dashboards</h3><p>Con los entornos ya desplegados, configuré Prometheus para comprobar que los componentes de monitoreo estuvieran en estado <strong>UP</strong>. Con esa base, Grafana permitió revisar RAM, CPU, disco, red y carga del host durante las pruebas, en vez de mostrar solo un dashboard suelto sin contexto.</p></div>
           <div class="chapter-evidence-grid">
-            <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/prometheus-targets.png" alt="Pantalla de Prometheus con targets de monitoreo en estado UP" /><figcaption>Targets disponibles antes de interpretar dashboards.</figcaption></figure>
-            <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" alt="Panel de Grafana con métricas de recursos del host de laboratorio" /><figcaption>Comportamiento del host durante la práctica.</figcaption></figure>
+            <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/prometheus-targets.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/prometheus-targets.png" alt="Pantalla de Prometheus con targets de monitoreo en estado UP" loading="lazy" /></a><figcaption>Targets disponibles antes de interpretar dashboards. Abrir para ampliar.</figcaption></figure>
+            <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" alt="Panel de Grafana con métricas de recursos del host de laboratorio" loading="lazy" /></a><figcaption>Comportamiento del host durante la práctica. Abrir para ampliar.</figcaption></figure>
           </div>
         </article>
         <article class="case-chapter case-chapter-single">
           <div class="chapter-intro"><span class="step-number">05</span><p class="eyebrow">Revisar antes de reutilizar</p><h3>Incorporar revisión de imágenes</h3><p>Agregué un módulo con Trivy para revisar vulnerabilidades y conservar reportes locales rotados. Así, el laboratorio no termina al levantar un contenedor: deja una señal técnica para evaluar si una imagen conviene reutilizarse en futuras pruebas.</p></div>
-          <figure class="evidence-figure"><img src="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" alt="Terminal con ejecución de Trivy y guardado de reportes de análisis" /><figcaption>Análisis de imágenes y rotación de reportes locales.</figcaption></figure>
+          <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" alt="Terminal con ejecución de Trivy y guardado de reportes de análisis" loading="lazy" /></a><figcaption>Análisis de imágenes y rotación de reportes locales. Abrir para ampliar.</figcaption></figure>
         </article>
       </div>
     </section>
@@ -113,5 +113,6 @@
       </ul>
     </section>
   </main>
+  <footer class="site-footer"><p>&copy; 2026 José Díaz</p></footer>
 </body>
 </html>

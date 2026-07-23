@@ -8,7 +8,8 @@ Sitio publicado: https://jose-dc.github.io/
 
 ## Estructura
 
-- `index.html`: portada simple del portafolio.
+- `index.html`: portada compacta del portafolio.
+- `experiencia.html`: trayectoria profesional completa.
 - `proyectos.html`: índice de proyectos.
 - `proyectos/`: páginas individuales de cada proyecto.
 - `assets/styles.css`: estilos compartidos.
