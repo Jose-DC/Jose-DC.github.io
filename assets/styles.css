@@ -726,11 +726,16 @@ main {
 }
 
 .credential-image-award img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 420px);
   max-height: 540px;
+  margin-inline: auto;
 }
 
 .credential-image figcaption {
-  margin-top: 10px;
+  max-width: min(100%, 420px);
+  margin: 10px auto 0;
   color: var(--muted);
   font-size: 0.8rem;
   line-height: 1.4;
@@ -776,42 +781,6 @@ main {
 .credential-text-card h2 {
   margin-top: 12px;
   font-size: 1.25rem;
-}
-
-.next-learning-section {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  gap: 24px;
-  align-items: center;
-  border: 1px solid rgba(20, 184, 166, 0.28);
-  background:
-    linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(59, 130, 246, 0.08)),
-    var(--surface);
-  box-shadow: none;
-}
-
-.next-learning-section p:last-child {
-  margin-bottom: 0;
-}
-
-.learning-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-.learning-tags span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 7px 12px;
-  border: 1px solid rgba(20, 184, 166, 0.28);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  color: var(--text);
-  font-size: 0.84rem;
-  font-weight: 700;
 }
 
 .case-overview {
@@ -1053,14 +1022,6 @@ code {
   .case-chapter-single,
   .credential-feature {
     grid-template-columns: 1fr;
-  }
-
-  .next-learning-section {
-    grid-template-columns: 1fr;
-  }
-
-  .learning-tags {
-    justify-content: flex-start;
   }
 
   .profile-summary {
