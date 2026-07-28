@@ -869,6 +869,7 @@ main {
 
 .flow-common,
 .flow-lane {
+  position: relative;
   display: grid;
   grid-template-columns: 112px repeat(3, minmax(0, 1fr));
   gap: 10px;
@@ -877,6 +878,13 @@ main {
 
 .flow-lane {
   grid-template-columns: 112px repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(130, 194, 208, 0.24);
+  padding-top: 10px;
+}
+
+.flow-common {
+  border-bottom: 1px solid rgba(130, 194, 208, 0.24);
+  padding-bottom: 14px;
 }
 
 .flow-label {
@@ -898,13 +906,12 @@ main {
   display: grid;
   align-content: center;
   min-height: 72px;
-  padding: 14px;
-  border: 1px solid rgba(130, 194, 208, 0.38);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
+  padding: 12px 10px;
+  border-left: 1px solid rgba(130, 194, 208, 0.34);
+  background: transparent;
 }
 
-.flow-step { background: rgba(255, 255, 255, 0.1); }
+.flow-step { border-left-color: rgba(255, 255, 255, 0.24); }
 
 .flow-node:not(:last-child)::after,
 .flow-step:not(:last-child)::after {
@@ -938,9 +945,10 @@ main {
 
 .automation-workflow .validation-strip div {
   position: relative;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-small);
-  background: var(--surface-soft);
+  border: 0;
+  border-top: 2px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
 }
 
 .automation-workflow .validation-strip div:not(:last-child)::after {
