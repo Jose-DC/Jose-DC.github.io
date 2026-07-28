@@ -861,6 +861,98 @@ main {
   line-height: 1.4;
 }
 
+.operation-flow {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.flow-common,
+.flow-lane {
+  display: grid;
+  grid-template-columns: 112px repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+
+.flow-lane {
+  grid-template-columns: 112px repeat(4, minmax(0, 1fr));
+}
+
+.flow-label {
+  display: flex;
+  align-items: center;
+  color: #82c2d0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flow-start { color: #a8d9c0; }
+.flow-stop { color: #f2b49c; }
+
+.flow-node,
+.flow-step {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-height: 72px;
+  padding: 14px;
+  border: 1px solid rgba(130, 194, 208, 0.38);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.flow-step { background: rgba(255, 255, 255, 0.1); }
+
+.flow-node:not(:last-child)::after,
+.flow-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -17px;
+  z-index: 1;
+  color: #82c2d0;
+  font-size: 1.05rem;
+  transform: translateY(-50%);
+}
+
+.flow-step small,
+.flow-node small {
+  margin-top: 5px;
+  color: #cbd9e1;
+  font-size: 0.75rem;
+}
+
+.automation-workflow .case-chapter {
+  border-top: 3px solid #82c2d0;
+}
+
+.automation-workflow .validation-strip {
+  gap: 10px;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.automation-workflow .validation-strip div {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--surface-soft);
+}
+
+.automation-workflow .validation-strip div:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -17px;
+  color: var(--accent-strong);
+  font-weight: 800;
+  transform: translateY(-50%);
+}
+
 .architecture-tools {
   margin-top: 26px;
   padding-top: 22px;
@@ -1044,6 +1136,15 @@ code {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .flow-common,
+  .flow-lane {
+    grid-template-columns: 92px repeat(3, minmax(0, 1fr));
+  }
+
+  .flow-lane {
+    grid-template-columns: 92px repeat(4, minmax(0, 1fr));
+  }
+
   .project-at-a-glance {
     padding: 22px;
   }
@@ -1224,6 +1325,21 @@ code {
 
   .validation-strip {
     grid-template-columns: 1fr;
+  }
+
+  .flow-common,
+  .flow-lane {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-label {
+    min-height: 0;
+  }
+
+  .flow-node:not(:last-child)::after,
+  .flow-step:not(:last-child)::after,
+  .automation-workflow .validation-strip div:not(:last-child)::after {
+    display: none;
   }
 }
 

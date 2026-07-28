@@ -24,7 +24,7 @@
     <section class="doc-hero">
       <p class="kicker">Caso de automatización cloud</p>
       <h1>Automatización horaria de recursos en Azure</h1>
-      <p class="lead">Flujo programado para encender y detener un clúster AKS y PostgreSQL Flexible Server según la jornada laboral, reduciendo el tiempo que un ambiente de pruebas permanece encendido sin necesidad.</p>
+      <p class="lead">Flujo programado para encender y detener un clúster AKS y PostgreSQL Flexible Server según una ventana de uso definida, reduciendo el tiempo que los recursos permanecen encendidos sin necesidad.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/automatizacion-costos-azure" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -32,9 +32,9 @@
     </section>
 
     <section class="case-overview" aria-label="Resumen del caso">
-      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir consumiendo recursos durante noches y fines de semana aunque el ambiente de pruebas no esté siendo utilizado.</p></article>
-      <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules e identidad administrada para ejecutar el orden correcto sin guardar secretos.</p></article>
-      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El ciclo manual se validó y la ejecución quedó habilitada de forma automática. El objetivo principal es reducir costos; la cifra exacta se mide por separado en Cost Management.</p></article>
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir consumiendo recursos durante noches y fines de semana aunque un ambiente no productivo no esté siendo utilizado. El mismo patrón puede servir en producción cuando existe una ventana operativa aprobada.</p></article>
+      <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules e identidad administrada para ejecutar el orden correcto mediante permisos RBAC.</p></article>
+      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El ciclo manual se validó, la ejecución quedó habilitada de forma automática y se comprobó una reducción de costos. La cifra exacta se revisa por separado en Cost Management.</p></article>
     </section>
 
     <section class="architecture-section">
@@ -43,13 +43,10 @@
         <h2>La automatización vive fuera de AKS</h2>
         <p>Un clúster detenido no puede ejecutar su propio CronJob. Por eso Azure Automation controla el horario y coordina los recursos desde fuera del clúster.</p>
       </div>
-      <div class="architecture-rail" aria-label="Flujo de componentes de la automatización">
-        <div class="architecture-node"><span>01</span><strong>Schedules</strong><p>Inicio y detención laboral</p></div>
-        <div class="architecture-node"><span>02</span><strong>Automation</strong><p>Ejecuta el runbook</p></div>
-        <div class="architecture-node"><span>03</span><strong>Identidad</strong><p>Autenticación sin secretos</p></div>
-        <div class="architecture-node"><span>04</span><strong>PostgreSQL</strong><p>Primero al iniciar</p></div>
-        <div class="architecture-node"><span>05</span><strong>AKS</strong><p>Después de la base de datos</p></div>
-        <div class="architecture-node"><span>06</span><strong>Validación</strong><p>Estados y workloads</p></div>
+      <div class="operation-flow" aria-label="Flujo de componentes y operaciones">
+        <div class="flow-common"><span class="flow-label">Control común</span><div class="flow-node"><strong>Schedules</strong><small>Ventana de uso</small></div><div class="flow-node"><strong>Azure Automation</strong><small>Ejecuta el runbook</small></div><div class="flow-node"><strong>Identidad + RBAC</strong><small>Permisos sobre recursos</small></div></div>
+        <div class="flow-lane"><span class="flow-label flow-start">START</span><div class="flow-step"><strong>PostgreSQL</strong><small>Iniciar servidor</small></div><div class="flow-step"><strong>Ready</strong><small>Esperar estado</small></div><div class="flow-step"><strong>AKS</strong><small>Iniciar clúster</small></div><div class="flow-step"><strong>Validar</strong><small>Nodos y workloads</small></div></div>
+        <div class="flow-lane"><span class="flow-label flow-stop">STOP</span><div class="flow-step"><strong>AKS</strong><small>Detener clúster</small></div><div class="flow-step"><strong>Stopped</strong><small>Esperar estado</small></div><div class="flow-step"><strong>PostgreSQL</strong><small>Detener servidor</small></div><div class="flow-step"><strong>Validar</strong><small>Estados finales</small></div></div>
       </div>
       <div class="architecture-tools" aria-label="Tecnologías aplicadas">
         <p class="eyebrow">Tecnologías aplicadas</p>
@@ -59,7 +56,7 @@
       </div>
     </section>
 
-    <section class="workflow-section" aria-labelledby="workflow-title">
+    <section class="workflow-section automation-workflow" aria-labelledby="workflow-title">
       <div class="section-copy workflow-heading">
         <p class="kicker">Recorrido de la implementación</p>
         <h2 id="workflow-title">Cómo funciona el flujo</h2>
