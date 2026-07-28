@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Caso de automatización horaria para reducir costos de un ambiente AKS y PostgreSQL en Azure." />
+  <title>Automatización horaria de recursos en Azure | José Díaz</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260722-redesign" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <div class="nav-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../experiencia.html">Experiencia</a>
+        <a href="../proyectos.html" aria-current="page">Proyectos</a>
+        <a href="../formacion.html">Formación</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="doc-hero">
+      <p class="kicker">Caso de automatización cloud</p>
+      <h1>Automatización horaria de recursos en Azure</h1>
+      <p class="lead">Flujo programado para encender y detener un clúster AKS y PostgreSQL Flexible Server según la jornada laboral, reduciendo el tiempo que un ambiente de pruebas permanece encendido sin necesidad.</p>
+      <div class="project-actions doc-actions">
+        <a class="button primary" href="https://github.com/Jose-DC/automatizacion-costos-azure" target="_blank" rel="noreferrer">Abrir repositorio</a>
+        <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
+      </div>
+    </section>
+
+    <section class="case-overview" aria-label="Resumen del caso">
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir consumiendo recursos durante noches y fines de semana aunque el ambiente de pruebas no esté siendo utilizado.</p></article>
+      <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules e identidad administrada para ejecutar el orden correcto sin guardar secretos.</p></article>
+      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El ciclo manual se validó y la ejecución quedó habilitada de forma automática. El objetivo principal es reducir costos; la cifra exacta se mide por separado en Cost Management.</p></article>
+    </section>
+
+    <section class="architecture-section">
+      <div class="section-copy">
+        <p class="kicker">Diseño de la solución</p>
+        <h2>La automatización vive fuera de AKS</h2>
+        <p>Un clúster detenido no puede ejecutar su propio CronJob. Por eso Azure Automation controla el horario y coordina los recursos desde fuera del clúster.</p>
+      </div>
+      <div class="architecture-rail" aria-label="Flujo de componentes de la automatización">
+        <div class="architecture-node"><span>01</span><strong>Schedules</strong><p>Inicio y detención laboral</p></div>
+        <div class="architecture-node"><span>02</span><strong>Automation</strong><p>Ejecuta el runbook</p></div>
+        <div class="architecture-node"><span>03</span><strong>Identidad</strong><p>Autenticación sin secretos</p></div>
+        <div class="architecture-node"><span>04</span><strong>PostgreSQL</strong><p>Primero al iniciar</p></div>
+        <div class="architecture-node"><span>05</span><strong>AKS</strong><p>Después de la base de datos</p></div>
+        <div class="architecture-node"><span>06</span><strong>Validación</strong><p>Estados y workloads</p></div>
+      </div>
+      <div class="architecture-tools" aria-label="Tecnologías aplicadas">
+        <p class="eyebrow">Tecnologías aplicadas</p>
+        <div class="architecture-tool-list">
+          <span>Azure Automation</span><span>AKS</span><span>Kubernetes</span><span>PostgreSQL Flexible Server</span><span>PowerShell</span><span>Azure CLI</span><span>Managed Identity</span><span>RBAC</span><span>Cost Management</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow-section" aria-labelledby="workflow-title">
+      <div class="section-copy workflow-heading">
+        <p class="kicker">Recorrido de la implementación</p>
+        <h2 id="workflow-title">Cómo funciona el flujo</h2>
+        <p>La solución se diseñó alrededor de las dependencias reales entre la base de datos, el clúster y sus workloads.</p>
+      </div>
+
+      <div class="case-chapters">
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">01</span><p class="eyebrow">Programar la operación</p><h3>Definir una ventana de trabajo</h3><p>Se configuran dos schedules de lunes a viernes con la zona horaria de Santiago: uno para iniciar el ambiente por la mañana y otro para detenerlo al terminar la jornada.</p></div>
+          <div class="validation-strip" aria-label="Componentes del horario"><div><strong>Start</strong><span>Inicio de la jornada</span></div><div><strong>Stop</strong><span>Fin de la jornada</span></div><div><strong>Fuera</strong><span>Menor operación nocturna</span></div></div>
+        </article>
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">02</span><p class="eyebrow">Encender el ambiente</p><h3>PostgreSQL antes que AKS</h3><p>El runbook inicia PostgreSQL y espera a que Azure confirme el estado <code>Ready</code>. Solo después solicita el inicio de AKS y permite validar nodos, deployments y workloads.</p></div>
+          <div class="validation-strip" aria-label="Secuencia de inicio"><div><strong>01</strong><span>PostgreSQL</span></div><div><strong>02</strong><span>Estado Ready</span></div><div><strong>03</strong><span>AKS y workloads</span></div></div>
+        </article>
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Detener el ambiente</p><h3>AKS antes que PostgreSQL</h3><p>Al finalizar la jornada, primero se detiene AKS y se espera el estado detenido. Luego se detiene PostgreSQL, evitando que las aplicaciones queden funcionando contra una base de datos apagada.</p></div>
+          <div class="validation-strip" aria-label="Secuencia de detención"><div><strong>01</strong><span>Detener AKS</span></div><div><strong>02</strong><span>Esperar detenido</span></div><div><strong>03</strong><span>Detener PostgreSQL</span></div></div>
+        </article>
+        <article class="case-chapter case-chapter-single">
+          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Permisos y validación</p><h3>Operar sin guardar claves</h3><p>La cuenta de Automation usa una identidad administrada. Los permisos se asignan al alcance de los recursos necesarios y los schedules se habilitan después de probar el ciclo manual y comprobar la recuperación del ambiente.</p></div>
+          <div class="validation-strip" aria-label="Validaciones realizadas"><div><strong>RBAC</strong><span>Roles sobre recursos</span></div><div><strong>Start/Stop</strong><span>Ciclo controlado</span></div><div><strong>Auto</strong><span>Schedules habilitados</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="learning-section" aria-labelledby="learning-title">
+      <div class="section-copy">
+        <p class="kicker">Aprendizajes</p>
+        <h2 id="learning-title">Lo que me dejó este proyecto</h2>
+      </div>
+      <ul class="learning-list">
+        <li>Relacioné una decisión de infraestructura con un objetivo concreto de reducción de costos.</li>
+        <li>Practiqué dependencias de operación entre PostgreSQL, AKS y workloads.</li>
+        <li>Entendí por qué una automatización de encendido no debe depender del propio clúster.</li>
+        <li>Trabajé con identidad administrada, RBAC y separación de responsabilidades.</li>
+        <li>Aprendí a validar recuperación y schedules, no solo a ejecutar comandos de inicio o detención.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer"><p>&copy; 2026 José Díaz</p></footer>
+</body>
+</html>
