@@ -24,7 +24,7 @@
     <section class="doc-hero">
       <p class="kicker">Caso de automatización cloud</p>
       <h1>Automatización horaria de recursos en Azure</h1>
-      <p class="lead">Flujo programado para encender y detener un clúster AKS y PostgreSQL Flexible Server según una ventana de uso definida, reduciendo el tiempo que los recursos permanecen encendidos sin necesidad.</p>
+      <p class="lead">Flujo programado para encender y detener un clúster AKS y PostgreSQL Flexible Server según una ventana de uso definida, reduciendo costos cuando esos recursos no necesitan permanecer encendidos.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/automatizacion-costos-azure" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -32,7 +32,7 @@
     </section>
 
     <section class="case-overview" aria-label="Resumen del caso">
-      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir consumiendo recursos durante noches y fines de semana aunque un ambiente no productivo no esté siendo utilizado. El mismo patrón puede servir en producción cuando existe una ventana operativa aprobada.</p></article>
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>En Azure, AKS y PostgreSQL pueden seguir generando consumo durante la noche, los fines de semana o cualquier tramo fuera de la ventana de operación. En pruebas ocurre cuando nadie usa la plataforma; en producción puede ocurrir con workloads que tienen horarios definidos.</p></article>
       <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules e identidad administrada para ejecutar el orden correcto mediante permisos RBAC.</p></article>
       <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El ciclo manual se validó, la ejecución quedó habilitada de forma automática y se comprobó una reducción de costos. La cifra exacta se revisa por separado en Cost Management.</p></article>
     </section>
