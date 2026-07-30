@@ -998,6 +998,246 @@ main {
   line-height: 1.5;
 }
 
+/* Automatización Azure: flujo legible y bloques con apariencia de terminal. */
+.control-chain {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.control-card {
+  position: relative;
+  min-height: 112px;
+  padding: 18px;
+  border: 1px solid rgba(130, 194, 208, 0.22);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.control-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  width: 15px;
+  height: 1px;
+  background: #82c2d0;
+}
+
+.control-card:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 3px);
+  right: -15px;
+  z-index: 1;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 5px solid #82c2d0;
+}
+
+.control-card > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #82c2d0;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.control-card strong,
+.control-card small {
+  display: block;
+}
+
+.control-card small {
+  margin-top: 6px;
+  color: #aebfcc;
+  font-size: 0.76rem;
+}
+
+.operation-lanes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.operation-lane {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(5, 16, 31, 0.32);
+}
+
+.operation-lane header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.operation-lane h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.lane-badge {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.start-lane .lane-badge {
+  background: rgba(88, 190, 144, 0.16);
+  color: #a8d9c0;
+}
+
+.stop-lane .lane-badge {
+  background: rgba(230, 133, 96, 0.16);
+  color: #f2b49c;
+}
+
+.lane-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lane-steps li {
+  position: relative;
+  min-width: 0;
+  padding-right: 12px;
+}
+
+.lane-steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  right: 4px;
+  left: 30px;
+  height: 1px;
+  background: rgba(130, 194, 208, 0.4);
+}
+
+.lane-steps li > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 12px;
+  place-items: center;
+  border: 1px solid rgba(130, 194, 208, 0.55);
+  border-radius: 50%;
+  background: #15243a;
+  color: #d7edf1;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.lane-steps strong,
+.lane-steps small {
+  display: block;
+}
+
+.lane-steps strong {
+  font-size: 0.82rem;
+}
+
+.lane-steps small {
+  margin-top: 5px;
+  color: #aebfcc;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.automation-workflow .case-chapter {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.28fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.chapter-content {
+  min-width: 0;
+}
+
+.automation-workflow .validation-strip div {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #f7fafb;
+}
+
+.automation-workflow .validation-strip div:not(:last-child)::after {
+  display: none;
+}
+
+.command-block {
+  position: relative;
+  margin: 0;
+  padding: 52px 20px 20px;
+  border-color: #263b55;
+  border-radius: 12px;
+  background: #0d1929;
+  box-shadow: 0 12px 28px rgba(9, 20, 35, 0.16);
+  color: #d8e7ee;
+}
+
+.command-block::before {
+  content: attr(data-label);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 34px;
+  padding: 0 16px 0 62px;
+  border-bottom: 1px solid #263b55;
+  background: #14243a;
+  color: #91a9b8;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 34px;
+  letter-spacing: 0.04em;
+}
+
+.command-block::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff786a;
+  box-shadow: 13px 0 #f0c55c, 26px 0 #67c68c;
+}
+
+.command-block code {
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  white-space: pre;
+}
+
+.chapter-content .evidence-placeholder {
+  margin-top: 18px;
+}
+
+.chapter-content .placeholder-art {
+  min-height: 136px;
+}
+
 .architecture-tools {
   margin-top: 26px;
   padding-top: 22px;
@@ -1175,6 +1415,11 @@ code {
   .focus-grid,
   .case-overview {
     grid-template-columns: 1fr;
+  }
+
+  .automation-workflow .case-chapter {
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
 
   .architecture-rail {
@@ -1375,6 +1620,79 @@ code {
   .flow-common,
   .flow-lane {
     grid-template-columns: 1fr;
+  }
+
+  .control-chain,
+  .operation-lanes {
+    grid-template-columns: 1fr;
+  }
+
+  .control-card {
+    min-height: 0;
+  }
+
+  .control-card:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -15px;
+    left: 30px;
+    width: 1px;
+    height: 15px;
+  }
+
+  .control-card:not(:last-child)::before {
+    top: auto;
+    right: auto;
+    bottom: -15px;
+    left: 27px;
+    border-top: 5px solid #82c2d0;
+    border-right: 3px solid transparent;
+    border-bottom: 0;
+    border-left: 3px solid transparent;
+  }
+
+  .operation-lane header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lane-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .lane-steps li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+    padding: 0 0 18px;
+  }
+
+  .lane-steps li:last-child {
+    padding-bottom: 0;
+  }
+
+  .lane-steps li:not(:last-child)::after {
+    top: 26px;
+    right: auto;
+    bottom: 0;
+    left: 13px;
+    width: 1px;
+    height: auto;
+  }
+
+  .lane-steps li > span {
+    grid-row: 1 / span 2;
+    margin-bottom: 0;
+  }
+
+  .command-block {
+    padding: 50px 16px 18px;
+    font-size: 0.72rem;
+  }
+
+  .command-block code {
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
   }
 
   .flow-label {

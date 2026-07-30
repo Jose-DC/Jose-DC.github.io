@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Guía resumida de una automatización horaria para reducir costos de un ambiente AKS y PostgreSQL en Azure." />
   <title>Automatización horaria de recursos en Azure | José Díaz</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260722-redesign" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260729-automation" />
 </head>
 <body>
   <header class="site-header">
@@ -44,9 +44,31 @@
         <p>Un clúster detenido no puede ejecutar su propio CronJob. Azure Automation controla el horario y coordina el orden de los recursos desde fuera del clúster.</p>
       </div>
       <div class="operation-flow" aria-label="Flujo de componentes y operaciones">
-        <div class="flow-common"><span class="flow-label">Control común</span><div class="flow-node"><strong>Schedules</strong><small>Ventana de uso</small></div><div class="flow-node"><strong>Azure Automation</strong><small>Ejecuta el runbook</small></div><div class="flow-node"><strong>Identidad + RBAC</strong><small>Permisos sobre recursos</small></div></div>
-        <div class="flow-lane"><span class="flow-label flow-start">START</span><div class="flow-step"><strong>PostgreSQL</strong><small>Iniciar servidor</small></div><div class="flow-step"><strong>Ready</strong><small>Esperar estado</small></div><div class="flow-step"><strong>AKS</strong><small>Iniciar clúster</small></div><div class="flow-step"><strong>Validar</strong><small>Nodos y workloads</small></div></div>
-        <div class="flow-lane"><span class="flow-label flow-stop">STOP</span><div class="flow-step"><strong>AKS</strong><small>Detener clúster</small></div><div class="flow-step"><strong>Stopped</strong><small>Esperar estado</small></div><div class="flow-step"><strong>PostgreSQL</strong><small>Detener servidor</small></div><div class="flow-step"><strong>Validar</strong><small>Estados finales</small></div></div>
+        <div class="control-chain" aria-label="Control de la automatización">
+          <div class="control-card"><span>01</span><strong>Schedules</strong><small>Definen la ventana de uso</small></div>
+          <div class="control-card"><span>02</span><strong>Azure Automation</strong><small>Ejecuta el runbook</small></div>
+          <div class="control-card"><span>03</span><strong>Identidad + RBAC</strong><small>Autoriza la operación</small></div>
+        </div>
+        <div class="operation-lanes">
+          <article class="operation-lane start-lane">
+            <header><span class="lane-badge">Inicio</span><h3>Encender el ambiente</h3></header>
+            <ol class="lane-steps">
+              <li><span>1</span><div><strong>PostgreSQL</strong><small>Iniciar servidor</small></div></li>
+              <li><span>2</span><div><strong>Esperar Ready</strong><small>Confirmar disponibilidad</small></div></li>
+              <li><span>3</span><div><strong>AKS</strong><small>Iniciar clúster</small></div></li>
+              <li><span>4</span><div><strong>Validar</strong><small>Nodos y workloads</small></div></li>
+            </ol>
+          </article>
+          <article class="operation-lane stop-lane">
+            <header><span class="lane-badge">Detención</span><h3>Apagar el ambiente</h3></header>
+            <ol class="lane-steps">
+              <li><span>1</span><div><strong>AKS</strong><small>Detener clúster</small></div></li>
+              <li><span>2</span><div><strong>Esperar Stopped</strong><small>Confirmar detención</small></div></li>
+              <li><span>3</span><div><strong>PostgreSQL</strong><small>Detener servidor</small></div></li>
+              <li><span>4</span><div><strong>Validar</strong><small>Comprobar estados finales</small></div></li>
+            </ol>
+          </article>
+        </div>
       </div>
       <div class="architecture-tools" aria-label="Tecnologías aplicadas">
         <p class="eyebrow">Tecnologías aplicadas</p>
@@ -66,16 +88,19 @@
       <div class="case-chapters">
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">01</span><p class="eyebrow">Requisitos</p><h3>Preparar el alcance de Azure</h3><p>Se parte de un AKS y un PostgreSQL Flexible Server dentro de una suscripción autorizada. Antes de crear recursos se comprueban el contexto, los estados iniciales y el registro del proveedor de Azure Automation.</p></div>
-          <pre class="command-block"><code>az account show --subscription "&lt;SUBSCRIPTION&gt;" --output table
+          <div class="chapter-content">
+          <pre class="command-block" data-label="Azure CLI · Preflight"><code>az account show --subscription "&lt;SUBSCRIPTION&gt;" --output table
 az aks show --resource-group "&lt;AKS_RESOURCE_GROUP&gt;" --name "&lt;AKS_NAME&gt;"
 az postgres flexible-server show --resource-group "&lt;DB_RESOURCE_GROUP&gt;" --name "&lt;POSTGRES_SERVER&gt;"
 az provider show --namespace Microsoft.Automation --query registrationState</code></pre>
           <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 01</span></div><figcaption>Captura sugerida: consulta inicial mostrando la suscripción anonimizada, AKS en estado saludable y PostgreSQL listo antes de modificar la configuración.</figcaption></figure>
+          </div>
         </article>
 
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">02</span><p class="eyebrow">Automation e identidad</p><h3>Crear el punto de ejecución</h3><p>Se crea una Automation Account con identidad administrada. Esa identidad es la que ejecuta el runbook; la persona que configura los recursos y la identidad que opera el flujo pueden ser distintas.</p></div>
-          <pre class="command-block"><code>az automation account create \
+          <div class="chapter-content">
+          <pre class="command-block" data-label="Azure CLI · Automation Account"><code>az automation account create \
   --resource-group "&lt;AUTOMATION_RESOURCE_GROUP&gt;" \
   --name "&lt;AUTOMATION_ACCOUNT&gt;" \
   --location "&lt;REGION&gt;" --sku Basic
@@ -84,24 +109,29 @@ az rest --method patch \
   --url "&lt;AUTOMATION_ACCOUNT_URL&gt;" \
   --body '{"identity":{"type":"SystemAssigned"}}'</code></pre>
           <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 02</span></div><figcaption>Captura sugerida: Automation Account con identidad administrada habilitada. Ocultar nombre, suscripción y cualquier identificador.</figcaption></figure>
+          </div>
         </article>
 
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Permisos y schedules</p><h3>Autorizar y programar la operación</h3><p>La identidad recibe permisos acotados a los recursos objetivo. Después se crea un schedule de inicio y otro de detención, ambos con recurrencia laboral y zona horaria de Santiago.</p></div>
-          <pre class="command-block"><code>az role assignment list \
+          <div class="chapter-content">
+          <pre class="command-block" data-label="Azure CLI · RBAC y schedules"><code>az role assignment list \
   --assignee-object-id "&lt;AUTOMATION_PRINCIPAL_ID&gt;" \
   --all --output table
 
 # Schedules configurados en Azure Automation
-START: lunes a viernes, 07:30, America/Santiago
-STOP:  lunes a viernes, 18:00, America/Santiago</code></pre>
+START: lunes a viernes, 08:00, America/Santiago
+STOP:  lunes a viernes, 23:59, America/Santiago</code></pre>
           <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 03</span></div><figcaption>Captura sugerida: pantalla de Schedules con inicio, detención, recurrencia y zona horaria. Recortar nombres internos.</figcaption></figure>
+          </div>
         </article>
 
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Validación automática</p><h3>Comprobar que el horario funciona</h3><p>La prueba controlada se realizó antes de habilitar la recurrencia. Luego los schedules quedaron activos para ejecutar el flujo automáticamente: PostgreSQL antes de AKS al iniciar y AKS antes de PostgreSQL al detener.</p></div>
+          <div class="chapter-content">
           <div class="validation-strip" aria-label="Validaciones del proyecto"><div><strong>Start</strong><span>PostgreSQL Ready y AKS Running</span></div><div><strong>Stop</strong><span>AKS Stopped y PostgreSQL detenido</span></div><div><strong>Auto</strong><span>Schedules habilitados</span></div></div>
           <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 04</span></div><figcaption>Captura sugerida: estado detenido de AKS y PostgreSQL fuera de horario, o historial de un job automático completado. No es necesario ejecutar nada manualmente ahora.</figcaption></figure>
+          </div>
         </article>
       </div>
     </section>
