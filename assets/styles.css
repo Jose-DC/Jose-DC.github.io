@@ -15,7 +15,7 @@
   --planned-soft: #fff3d6;
   --idea: #5e6472;
   --idea-soft: #eef1f4;
-  --code-accent: #8388ea;
+  --code-accent: #4b4fb0;
   --code-font: ui-monospace, "Cascadia Code", "Fira Code", Consolas, "Liberation Mono", monospace;
   --shadow-soft: 0 12px 34px rgba(20, 32, 51, 0.07);
   --shadow-card: 0 6px 20px rgba(20, 32, 51, 0.05);
@@ -253,28 +253,18 @@ main {
   padding: 9px 11px;
 }
 
-.hero-prompt {
-  margin: 0 0 10px;
-  color: var(--muted);
-  font-family: var(--code-font);
-  font-size: 0.82rem;
-  letter-spacing: 0.01em;
-}
-
-.hero-prompt::before {
-  content: "$ ";
-  opacity: 0.6;
-}
-
 .hero-signal-list span,
 .meta span {
   border: none;
-  border-radius: 5px;
-  background: var(--navy);
-  color: var(--code-accent);
+  border-radius: 6px;
+  background: var(--code-accent);
+  color: #ffffff;
   font-family: var(--code-font);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 9px 14px;
 }
 
 .hero-actions,
@@ -657,7 +647,7 @@ main {
 
 .project-row {
   padding: clamp(26px, 4vw, 38px);
-  border-left: 3px solid var(--code-accent);
+  border-top: 6px solid var(--code-accent);
 }
 
 .project-content .status {
