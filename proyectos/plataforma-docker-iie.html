@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Caso de estudio de Plataforma Docker Lab: generación de stacks, operación, monitoreo y revisión de imágenes." />
+  <meta name="description" content="Trabajo de título de Ingeniería Civil Telemática: plataforma centralizada con Docker para el Instituto de Informática Educativa UFRO, con 97,1% de reducción en tiempos de despliegue medida en pruebas controladas." />
   <title>Plataforma Docker Lab | José Díaz</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
   <link rel="stylesheet" href="../assets/styles.css?v=20260806-motion" />
@@ -23,9 +23,9 @@
 
   <main>
     <section class="doc-hero">
-      <p class="kicker">Caso de práctica profesional</p>
+      <p class="kicker">Trabajo de título · Ingeniería Civil Telemática, UFRO</p>
       <h1>Plataforma Docker Lab</h1>
-      <p class="lead">Laboratorio de infraestructura para ordenar el despliegue de servicios Docker, observar su operación y revisar imágenes antes de reutilizarlas en nuevas pruebas.</p>
+      <p class="lead">Prototipo de plataforma centralizada con Docker para el Instituto de Informática Educativa (IIE) de la UFRO, evaluado como trabajo de título con pruebas controladas de eficiencia, carga y consolidación de servicios.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/plataforma-docker-lab" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -33,9 +33,9 @@
     </section>
 
     <section class="case-overview" aria-label="Resumen del caso">
-      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>Preparar servicios Docker manualmente repite tareas como organizar archivos, seleccionar variables, conectar redes y revisar el estado de cada componente.</p></article>
-      <article><p class="eyebrow">Propuesta</p><h2>Qué resuelve</h2><p>Reúne plantillas reutilizables, módulos de operación y controles básicos para hacer el flujo de laboratorio más consistente y fácil de revisar.</p></article>
-      <article><p class="eyebrow">Alcance real</p><h2>Estado</h2><p>Laboratorio funcional validado con Docker Compose. No se presenta como una plataforma productiva terminada ni como un servicio expuesto a Internet.</p></article>
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>El Instituto gestionaba sus entornos de desarrollo de forma descentralizada, combinando configuraciones manuales en VPS y paneles WHM/cPanel, lo que generaba tiempos de despliegue elevados y falta de estandarización.</p></article>
+      <article><p class="eyebrow">Propuesta</p><h2>Qué resuelve</h2><p>Una plataforma centralizada bajo el paradigma de Infraestructura como Código: proxy inverso, monitoreo con Prometheus y Grafana, y un módulo de automatización en Python para aprovisionar entornos estandarizados en un solo comando.</p></article>
+      <article><p class="eyebrow">Alcance real</p><h2>Estado</h2><p>Trabajo de título aprobado por comisión examinadora en la Universidad de La Frontera (enero de 2026), con resultados medidos mediante pruebas controladas. No se presenta como servicio productivo expuesto a Internet.</p></article>
     </section>
 
     <section class="architecture-section">
@@ -55,7 +55,7 @@
       <div class="architecture-tools" aria-label="Tecnologías aplicadas">
         <p class="eyebrow">Tecnologías aplicadas</p>
         <div class="architecture-tool-list">
-          <span>Linux</span><span>Docker Compose</span><span>Python</span><span>Nginx Proxy Manager</span><span>Proxy inverso</span><span>Portainer</span><span>Prometheus</span><span>Grafana</span><span>Trivy</span>
+          <span>Linux</span><span>Docker Compose</span><span>Python</span><span>Nginx Proxy Manager</span><span>MariaDB</span><span>Portainer</span><span>Prometheus</span><span>Grafana</span><span>Alertmanager</span><span>Trivy</span><span>GitHub Actions (self-hosted)</span><span>Rclone</span><span>k6</span>
         </div>
       </div>
     </section>
@@ -98,6 +98,22 @@
           <div class="chapter-intro"><span class="step-number">05</span><p class="eyebrow">Revisar antes de reutilizar</p><h3>Incorporar revisión de imágenes</h3><p>Agregué un módulo con Trivy para revisar vulnerabilidades y conservar reportes locales rotados. Así, el laboratorio no termina al levantar un contenedor: deja una señal técnica para evaluar si una imagen conviene reutilizarse en futuras pruebas.</p></div>
           <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" alt="Terminal con ejecución de Trivy y guardado de reportes de análisis" loading="lazy" /></a><figcaption>Análisis de imágenes y rotación de reportes locales. Abrir para ampliar.</figcaption></figure>
         </article>
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">06</span><p class="eyebrow">Medir el impacto real</p><h3>Contrastar la automatización contra los métodos manuales</h3><p>El objetivo formal del trabajo de título exigía una reducción mínima del 25% en los tiempos de despliegue frente a los métodos manuales del Instituto (VPS configurado a mano y paneles WHM/cPanel). Medí el ciclo completo de aprovisionamiento —descarga, construcción y puesta en marcha del proxy— sobre las 15 plantillas del catálogo, en frío y con caché de imágenes.</p></div>
+          <div class="validation-strip" aria-label="Resultados de eficiencia de despliegue">
+            <div><strong>97,1%</strong><span>reducción vs. configuración manual en VPS (35 min → ~1 min)</span></div>
+            <div><strong>93,3%</strong><span>reducción vs. paneles WHM/cPanel (15 min → ~1 min)</span></div>
+            <div><strong>&lt;135 seg</strong><span>tiempo total incluso en el escenario más pesado (php+mysql, sin caché)</span></div>
+          </div>
+        </article>
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">07</span><p class="eyebrow">Encontrar el límite real</p><h3>Pruebas de carga y consolidación con k6</h3><p>Con la plataforma en régimen, sometí un servicio representativo a pruebas de carga escalonadas con k6 y reactivé simultáneamente los 30 entornos de prueba generados durante la validación. El sistema se mantuvo estable y sin errores hasta 1.000 usuarios virtuales concurrentes; a 2.000 mostró degradación leve (1,38% de errores) y a 4.000 alcanzó el punto de saturación, identificando al proxy inverso —no a las aplicaciones ni a las bases de datos— como el principal cuello de botella.</p></div>
+          <div class="validation-strip" aria-label="Resultados de carga y consolidación">
+            <div><strong>1.000 VUs</strong><span>usuarios concurrentes con 0% de errores y latencia estable</span></div>
+            <div><strong>74</strong><span>contenedores activos de forma simultánea, en 37 stacks y 73 redes aisladas</span></div>
+            <div><strong>66%</strong><span>ocupación de RAM en el punto de consolidación máxima (34% de margen)</span></div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -107,11 +123,12 @@
         <h2 id="learning-title">Lo que me dejó este laboratorio</h2>
       </div>
       <ul class="learning-list">
-        <li>Mejoré el uso de Docker Compose para levantar servicios con redes, volúmenes y variables.</li>
-        <li>Practiqué escritura de Dockerfiles y construcción de imágenes para entornos reproducibles.</li>
-        <li>Automaticé la creación de stacks con Python para reducir pasos manuales.</li>
-        <li>Fortalecí monitoreo básico con Prometheus y Grafana para revisar estado y recursos.</li>
-        <li>Sumé revisión de imágenes con Trivy antes de reutilizarlas en nuevas pruebas.</li>
+        <li>Confirmé que la fricción operativa venía de los procesos manuales, no de límites reales de la infraestructura.</li>
+        <li>Aprendí a aislar el impacto del caché de Docker de la intervención manual para medir la automatización con rigor.</li>
+        <li>Identifiqué el proxy inverso, y no las aplicaciones ni las bases de datos, como el límite real de la arquitectura bajo carga.</li>
+        <li>Determiné que la RAM es el recurso que condiciona la escalabilidad vertical del sistema, con margen suficiente en CPU.</li>
+        <li>Validé un simulacro real de recuperación ante fallos, no solo la existencia de respaldos.</li>
+        <li>Practiqué CI/CD con un runner autoalojado, separando el acceso de los equipos de desarrollo del servidor de producción.</li>
       </ul>
     </section>
   </main>
