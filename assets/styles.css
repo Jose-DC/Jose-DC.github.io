@@ -5,9 +5,9 @@
   --ink: #142033;
   --muted: #526277;
   --line: #d7e1e7;
-  --accent: #17657a;
-  --accent-strong: #0f5264;
-  --accent-soft: #eaf4f6;
+  --accent: #2f6fb0;
+  --accent-strong: #1c4d80;
+  --accent-soft: #e8f1fb;
   --navy: #142033;
   --functional: #1f6b4f;
   --functional-soft: #e9f6ef;
@@ -156,7 +156,7 @@ main {
 
 .nav-links a:hover,
 .nav-links a[aria-current="page"] {
-  border-color: #c9e1e7;
+  border-color: #cfe0f3;
   background: var(--accent-soft);
   color: var(--accent);
 }
@@ -167,7 +167,7 @@ main {
 .page-heading,
 .doc-hero,
 .contact-section {
-  margin-bottom: 28px;
+  margin-bottom: clamp(32px, 5vw, 56px);
 }
 
 .hero {
@@ -189,27 +189,43 @@ main {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
+}
+
+.focus-section,
+.experience-preview,
+.technology-section {
+  border-color: transparent;
+  background: transparent;
 }
 
 .hero-copy {
   position: relative;
   overflow: hidden;
   padding: clamp(34px, 5vw, 60px);
-  border-top: 4px solid var(--accent);
-  background: linear-gradient(135deg, rgba(234, 244, 246, 0.9), #ffffff 58%);
-  box-shadow: var(--shadow-hero);
+  border-top: 3px solid var(--accent);
+  background: var(--surface);
 }
 
-.hero-copy::before {
-  position: absolute;
-  top: 52px;
-  left: 0;
-  width: 4px;
-  height: 70px;
-  border-radius: 0 4px 4px 0;
-  background: var(--accent);
-  content: "";
+.hero-net {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: 28px;
+  margin-bottom: 18px;
+}
+
+.hero-net circle {
+  fill: var(--code-accent);
+}
+
+.hero-net circle.hero-net-dim {
+  fill: var(--line);
+}
+
+.hero-net line {
+  stroke: var(--line);
+  stroke-width: 1;
 }
 
 .kicker,
@@ -217,7 +233,7 @@ main {
 .summary-label,
 .number,
 .step-number {
-  color: var(--code-accent);
+  color: var(--accent-strong);
   font-family: var(--code-font);
   font-size: 0.75rem;
   font-weight: 700;
@@ -257,7 +273,7 @@ main {
 .meta span,
 .core-tech-list span,
 .architecture-tool-list span {
-  border: 1px solid #c9e1e7;
+  border: 1px solid #cfe0f3;
   border-radius: 7px;
   background: var(--surface);
   color: var(--accent);
@@ -269,16 +285,16 @@ main {
 
 .hero-signal-list span,
 .meta span {
-  border: none;
+  border: 1px solid #cfe0f3;
   border-radius: 6px;
-  background: var(--code-accent);
-  color: #ffffff;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
   font-family: var(--code-font);
   font-weight: 700;
   font-size: 0.78rem;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
-  padding: 9px 14px;
+  text-transform: none;
+  padding: 8px 13px;
 }
 
 .hero-actions,
@@ -314,7 +330,7 @@ main {
   background: var(--accent-strong);
   color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(15, 82, 100, 0.25);
+  box-shadow: 0 8px 18px rgba(28, 77, 128, 0.25);
 }
 
 .button.secondary {
@@ -324,7 +340,7 @@ main {
 }
 
 .button.secondary:hover {
-  border-color: #a9cbd4;
+  border-color: #8fb8dc;
   color: var(--accent);
   transform: translateY(-1px);
 }
@@ -347,9 +363,8 @@ main {
   align-items: center;
   justify-content: center;
   padding: clamp(30px, 4vw, 42px);
-  border-color: var(--navy);
-  background: var(--navy);
-  box-shadow: var(--shadow-hero);
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
   text-align: center;
 }
 
@@ -358,23 +373,26 @@ main {
   color: #ffffff;
 }
 
+.profile-summary .summary-label {
+  color: var(--code-accent-bright);
+}
+
 .profile-summary h2 {
   font-size: 1.65rem;
 }
 
 .profile-summary p:not(.summary-label) {
   margin-bottom: 0;
-  color: #d6e2e7;
+  color: #cfe0f0;
 }
 
 .avatar {
-  width: 96px;
-  height: 96px;
+  width: 84px;
+  height: 84px;
   margin-bottom: 22px;
-  border: 3px solid var(--warm-accent);
+  border: 2px solid rgba(255, 255, 255, 0.55);
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 0 4px rgba(194, 91, 58, 0.18);
 }
 
 .section,
@@ -486,9 +504,41 @@ main {
   flex-direction: column;
   justify-content: center;
   padding: 24px;
-  border: 1px solid #c9e1e7;
+  border: 1px solid #cfe0f3;
   border-radius: var(--radius-small);
   background: var(--accent-soft);
+}
+
+.project-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 18px;
+}
+
+.project-diagram rect {
+  stroke: var(--accent);
+  stroke-width: 1;
+  fill: var(--surface);
+}
+
+.project-diagram rect.pd-main {
+  fill: var(--accent);
+}
+
+.project-diagram line {
+  stroke: #cfe0f3;
+  stroke-width: 1;
+}
+
+.project-diagram .pd-label {
+  fill: var(--accent-strong);
+  font-family: var(--code-font);
+  font-size: 7px;
+}
+
+.project-diagram .pd-label-strong {
+  fill: #ffffff;
 }
 
 .project-at-a-glance dl,
@@ -536,8 +586,10 @@ main {
   display: grid;
   gap: 3px;
   padding: 18px;
+  border: 1px solid var(--line);
   border-left: 3px solid var(--accent);
-  background: var(--surface-soft);
+  border-radius: var(--radius-small);
+  background: var(--surface);
 }
 
 .experience-facts strong {
@@ -563,9 +615,9 @@ main {
 .tech-group {
   padding: 20px;
   border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   border-radius: var(--radius-small);
   background: var(--surface);
-  box-shadow: var(--shadow-card);
 }
 
 .tech-group h3 {
@@ -574,25 +626,8 @@ main {
   font-size: 1rem;
 }
 
-.tech-group:nth-child(1) {
-  border-top: 3px solid var(--accent);
-}
-
-.tech-group:nth-child(2) {
-  border-top: 3px solid var(--functional);
-}
-
-.tech-group:nth-child(3) {
-  border-top: 3px solid var(--planned);
-}
-
-.tech-group:nth-child(4) {
-  border-top: 3px solid var(--idea);
-}
-
 .tech-group:nth-child(5) {
   grid-column: 1 / -1;
-  border-top: 3px solid var(--code-accent);
 }
 
 .core-tech-list span {
@@ -613,7 +648,7 @@ main {
   gap: 24px;
   padding: 30px 36px;
   border-radius: var(--radius);
-  background: var(--navy);
+  background: var(--accent-strong);
 }
 
 .contact-section h2,
@@ -1583,9 +1618,8 @@ code {
     padding: 24px;
   }
 
-  .hero-copy::before {
-    top: 44px;
-    height: 56px;
+  .hero-net {
+    max-width: 180px;
   }
 
   .role {
