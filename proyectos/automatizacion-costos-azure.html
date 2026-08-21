@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Guía resumida de una automatización horaria para reducir costos de un ambiente AKS y PostgreSQL en Azure." />
-  <title>Automatización horaria de recursos en Azure | José Díaz</title>
+  <title>José Díaz | Automatización horaria de recursos en Azure</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
-  <link rel="stylesheet" href="../assets/styles.css?v=20260806-motion" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260820-content" />
 </head>
 <body>
   <header class="site-header">
@@ -33,9 +33,9 @@
     </section>
 
     <section class="case-overview" aria-label="Resumen del caso">
-      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir generando consumo durante la noche, los fines de semana o cualquier tramo fuera de la ventana de operación. En pruebas ocurre cuando nadie usa la plataforma; en producción puede ocurrir con workloads que tienen horarios definidos.</p></article>
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir generando consumo durante la noche, los fines de semana o cualquier tramo fuera de la ventana de operación. Esto pesa especialmente en ambientes de prueba o no críticos, que no necesitan estar encendidos 24/7; en producción el mismo patrón puede aplicarse solo a workloads con horarios definidos y ventanas de mantención autorizadas.</p></article>
       <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules, identidad administrada y permisos RBAC sobre los recursos que deben operarse.</p></article>
-      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El runbook se validó antes de activar la recurrencia, los schedules quedaron funcionando de forma automática y el laboratorio mostró una reducción de costos al apagar recursos fuera de horario.</p></article>
+      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El runbook se validó antes de activar la recurrencia y los schedules quedaron funcionando de forma automática. Una revisión preliminar de Cost Management mostró un gasto aproximado de USD 12 al día con los recursos encendidos, frente a USD 2,65 acumulados durante un fin de semana completo apagados — una señal de ahorro real, aunque falta repetir la medición por al menos dos semanas para fijar un porcentaje confiable.</p></article>
     </section>
 
     <section class="architecture-section">
@@ -46,9 +46,9 @@
       </div>
       <div class="operation-flow" aria-label="Flujo de componentes y operaciones">
         <div class="control-chain" aria-label="Control de la automatización">
-          <div class="control-card"><span>01</span><strong>Schedules</strong><small>Definen la ventana de uso</small></div>
+          <div class="control-card"><span>01</span><strong>Identidad + RBAC</strong><small>Autoriza la operación</small></div>
           <div class="control-card"><span>02</span><strong>Azure Automation</strong><small>Ejecuta el runbook</small></div>
-          <div class="control-card"><span>03</span><strong>Identidad + RBAC</strong><small>Autoriza la operación</small></div>
+          <div class="control-card"><span>03</span><strong>Schedules</strong><small>Definen la ventana de uso</small></div>
         </div>
         <div class="operation-lanes">
           <article class="operation-lane start-lane">
@@ -71,11 +71,15 @@
           </article>
         </div>
       </div>
-      <div class="architecture-tools" aria-label="Tecnologías aplicadas">
-        <p class="eyebrow">Tecnologías aplicadas</p>
-        <div class="architecture-tool-list">
-          <span>Azure Automation</span><span>AKS</span><span>Kubernetes</span><span>PostgreSQL Flexible Server</span><span>PowerShell</span><span>Azure CLI</span><span>Managed Identity</span><span>RBAC</span><span>Cost Management</span>
-        </div>
+    </section>
+
+    <section class="section" aria-label="Tecnologías aplicadas">
+      <div class="section-header compact-header">
+        <p class="kicker">Base técnica</p>
+        <h2>Tecnologías aplicadas</h2>
+      </div>
+      <div class="core-tech-list">
+        <span>Azure Automation</span><span>AKS</span><span>kubectl</span><span>PostgreSQL Flexible Server</span><span>PowerShell</span><span>Managed Identity</span><span>RBAC</span>
       </div>
     </section>
 
@@ -94,7 +98,6 @@
 az aks show --resource-group "&lt;AKS_RESOURCE_GROUP&gt;" --name "&lt;AKS_NAME&gt;"
 az postgres flexible-server show --resource-group "&lt;DB_RESOURCE_GROUP&gt;" --name "&lt;POSTGRES_SERVER&gt;"
 az provider show --namespace Microsoft.Automation --query registrationState</code></pre>
-          <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 01</span></div><figcaption>Captura sugerida: consulta inicial mostrando la suscripción anonimizada, AKS en estado saludable y PostgreSQL listo antes de modificar la configuración.</figcaption></figure>
           </div>
         </article>
 
@@ -109,7 +112,8 @@ az provider show --namespace Microsoft.Automation --query registrationState</cod
 az rest --method patch \
   --url "&lt;AUTOMATION_ACCOUNT_URL&gt;" \
   --body '{"identity":{"type":"SystemAssigned"}}'</code></pre>
-          <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 02</span></div><figcaption>Captura sugerida: Automation Account con identidad administrada habilitada. Ocultar nombre, suscripción y cualquier identificador.</figcaption></figure>
+          <pre class="command-block" data-label="PowerShell · Autenticación del runbook"><code>Connect-AzAccount -Identity -ErrorAction Stop
+Set-AzContext -Subscription $SubscriptionName</code></pre>
           </div>
         </article>
 
@@ -123,18 +127,44 @@ az rest --method patch \
 # Schedules configurados en Azure Automation
 START: lunes a viernes, 08:00, America/Santiago
 STOP:  lunes a viernes, 23:59, America/Santiago</code></pre>
-          <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 03</span></div><figcaption>Captura sugerida: pantalla de Schedules con inicio, detención, recurrencia y zona horaria. Recortar nombres internos.</figcaption></figure>
           </div>
         </article>
 
         <article class="case-chapter">
-          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Validación automática</p><h3>Comprobar que el horario funciona</h3><p>La prueba controlada se realizó antes de habilitar la recurrencia. Luego los schedules quedaron activos para ejecutar el flujo automáticamente: PostgreSQL antes de AKS al iniciar y AKS antes de PostgreSQL al detener.</p></div>
+          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Validación automática</p><h3>Comprobar que el horario funciona, incluso ante fallas transitorias</h3><p>La prueba controlada se realizó antes de habilitar la recurrencia. El runbook es idempotente: revisa el estado real de cada recurso antes de actuar y reintenta con espera creciente si Azure no tiene capacidad disponible de inmediato. Al encender, valida además que los nodos y los despliegues queden disponibles dentro del propio clúster, no solo el estado reportado por el servicio administrado.</p></div>
           <div class="chapter-content">
-          <div class="validation-strip" aria-label="Validaciones del proyecto"><div><strong>Start</strong><span>PostgreSQL Ready y AKS Running</span></div><div><strong>Stop</strong><span>AKS Stopped y PostgreSQL detenido</span></div><div><strong>Auto</strong><span>Schedules habilitados</span></div></div>
-          <figure class="evidence-placeholder"><div class="placeholder-art"><span>Captura 04</span></div><figcaption>Captura sugerida: estado detenido de AKS y PostgreSQL fuera de horario, o historial de un job automático completado. No es necesario ejecutar nada manualmente ahora.</figcaption></figure>
+          <div class="validation-strip" aria-label="Validaciones del proyecto">
+            <div><strong><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5-13-7.5z" fill="currentColor"></path></svg></span>Start</strong><span>PostgreSQL Ready y AKS Running</span></div>
+            <div><strong><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"></rect></svg></span>Stop</strong><span>AKS Stopped y PostgreSQL detenido</span></div>
+            <div><strong><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3"></path><path d="M18 4.2v3.5h-3.5"></path><path d="M20 12a8 8 0 0 1-14 5.3"></path><path d="M6 19.8v-3.5h3.5"></path></svg></span>Auto</strong><span>Schedules con reintentos ante falta de capacidad</span></div>
+          </div>
+          <pre class="command-block" data-label="PowerShell · Idempotencia y reintentos (fragmento)"><code># Revisa el estado real antes de actuar: no repite una operación en curso
+$state = (Get-AzPostgreSqlFlexibleServer -ResourceGroupName $ResourceGroup -Name $ServerName).State
+if ($state -eq "Ready") { return }
+if ($state -in @("Starting", "Updating")) {
+    Start-Sleep -Seconds $PollSeconds
+    continue
+}
+
+# Reintento con espera creciente si Azure no tiene capacidad disponible
+$delaySeconds = [Math]::Min($MaxDelaySeconds, $BaseDelaySeconds * [Math]::Pow(2, $attempt))
+Start-Sleep -Seconds $delaySeconds</code></pre>
           </div>
         </article>
       </div>
+    </section>
+
+    <section class="learning-section" aria-labelledby="troubleshooting-title">
+      <div class="section-copy">
+        <p class="kicker">Troubleshooting</p>
+        <h2 id="troubleshooting-title">Qué hacer si algo no calza</h2>
+      </div>
+      <ul class="learning-list">
+        <li><strong>Proveedor no registrado:</strong> falta registrar el namespace de Azure Automation en la suscripción; se corrige registrándolo y validando el estado <code>Registered</code>.</li>
+        <li><strong>Error de autorización RBAC:</strong> la identidad administrada no tiene permiso sobre ese recurso puntual; se revisa el alcance de la asignación, sin ampliarla a toda la suscripción.</li>
+        <li><strong>PostgreSQL no llega a Ready:</strong> puede ser una operación en curso o falta de capacidad regional; no se reintenta el inicio mientras el estado siga en transición.</li>
+        <li><strong>AKS no inicia:</strong> se revisa el Activity Log antes de reintentar, manteniendo PostgreSQL encendido mientras se diagnostica.</li>
+      </ul>
     </section>
 
     <section class="learning-section" aria-labelledby="learning-title">
@@ -148,6 +178,7 @@ STOP:  lunes a viernes, 23:59, America/Santiago</code></pre>
         <li>Entendí por qué una automatización de encendido no debe depender del propio clúster.</li>
         <li>Trabajé con identidad administrada, RBAC y separación de responsabilidades.</li>
         <li>Aprendí a validar recuperación y schedules, no solo a ejecutar comandos.</li>
+        <li>Un primer encendido automático falló por un problema transitorio al cargar módulos de PowerShell; lo resolví agregando una validación explícita de dependencias y un reintento completo del flujo antes de declarar error.</li>
       </ul>
     </section>
   </main>
