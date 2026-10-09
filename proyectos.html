@@ -58,7 +58,7 @@
           <p>Reduce pasos manuales repetitivos al preparar entornos de laboratorio con Docker.</p>
           <dl>
             <div><dt>Enfoque</dt><dd>Infraestructura y operación</dd></div>
-            <div><dt>Evidencia</dt><dd>Trabajo de título evaluado: 97,1% menos tiempo de despliegue</dd></div>
+            <div><dt>Evidencia</dt><dd>Pruebas controladas: 97,1% menos tiempo vs. despliegue manual en VPS (35 min → ~1 min)</dd></div>
           </dl>
         </aside>
       </article>
@@ -68,7 +68,7 @@
           <span class="status status-functional">Automatización validada</span>
           <h2><span class="entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3"></path><path d="M18 4.2v3.5h-3.5"></path><path d="M20 12a8 8 0 0 1-14 5.3"></path><path d="M6 19.8v-3.5h3.5"></path></svg></span>Automatización horaria de recursos en Azure</h2>
           <p class="project-summary">
-            Diseño de un flujo externo a Kubernetes para encender y detener un clúster AKS y PostgreSQL Flexible Server según la ventana de uso, evitando mantener recursos cloud funcionando 24/7 cuando no son necesarios.
+            Implementación documentada con PowerShell y Azure Automation para iniciar y detener AKS y PostgreSQL en orden, con identidad administrada, reintentos y validación de workloads. Repositorio público simplificado y anonimizado.
           </p>
           <div class="meta" aria-label="Tecnologías principales">
             <span>Azure Automation</span>
@@ -84,10 +84,38 @@
         </div>
         <aside class="project-at-a-glance" aria-label="Resumen del proyecto">
           <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></span>Qué resuelve</p>
-          <p>Reduce costos evitando que AKS y PostgreSQL permanezcan encendidos 24/7 fuera de su ventana de uso.</p>
+          <p>Reduce horas de cómputo fuera de una ventana autorizada. La medición de consumo es preliminar; no demuestra un porcentaje de ahorro mensual.</p>
           <dl>
-            <div><dt>Enfoque</dt><dd>Cloud Operations y FinOps</dd></div>
+            <div><dt>Enfoque</dt><dd>Cloud Operations y automatización</dd></div>
             <div><dt>Evidencia</dt><dd>Ciclo Start/Stop y schedules validados</dd></div>
+          </dl>
+        </aside>
+      </article>
+
+      <article class="project-row project-feature">
+        <div class="project-content">
+          <span class="status status-planned">Laboratorio en desarrollo</span>
+          <h2><span class="entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path><path d="M8 9.5l4 2.25 4-2.25"></path><path d="M12 11.75V17"></path></svg></span>Laboratorio de Operación y Respuesta a Incidentes en Kubernetes</h2>
+          <p class="project-summary">
+            Laboratorio incremental para construir una línea base observable: una aplicación visual desplegada con Docker y Helm que muestra configuración, versión, release, pod y estado de salud.
+          </p>
+          <div class="meta" aria-label="Tecnologías principales">
+            <span>Kubernetes</span>
+            <span>Docker</span>
+            <span>Helm</span>
+            <span>kubectl</span>
+            <span>Python</span>
+          </div>
+          <div class="project-actions">
+            <a class="button primary" href="proyectos/kubernetes-operations-lab.html">Ver alcance y avance</a>
+          </div>
+        </div>
+        <aside class="project-at-a-glance" aria-label="Resumen del proyecto">
+          <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l2.5 2"></path></svg></span>Problema que resuelve</p>
+          <p>Permite comprobar qué instancia, versión y pod están respondiendo antes de diagnosticar incidentes.</p>
+          <dl>
+            <div><dt>Enfoque</dt><dd>Cloud Operations y troubleshooting</dd></div>
+            <div><dt>Estado</dt><dd>Etapa 1 preparada; ejecución y evidencia pendientes</dd></div>
           </dl>
         </aside>
       </article>

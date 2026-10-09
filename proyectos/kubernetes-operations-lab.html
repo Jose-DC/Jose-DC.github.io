@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Laboratorio local de José Díaz para construir una línea base observable y practicar operación y respuesta a incidentes en Kubernetes." />
+  <title>José Díaz | Laboratorio de operación en Kubernetes</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20260820-content" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <div class="nav-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../experiencia.html">Experiencia</a>
+        <a href="../proyectos.html" aria-current="page">Proyectos</a>
+        <a href="../formacion.html">Formación</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="doc-hero">
+      <p class="kicker">Laboratorio local · Etapa 1 en desarrollo</p>
+      <h1>Laboratorio de Operación y Respuesta a Incidentes en Kubernetes</h1>
+      <p class="lead">Proyecto incremental para construir una línea base observable antes de provocar fallas: una aplicación visual desplegada con Docker y Helm que permite comprobar tienda, versión, release, namespace, pod y estado de salud.</p>
+      <div class="project-actions doc-actions">
+        <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
+      </div>
+    </section>
+
+    <section class="case-overview" aria-label="Definición del laboratorio">
+      <article>
+        <p class="eyebrow">Problema que resuelve</p>
+        <h2>Un pod Running no cuenta toda la historia</h2>
+        <p>Ver un pod en ejecución no permite saber qué configuración recibió, qué versión atiende tráfico, qué réplica respondió ni si la aplicación está realmente preparada. Sin esa línea base es fácil diagnosticar con supuestos.</p>
+      </article>
+      <article>
+        <p class="eyebrow">Método</p>
+        <h2>Observar antes de introducir fallas</h2>
+        <p>Primero se valida una instancia saludable. Helm entrega la configuración de la tienda, Kubernetes inyecta la identidad del pod y la aplicación expone panel, JSON, health checks, métricas y logs coherentes.</p>
+      </article>
+      <article>
+        <p class="eyebrow">Alcance actual</p>
+        <h2>Una tienda y una línea base local</h2>
+        <p>La Etapa 1 usa datos ficticios y una sola release en Kubernetes local. Múltiples tiendas, Ansible, incidentes, Prometheus/Grafana, CI y AKS permanecen pendientes.</p>
+      </article>
+    </section>
+
+    <section class="architecture-section">
+      <div class="section-copy">
+        <p class="kicker">Flujo de la Etapa 1</p>
+        <h2>De la configuración al panel operacional</h2>
+        <p>La configuración funcional y la identidad técnica se encuentran dentro de la misma aplicación, lo que permite comprobar visualmente qué despliegue está respondiendo.</p>
+      </div>
+      <div class="architecture-rail" aria-label="Flujo de la Etapa 1">
+        <div class="architecture-node"><span>01</span><strong>Configurar</strong><p>Tienda, entorno y versión</p></div>
+        <div class="architecture-node"><span>02</span><strong>Empaquetar</strong><p>Imagen Docker sin root</p></div>
+        <div class="architecture-node"><span>03</span><strong>Renderizar</strong><p>Chart y valores Helm</p></div>
+        <div class="architecture-node"><span>04</span><strong>Desplegar</strong><p>Deployment y Service</p></div>
+        <div class="architecture-node"><span>05</span><strong>Inyectar</strong><p>Pod, namespace, nodo e IP</p></div>
+        <div class="architecture-node"><span>06</span><strong>Observar</strong><p>Panel, salud, métricas y logs</p></div>
+      </div>
+      <div class="architecture-tools" aria-label="Tecnologías de la Etapa 1">
+        <p class="eyebrow">Base técnica actual</p>
+        <div class="architecture-tool-list">
+          <span>Python</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>kubectl</span><span>Downward API</span><span>PowerShell</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="workflow-section" aria-labelledby="stage-one-title">
+      <div class="section-copy workflow-heading">
+        <p class="kicker">Etapa actual</p>
+        <h2 id="stage-one-title">Etapa 1 · Construir una línea base observable</h2>
+        <p>Esta es la única etapa activa. Su cierre requiere comprobar aplicación, imagen, chart y despliegue local antes de agregar tiendas o incidentes.</p>
+      </div>
+
+      <div class="case-chapters">
+        <article class="case-chapter">
+          <div class="chapter-intro">
+            <span class="step-number">01</span>
+            <p class="eyebrow">Aplicación visual</p>
+            <h3>Identificar exactamente qué instancia respondió</h3>
+            <p>La ruta principal muestra Tienda Demo, versión, ambiente, release Helm, namespace, pod, nodo, IP, tiempo activo, solicitudes y readiness. Los mismos datos quedan disponibles en JSON para validación técnica.</p>
+          </div>
+          <div class="validation-strip" aria-label="Superficies de la aplicación">
+            <div><strong>/</strong><span>panel operacional</span></div>
+            <div><strong>/info</strong><span>identidad en JSON</span></div>
+            <div><strong>health</strong><span>liveness y readiness separados</span></div>
+          </div>
+        </article>
+
+        <article class="case-chapter">
+          <div class="chapter-intro">
+            <span class="step-number">02</span>
+            <p class="eyebrow">Configuración Kubernetes</p>
+            <h3>Combinar valores Helm y metadatos reales del pod</h3>
+            <p>La tienda, el ambiente y la versión vienen del chart. Pod, namespace, nodo e IP se obtienen mediante Downward API, evitando escribir manualmente datos que cambian con cada levantamiento.</p>
+          </div>
+          <div class="validation-strip" aria-label="Controles operativos">
+            <div><strong>Seguridad</strong><span>usuario no root y filesystem de solo lectura</span></div>
+            <div><strong>Salud</strong><span>probes independientes</span></div>
+            <div><strong>Recursos</strong><span>requests y limits explícitos</span></div>
+          </div>
+        </article>
+
+        <article class="case-chapter">
+          <div class="chapter-intro">
+            <span class="step-number">03</span>
+            <p class="eyebrow">Validación pendiente</p>
+            <h3>Ejecutar y reunir evidencia de la línea base</h3>
+            <p>El código y la configuración están preparados. La Etapa 1 se marcará como validada únicamente después de ejecutar la aplicación, construir la imagen, desplegar la release y comprobar el panel contra el estado real de Kubernetes.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="learning-section" aria-labelledby="limits-title">
+      <div class="section-copy">
+        <p class="kicker">Límites actuales</p>
+        <h2 id="limits-title">Lo que todavía no afirma este proyecto</h2>
+      </div>
+      <ul class="learning-list">
+        <li>No es una aplicación de punto de venta ni incluye datos reales.</li>
+        <li>No demuestra multi-tenancy, alta disponibilidad ni aislamiento productivo.</li>
+        <li>No incluye aún incidentes ejecutados, dashboards, alertas ni CI/CD.</li>
+        <li>Se ejecuta en Kubernetes local; no representa un despliegue de AKS.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer"><p>&copy; 2026 José Díaz</p></footer>
+</body>
+</html>

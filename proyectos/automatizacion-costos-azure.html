@@ -23,9 +23,9 @@
 
   <main>
     <section class="doc-hero">
-      <p class="kicker">Guía de implementación cloud</p>
+      <p class="kicker">Caso de automatización operativa</p>
       <h1>Automatización horaria de recursos en Azure</h1>
-      <p class="lead">Una guía resumida para coordinar el encendido y la detención de un clúster AKS y PostgreSQL Flexible Server según una ventana de uso, reduciendo costos cuando esos recursos no necesitan permanecer encendidos.</p>
+      <p class="lead">Implementación documentada con PowerShell y Azure Automation para coordinar AKS y PostgreSQL Flexible Server según una ventana de uso autorizada. Participé en su implementación y validación; el repositorio público presenta una versión simplificada y anonimizada del flujo.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/automatizacion-costos-azure" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -34,8 +34,8 @@
 
     <section class="case-overview" aria-label="Resumen del caso">
       <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir generando consumo durante la noche, los fines de semana o cualquier tramo fuera de la ventana de operación. Esto pesa especialmente en ambientes de prueba o no críticos, que no necesitan estar encendidos 24/7; en producción el mismo patrón puede aplicarse solo a workloads con horarios definidos y ventanas de mantención autorizadas.</p></article>
-      <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules, identidad administrada y permisos RBAC sobre los recursos que deben operarse.</p></article>
-      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>El runbook se validó antes de activar la recurrencia y los schedules quedaron funcionando de forma automática. Una revisión preliminar de Cost Management mostró un gasto aproximado de USD 12 al día con los recursos encendidos, frente a USD 2,65 acumulados durante un fin de semana completo apagados — una señal de ahorro real, aunque falta repetir la medición por al menos dos semanas para fijar un porcentaje confiable.</p></article>
+      <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules e identidad administrada. Las asignaciones RBAC se coordinaron con un administrador autorizado, con alcance a los recursos objetivo; los roles integrados usados son más amplios que las acciones de inicio y detención.</p></article>
+      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>La documentación registra un ciclo Start/Stop validado antes de habilitar los schedules y comprobaciones posteriores de nodos y workloads. La medición de consumo es preliminar: compara periodos de distinta duración y no demuestra ahorro mensual ni causalidad. Almacenamiento, backups y otros servicios pueden seguir generando cargos.</p></article>
     </section>
 
     <section class="architecture-section">
@@ -79,7 +79,7 @@
         <h2>Tecnologías aplicadas</h2>
       </div>
       <div class="core-tech-list">
-        <span>Azure Automation</span><span>AKS</span><span>kubectl</span><span>PostgreSQL Flexible Server</span><span>PowerShell</span><span>Managed Identity</span><span>RBAC</span>
+        <span>Azure Automation</span><span>AKS</span><span>kubectl</span><span>PostgreSQL Flexible Server</span><span>PowerShell</span><span>Azure CLI</span><span>Managed Identity</span><span>RBAC</span><span>Azure Cost Management</span>
       </div>
     </section>
 
@@ -118,15 +118,15 @@ Set-AzContext -Subscription $SubscriptionName</code></pre>
         </article>
 
         <article class="case-chapter">
-          <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Permisos y schedules</p><h3>Autorizar y programar la operación</h3><p>La identidad recibe permisos acotados a los recursos objetivo. Después se crea un schedule de inicio y otro de detención, ambos con recurrencia laboral y zona horaria de Santiago.</p></div>
+          <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Permisos y schedules</p><h3>Autorizar y programar la operación</h3><p>La identidad recibe roles con alcance a los recursos objetivo. Después se crea un schedule de inicio y otro de detención, ambos con recurrencia laboral y zona horaria de Santiago. Los horarios siguientes son ilustrativos; la ventana se revisa con los responsables del servicio.</p></div>
           <div class="chapter-content">
           <pre class="command-block" data-label="Azure CLI · RBAC y schedules"><code>az role assignment list \
   --assignee-object-id "&lt;AUTOMATION_PRINCIPAL_ID&gt;" \
   --all --output table
 
-# Schedules configurados en Azure Automation
-START: lunes a viernes, 08:00, America/Santiago
-STOP:  lunes a viernes, 23:59, America/Santiago</code></pre>
+# Ejemplo de ventana autorizada; ajustar antes de usar
+START: lunes a viernes, &lt;HORA_INICIO&gt;, America/Santiago
+STOP:  lunes a viernes, &lt;HORA_FIN&gt;, America/Santiago</code></pre>
           </div>
         </article>
 
