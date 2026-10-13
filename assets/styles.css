@@ -730,9 +730,57 @@ main {
 
 .project-content h2 {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin-bottom: 14px;
+  font-size: clamp(1.55rem, 2.5vw, 2rem);
+}
+
+.project-content h2 .entry-icon {
+  margin-top: 5px;
+}
+
+.project-details {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 20px;
+}
+
+.development-heading {
+  margin-top: 48px;
+  margin-bottom: 24px;
+}
+
+.project-details summary {
+  cursor: pointer;
+  color: var(--accent-strong);
+  font-weight: 700;
+  padding: 4px;
+}
+
+.project-details[open] summary {
+  margin-bottom: 20px;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.project-content,
+.chapter-content,
+.chapter-intro,
+.tech-group {
+  min-width: 0;
+}
+
+.meta span,
+.core-tech-list span,
+.architecture-tool-list span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .meta {

@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://jose-dc.github.io/proyectos.html" />
   <title>José Díaz | Proyectos</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260820-content" />
+  <link rel="stylesheet" href="assets/styles.css?v=20261012-review" />
 </head>
 <body>
   <header class="site-header">
@@ -29,7 +29,7 @@
     <section class="page-heading">
       <p class="kicker">Proyectos</p>
       <h1>Proyectos técnicos</h1>
-      <p class="lead">Proyectos documentados a partir de problemas reales de infraestructura, automatización y operación de servicios. Cada ficha indica su estado real, alcance y evidencia disponible.</p>
+      <p class="lead">Dos proyectos que muestran cómo automatizo tareas, opero servicios y valido resultados. Las fichas incluyen el problema, las decisiones técnicas, la evidencia y los límites de cada implementación.</p>
     </section>
 
     <section class="project-list">
@@ -38,8 +38,7 @@
           <span class="status status-functional">Laboratorio funcional</span>
           <h2><span class="entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path><path d="M3 17.5l9 5 9-5"></path></svg></span>Plataforma Docker Lab</h2>
           <p class="project-summary">
-            Proyecto basado en mi práctica profesional para ordenar el despliegue de entornos Docker:
-            generación de stacks, administración de contenedores, monitoreo y revisión básica de imágenes.
+            Desarrollado durante mi práctica profesional y trabajo de título. Genera entornos desde plantillas con Python y Docker Compose, e integra administración, proxy inverso, monitoreo y análisis de imágenes.
           </p>
           <div class="meta" aria-label="Tecnologías principales">
             <span>Docker Compose</span>
@@ -58,7 +57,8 @@
           <p>Reduce pasos manuales repetitivos al preparar entornos de laboratorio con Docker.</p>
           <dl>
             <div><dt>Enfoque</dt><dd>Infraestructura y operación</dd></div>
-            <div><dt>Evidencia</dt><dd>Pruebas controladas: 97,1% menos tiempo vs. despliegue manual en VPS (35 min → ~1 min)</dd></div>
+            <div><dt>Resultado medido</dt><dd>35 min → ~1 min frente al despliegue manual en VPS, en pruebas del trabajo de título.</dd></div>
+            <div><dt>Alcance</dt><dd>Laboratorio sobre un único host Docker.</dd></div>
           </dl>
         </aside>
       </article>
@@ -68,7 +68,7 @@
           <span class="status status-functional">Automatización validada</span>
           <h2><span class="entry-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3"></path><path d="M18 4.2v3.5h-3.5"></path><path d="M20 12a8 8 0 0 1-14 5.3"></path><path d="M6 19.8v-3.5h3.5"></path></svg></span>Automatización horaria de recursos en Azure</h2>
           <p class="project-summary">
-            Implementación documentada con PowerShell y Azure Automation para iniciar y detener AKS y PostgreSQL en orden, con identidad administrada, reintentos y validación de workloads. Repositorio público simplificado y anonimizado.
+            Desarrollé y validé una automatización en testing para iniciar y detener AKS y PostgreSQL según su horario de uso. Coordina dependencias, verifica estados y utiliza identidad administrada. El repositorio contiene una versión anonimizada.
           </p>
           <div class="meta" aria-label="Tecnologías principales">
             <span>Azure Automation</span>
@@ -84,14 +84,23 @@
         </div>
         <aside class="project-at-a-glance" aria-label="Resumen del proyecto">
           <p class="eyebrow"><span class="eyebrow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></span>Qué resuelve</p>
-          <p>Reduce horas de cómputo fuera de una ventana autorizada. La medición de consumo es preliminar; no demuestra un porcentaje de ahorro mensual.</p>
+          <p>Evita mantener capacidad de cómputo activa fuera del horario de uso del ambiente.</p>
           <dl>
             <div><dt>Enfoque</dt><dd>Cloud Operations y automatización</dd></div>
             <div><dt>Evidencia</dt><dd>Ciclo Start/Stop y schedules validados</dd></div>
+            <div><dt>Alcance</dt><dd>Testing; ahorro mensual todavía sin cuantificar.</dd></div>
           </dl>
         </aside>
       </article>
 
+    </section>
+
+    <section class="section-copy development-heading" aria-labelledby="development-title">
+      <p class="kicker">En desarrollo</p>
+      <h2 id="development-title">Próximo laboratorio</h2>
+      <p>Trabajo en curso, separado de los proyectos ya validados.</p>
+    </section>
+    <section class="project-list">
       <article class="project-row project-feature">
         <div class="project-content">
           <span class="status status-planned">Laboratorio en desarrollo</span>

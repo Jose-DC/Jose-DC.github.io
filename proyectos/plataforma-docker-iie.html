@@ -6,7 +6,7 @@
   <meta name="description" content="Trabajo de título de Ingeniería Civil Telemática: plataforma centralizada con Docker para el Instituto de Informática Educativa UFRO, con 97,1% de reducción en tiempos de despliegue medida en pruebas controladas." />
   <title>José Díaz | Plataforma Docker Lab</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
-  <link rel="stylesheet" href="../assets/styles.css?v=20260820-content" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20261012-review" />
 </head>
 <body>
   <header class="site-header">
@@ -25,7 +25,7 @@
     <section class="doc-hero">
       <p class="kicker">Trabajo de título · Ingeniería Civil Telemática, UFRO</p>
       <h1>Plataforma Docker Lab</h1>
-      <p class="lead">Prototipo de plataforma centralizada con Docker para el Instituto de Informática Educativa (IIE) de la UFRO, evaluado como trabajo de título con pruebas controladas de eficiencia, carga y consolidación de servicios.</p>
+      <p class="lead">Desarrollé un prototipo para estandarizar la creación y operación de entornos Docker durante mi práctica profesional en el IIE de la UFRO. Integra un generador en Python, administración visual, proxy inverso, monitoreo y análisis de imágenes. Fue la base de mi trabajo de título.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/plataforma-docker-lab" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -34,14 +34,14 @@
 
     <section class="case-overview" aria-label="Resumen del caso">
       <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>El Instituto gestionaba sus entornos de desarrollo de forma descentralizada, combinando configuraciones manuales en VPS y paneles WHM/cPanel, lo que generaba tiempos de despliegue elevados y falta de estandarización.</p></article>
-      <article><p class="eyebrow">Propuesta</p><h2>Qué resuelve</h2><p>Una plataforma centralizada bajo el paradigma de Infraestructura como Código: proxy inverso, monitoreo con Prometheus y Grafana, y un módulo de automatización en Python para aprovisionar entornos estandarizados en un solo comando.</p></article>
-      <article><p class="eyebrow">Alcance real</p><h2>Estado</h2><p>Trabajo de título aprobado por comisión examinadora en la Universidad de La Frontera (enero de 2026), con resultados medidos mediante pruebas controladas. No se presenta como servicio productivo expuesto a Internet.</p></article>
+      <article><p class="eyebrow">Decisión</p><h2>Solución</h2><p>Plantillas reutilizables y un generador en Python preparan archivos, variables y redes para desplegar con Docker Compose. Portainer, el proxy y el monitoreo permiten operar los entornos desde una base común.</p></article>
+      <article><p class="eyebrow">Validación</p><h2>Resultado</h2><p>En pruebas controladas del trabajo de título, el despliegue pasó de 35 minutos manuales en VPS a aproximadamente 1 minuto. El repositorio público documenta un laboratorio funcional sobre un único host.</p></article>
     </section>
 
     <section class="architecture-section">
       <div class="section-copy">
         <p class="kicker">Diseño del laboratorio</p>
-        <h2>Un flujo, no servicios aislados</h2>
+        <h2>De la plantilla a la operación</h2>
         <p>La preparación del entorno conduce a su operación, monitoreo y revisión técnica. Cada componente cumple una función dentro de esa secuencia.</p>
       </div>
       <div class="architecture-rail" aria-label="Flujo de componentes del laboratorio">
@@ -62,9 +62,9 @@
 
     <section class="workflow-section" aria-labelledby="workflow-title">
       <div class="section-copy workflow-heading">
-        <p class="kicker">Recorrido de la práctica</p>
-        <h2 id="workflow-title">Cómo se desarrolló el laboratorio</h2>
-        <p>El caso se lee como una secuencia: primero se generan stacks desde plantillas, luego se prueban varias combinaciones, después se revisa la operación visualmente y finalmente se valida monitoreo y análisis de imágenes.</p>
+        <p class="kicker">Implementación y evidencia</p>
+        <h2 id="workflow-title">Cómo funciona</h2>
+        <p>Las capturas muestran el recorrido del laboratorio: generación, inspección de contenedores, monitoreo y análisis de imágenes. Cada imagen se puede abrir para ampliar.</p>
       </div>
 
       <div class="case-chapters">
@@ -76,7 +76,7 @@
           </div>
         </article>
         <article class="case-chapter">
-          <div class="chapter-intro"><span class="step-number">02</span><p class="eyebrow">Probar varias plantillas</p><h3>Levantar una batería de entornos, no solo un ejemplo</h3><p>La validación no se quedó en una plantilla aislada. Durante la práctica se generaron distintos stacks para comprobar que el flujo funcionara con varias combinaciones de aplicación, base de datos y servicios auxiliares. Esa batería de pruebas explica por qué, más adelante, Portainer muestra varios stacks y decenas de contenedores: son entornos levantados para revisar comportamiento, redes, volúmenes y estado de los servicios.</p></div>
+          <div class="chapter-intro"><span class="step-number">02</span><p class="eyebrow">Validar plantillas</p><h3>Comprobar distintas combinaciones</h3><p>El catálogo contiene 15 plantillas. La validación local documenta su generación y sintaxis Compose, además de pruebas de ejecución de los módulos principales. Las capturas históricas muestran los entornos utilizados durante la práctica.</p></div>
           <div class="validation-strip" aria-label="Resumen de validación de plantillas">
             <div><strong>15</strong><span>plantillas listadas para generación</span></div>
             <div><strong>37</strong><span>stacks visibles durante las pruebas</span></div>
@@ -84,18 +84,18 @@
           </div>
         </article>
         <article class="case-chapter case-chapter-single">
-          <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Comprobar el despliegue</p><h3>Usar Portainer como vista de operación</h3><p>Después de levantar los entornos, Portainer se usó como una consola visual para inspeccionar lo que ya estaba corriendo: stacks, contenedores, imágenes, volúmenes y redes. No es el mecanismo que crea el laboratorio, sino una ayuda para revisar rápidamente estado, distribución y recursos cuando hay varias pruebas activas.</p></div>
+          <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Comprobar el despliegue</p><h3>Inspeccionar con Portainer</h3><p>Portainer permite revisar stacks, contenedores, imágenes, volúmenes y redes después del despliegue. Lo utilicé para comprobar el estado de los entornos generados y apoyar su operación.</p></div>
           <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/portainer-dashboard.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/portainer-dashboard.png" alt="Panel de Portainer con resumen de stacks, contenedores, imágenes, volúmenes y redes" loading="lazy" /></a><figcaption>Vista operativa posterior al despliegue, no el mecanismo que crea el stack. Abrir para ampliar.</figcaption></figure>
         </article>
         <article class="case-chapter">
-          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Monitorear el sistema</p><h3>Validar targets antes de interpretar dashboards</h3><p>Con los entornos ya desplegados, configuré Prometheus para comprobar que los componentes de monitoreo estuvieran en estado <strong>UP</strong>. Con esa base, Grafana permitió revisar RAM, CPU, disco, red y carga del host durante las pruebas, en vez de mostrar solo un dashboard suelto sin contexto.</p></div>
+          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Monitorear el sistema</p><h3>Comprobar métricas y recursos</h3><p>Verifiqué los targets de Prometheus en estado <strong>UP</strong> y utilicé Grafana para revisar CPU, RAM, disco, red y carga del host. Así pude observar el comportamiento del entorno durante las pruebas.</p></div>
           <div class="chapter-evidence-grid">
             <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/prometheus-targets.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/prometheus-targets.png" alt="Pantalla de Prometheus con targets de monitoreo en estado UP" loading="lazy" /></a><figcaption>Targets disponibles antes de interpretar dashboards. Abrir para ampliar.</figcaption></figure>
             <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/grafana-host.png" alt="Panel de Grafana con métricas de recursos del host de laboratorio" loading="lazy" /></a><figcaption>Comportamiento del host durante la práctica. Abrir para ampliar.</figcaption></figure>
           </div>
         </article>
         <article class="case-chapter case-chapter-single">
-          <div class="chapter-intro"><span class="step-number">05</span><p class="eyebrow">Revisar antes de reutilizar</p><h3>Incorporar revisión de imágenes</h3><p>Agregué un módulo con Trivy para revisar vulnerabilidades y conservar reportes locales rotados. Así, el laboratorio no termina al levantar un contenedor: deja una señal técnica para evaluar si una imagen conviene reutilizarse en futuras pruebas.</p></div>
+          <div class="chapter-intro"><span class="step-number">05</span><p class="eyebrow">Revisión de imágenes</p><h3>Analizar con Trivy</h3><p>Incorporé análisis de vulnerabilidades y rotación de reportes locales. Los resultados permiten revisar las imágenes utilizadas; el escaneo requiere interpretar los hallazgos y decidir cómo corregirlos.</p></div>
           <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/trivy-scan.png" alt="Terminal con ejecución de Trivy y guardado de reportes de análisis" loading="lazy" /></a><figcaption>Análisis de imágenes y rotación de reportes locales. Abrir para ampliar.</figcaption></figure>
         </article>
         <article class="case-chapter">
@@ -115,6 +115,16 @@
           </div>
         </article>
       </div>
+    </section>
+
+    <section class="learning-section" aria-labelledby="limits-title">
+      <div class="section-copy"><p class="kicker">Alcance y límites</p><h2 id="limits-title">Qué demuestra el laboratorio</h2></div>
+      <ul class="learning-list">
+        <li><strong>Un único host:</strong> Docker Compose centraliza servicios, pero esta arquitectura no incorpora alta disponibilidad entre servidores.</li>
+        <li><strong>Dos contextos de evidencia:</strong> las métricas de eficiencia y carga corresponden al trabajo de título. La validación local del repositorio público documenta generación, Compose y ejecución de módulos; no repite esas mediciones.</li>
+        <li><strong>Publicación de servicios:</strong> el acceso con dominio y TLS requiere configurar DNS y certificados. Los paneles administrativos se mantienen en localhost o mediante túnel SSH.</li>
+        <li><strong>Reproducción:</strong> el repositorio incluye requisitos, pasos y <a href="https://github.com/Jose-DC/plataforma-docker-lab/blob/main/docs/validacion-tecnica.md" target="_blank" rel="noreferrer">validación técnica</a>. Debe revisarse la configuración antes de utilizarlo fuera del laboratorio.</li>
+      </ul>
     </section>
 
     <section class="learning-section" aria-labelledby="learning-title">

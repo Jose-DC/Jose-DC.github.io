@@ -6,7 +6,7 @@
   <meta name="description" content="Guía resumida de una automatización horaria para reducir costos de un ambiente AKS y PostgreSQL en Azure." />
   <title>José Díaz | Automatización horaria de recursos en Azure</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
-  <link rel="stylesheet" href="../assets/styles.css?v=20260820-content" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20261012-review" />
 </head>
 <body>
   <header class="site-header">
@@ -25,7 +25,7 @@
     <section class="doc-hero">
       <p class="kicker">Caso de automatización operativa</p>
       <h1>Automatización horaria de recursos en Azure</h1>
-      <p class="lead">Implementación documentada con PowerShell y Azure Automation para coordinar AKS y PostgreSQL Flexible Server según una ventana de uso autorizada. Participé en su implementación y validación; el repositorio público presenta una versión simplificada y anonimizada del flujo.</p>
+      <p class="lead">Desarrollé y validé una automatización con PowerShell y Azure Automation para iniciar y detener AKS y PostgreSQL según el horario de uso de un ambiente de testing. El flujo respeta dependencias, comprueba estados y valida la recuperación de los servicios.</p>
       <div class="project-actions doc-actions">
         <a class="button primary" href="https://github.com/Jose-DC/automatizacion-costos-azure" target="_blank" rel="noreferrer">Abrir repositorio</a>
         <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -33,9 +33,9 @@
     </section>
 
     <section class="case-overview" aria-label="Resumen del caso">
-      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>AKS y PostgreSQL pueden seguir generando consumo durante la noche, los fines de semana o cualquier tramo fuera de la ventana de operación. Esto pesa especialmente en ambientes de prueba o no críticos, que no necesitan estar encendidos 24/7; en producción el mismo patrón puede aplicarse solo a workloads con horarios definidos y ventanas de mantención autorizadas.</p></article>
-      <article><p class="eyebrow">Decisión</p><h2>Qué se hizo</h2><p>Se configuró Azure Automation fuera del clúster, con dos schedules e identidad administrada. Las asignaciones RBAC se coordinaron con un administrador autorizado, con alcance a los recursos objetivo; los roles integrados usados son más amplios que las acciones de inicio y detención.</p></article>
-      <article><p class="eyebrow">Estado real</p><h2>Resultado</h2><p>La documentación registra un ciclo Start/Stop validado antes de habilitar los schedules y comprobaciones posteriores de nodos y workloads. La medición de consumo es preliminar: compara periodos de distinta duración y no demuestra ahorro mensual ni causalidad. Almacenamiento, backups y otros servicios pueden seguir generando cargos.</p></article>
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>El ambiente seguía consumiendo recursos fuera de su horario de uso. La operación manual, además, podía detener la base de datos antes que las aplicaciones o iniciar el clúster sin que PostgreSQL estuviera listo.</p></article>
+      <article><p class="eyebrow">Decisión</p><h2>Solución</h2><p>Un runbook externo al clúster coordina el inicio y la detención. Dos schedules definen la ventana de uso; la identidad administrada y RBAC autorizan las acciones sobre los recursos.</p></article>
+      <article><p class="eyebrow">Validación</p><h2>Resultado</h2><p>Ciclo Start/Stop y ejecución programada validados en testing, con comprobaciones de nodos y workloads. La versión pública es simplificada y anonimizada; el ahorro mensual aún no está cuantificado.</p></article>
     </section>
 
     <section class="architecture-section">
@@ -55,7 +55,7 @@
             <header><span class="lane-badge">Inicio</span><h3>Encender el ambiente</h3></header>
             <ol class="lane-steps">
               <li><span>1</span><div><strong>PostgreSQL</strong><small>Iniciar servidor</small></div></li>
-              <li><span>2</span><div><strong>Esperar Ready</strong><small>Confirmar disponibilidad</small></div></li>
+              <li><span>2</span><div><strong>Esperar Ready</strong><small>Comprobar estado de Azure</small></div></li>
               <li><span>3</span><div><strong>AKS</strong><small>Iniciar clúster</small></div></li>
               <li><span>4</span><div><strong>Validar</strong><small>Nodos y workloads</small></div></li>
             </ol>
@@ -87,9 +87,11 @@
       <div class="section-copy workflow-heading">
         <p class="kicker">Implementación resumida</p>
         <h2 id="implementation-title">Qué se configuró</h2>
-        <p>El runbook original contiene más pasos y comprobaciones. Aquí dejo solo los fragmentos importantes para entender la implementación sin convertir la página en un manual interminable.</p>
+        <p>El flujo comprueba contexto, permisos y estados antes de operar. Los fragmentos siguientes ilustran la implementación; el script completo está en el repositorio.</p>
       </div>
 
+      <details class="project-details">
+        <summary>Ver implementación y fragmentos de código</summary>
       <div class="case-chapters">
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">01</span><p class="eyebrow">Requisitos</p><h3>Preparar el alcance de Azure</h3><p>Se parte de un AKS y un PostgreSQL Flexible Server dentro de una suscripción autorizada. Antes de crear recursos se comprueban el contexto, los estados iniciales y el registro del proveedor de Azure Automation.</p></div>
@@ -152,12 +154,23 @@ Start-Sleep -Seconds $delaySeconds</code></pre>
           </div>
         </article>
       </div>
+      </details>
+    </section>
+
+    <section class="learning-section" aria-labelledby="limits-title">
+      <div class="section-copy"><p class="kicker">Alcance y límites</p><h2 id="limits-title">Qué valida este caso</h2></div>
+      <ul class="learning-list">
+        <li><strong>Ambiente de testing:</strong> la validación corresponde a una ventana de uso autorizada. Aplicar el patrón a producción requiere evaluar disponibilidad y consumidores externos.</li>
+        <li><strong>Costos:</strong> detener cómputo no elimina todos los cargos. Almacenamiento, respaldos y otros servicios pueden continuar generando consumo.</li>
+        <li><strong>Permisos:</strong> los roles integrados tienen alcance a los recursos objetivo, pero permiten más acciones que Start/Stop. Un rol personalizado es una mejora pendiente.</li>
+        <li><strong>Recuperación:</strong> ante una falla se revisan estados y logs antes de repetir el flujo. Los pasos de operación y recuperación se documentan en el repositorio.</li>
+      </ul>
     </section>
 
     <section class="learning-section" aria-labelledby="troubleshooting-title">
       <div class="section-copy">
         <p class="kicker">Troubleshooting</p>
-        <h2 id="troubleshooting-title">Qué hacer si algo no calza</h2>
+        <h2 id="troubleshooting-title">Fallas y diagnóstico</h2>
       </div>
       <ul class="learning-list">
         <li><strong>Proveedor no registrado:</strong> falta registrar el namespace de Azure Automation en la suscripción; se corrige registrándolo y validando el estado <code>Registered</code>.</li>
