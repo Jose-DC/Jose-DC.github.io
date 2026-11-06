@@ -16,12 +16,14 @@ El sitio no debe publicar nombres de clientes, arquitectura interna, URLs operac
 - `index.html`: portada y presentación principal.
 - `experiencia.html`: trayectoria profesional.
 - `proyectos.html`: índice de proyectos.
+- `formacion.html`: formación, cursos y reconocimientos.
 - `proyectos/`: fichas individuales con alcance y evidencia.
-- `assets/styles.css`: estilos compartidos.
+- `assets/styles.css`: estilos compartidos (tema de terminal Ubuntu, fuentes Ubuntu y Ubuntu Mono desde Google Fonts).
 - `assets/img/`: capturas, diagramas y evidencias sanitizadas.
+- `assets/img/og/portafolio.png`: imagen de vista previa para LinkedIn y otras redes (1200×627).
 
 ## Documentación relacionada
 
-La fuente común para Codex, Claude Code y cualquier agente es [`../PORTFOLIO_CONTEXT.md`](../PORTFOLIO_CONTEXT.md). El índice general de repositorios está en [`../README.md`](../README.md).
+En el espacio de trabajo local, el contexto común para agentes está en `PORTFOLIO_CONTEXT.md`, una carpeta más arriba. Ese archivo no forma parte de este repositorio publicado.
 
 
