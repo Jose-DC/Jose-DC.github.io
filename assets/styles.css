@@ -818,6 +818,11 @@ main {
   border-top: 1px solid var(--line-strong);
 }
 
+.tech-group h3::before {
+  content: "> ";
+  color: var(--prompt);
+}
+
 .tech-group h3 {
   margin-bottom: 8px;
   color: var(--ink);
@@ -993,6 +998,11 @@ summary:focus-visible {
 
 .timeline-item:has(.status-current) {
   border-left-color: var(--code-accent);
+}
+
+/* El cargo actual reacciona al pasar el mouse igual que los demás. */
+.timeline-item:has(.status-current):hover {
+  border-color: var(--line-strong);
 }
 
 .timeline-heading {
@@ -1841,13 +1851,14 @@ code {
   background: var(--surface);
 }
 
+/* Párrafos y viñetas justificados en pantallas anchas; en móvil se mantienen a la izquierda
+   para evitar espacios grandes entre palabras. */
 @media (min-width: 761px) {
-  .timeline-item > p,
-  .project-summary,
-  .chapter-intro > p:not(.eyebrow),
-  .doc-hero .lead {
-    text-align: left;
+  main p:not(.term-cmd):not(.kicker):not(.eyebrow):not(.fetch-user):not(.fetch-rule):not(.summary-label),
+  main li {
+    text-align: justify;
     text-align-last: left;
+    hyphens: auto;
   }
 }
 
