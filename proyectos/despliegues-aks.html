@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Caso laboral anonimizado: pipelines de Azure DevOps para operar una aplicación multi-tienda en AKS, automáticos en develop con GitHub Actions y controlados en producción." />
+  <meta property="og:title" content="José Díaz | Despliegues controlados en AKS con Azure DevOps" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jose-dc.github.io/proyectos/despliegues-aks.html" />
+  <meta property="og:image" content="https://jose-dc.github.io/assets/img/og/portafolio.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="627" />
+  <meta property="og:image:alt" content="Ventana de terminal Ubuntu con el nombre José Díaz, Cloud Operations y Soporte Cloud." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>José Díaz | Despliegues controlados en AKS con Azure DevOps</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="../assets/styles.css?v=20261105-ubuntu" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Navegación principal">
+      <div class="nav-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../experiencia.html">Experiencia</a>
+        <a href="../proyectos.html" aria-current="page">Proyectos</a>
+        <a href="../formacion.html">Formación</a>
+        <a href="../index.html#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="doc-hero terminal">
+      <div class="terminal-bar" aria-hidden="true"><span class="terminal-title">jose@ubuntu: ~/proyectos/despliegues-aks</span><span class="win-controls"><span>&#8211;</span><span>&#9633;</span><span class="win-close">&#215;</span></span></div>
+      <div class="terminal-body">
+        <p class="term-cmd"><span class="ps1" aria-hidden="true"><b>jose@ubuntu</b>:<i>~/proyectos/despliegues-aks</i>$</span>cat README.md</p>
+        <p class="kicker">Caso laboral anonimizado</p>
+        <h1>Despliegues controlados en AKS con Azure DevOps</h1>
+        <p class="lead">Reemplacé scripts que se ejecutaban a mano por un kit de pipelines de Azure DevOps y scripts PowerShell para operar una aplicación multi-tienda en AKS: crear tiendas, publicar imágenes, actualizar una o varias tiendas y recuperar versiones anteriores. En producción se lanzan de forma controlada; en develop, un push dispara el despliegue desde GitHub Actions.</p>
+        <div class="project-actions doc-actions">
+          <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-overview" aria-label="Resumen del caso">
+      <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>Cada tienda corre como una instancia propia en AKS, desplegada con Helm. Crear tiendas, cambiar su versión o volver atrás se hacía con scripts ejecutados a mano, uno por uno, con riesgo de equivocarse de destino o de versión y sin registro claro de qué se aplicó.</p></article>
+      <article><p class="eyebrow">Decisión</p><h2>Solución</h2><p>Seis pipelines con formularios cerrados, simulación por defecto y un plan que se revalida antes de aplicar. Las actualizaciones y los rollback pasan por un Environment con aprobación y bloqueo exclusivo, y cada corrida guarda su plan y su resultado.</p></article>
+      <article><p class="eyebrow">Uso actual</p><h2>Resultado</h2><p>Los pipelines se usan hoy en producción real para pasos a producción, tiendas nuevas y actualización de imágenes. En develop, cada push construye la imagen y actualiza cuatro tiendas de prueba sin intervención manual.</p></article>
+    </section>
+
+    <section class="section" aria-labelledby="role-title">
+      <div class="section-header compact-header">
+        <p class="kicker">Mi rol</p>
+        <h2 id="role-title">Qué hice yo</h2>
+      </div>
+      <ul class="learning-list">
+        <li><strong>Diseño:</strong> definí qué operaciones necesitaba el equipo, separé publicar imágenes de actualizar tiendas y decidí qué controles exigir en producción.</li>
+        <li><strong>Pipelines y scripts:</strong> escribí los pipelines YAML de Azure DevOps y los scripts PowerShell que validan, planifican y aplican cada operación.</li>
+        <li><strong>Develop automático:</strong> creé el workflow de GitHub Actions que lanza el pipeline de develop con cada push.</li>
+        <li><strong>Pruebas y documentación:</strong> armé pruebas locales del kit y guías de uso, rollback y alta de tiendas para quien opere los pipelines.</li>
+        <li><strong>Operación:</strong> uso los pipelines en producción y corrijo lo que aparece al operar.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-label="Cifras del kit">
+      <div class="section-header compact-header">
+        <p class="kicker">En números</p>
+        <h2>El kit en cifras</h2>
+      </div>
+      <div class="validation-strip">
+        <div><strong>6</strong><span>pipelines de operación en producción</span></div>
+        <div><strong>27</strong><span>suites de pruebas locales del kit, todas correctas</span></div>
+        <div><strong>64</strong><span>scripts PowerShell validados sin errores</span></div>
+        <div><strong>4</strong><span>tiendas de prueba actualizadas en cada push a develop</span></div>
+      </div>
+    </section>
+
+    <section class="architecture-section">
+      <div class="section-copy">
+        <p class="kicker">Diseño de la solución</p>
+        <h2>Automático donde conviene, controlado donde importa</h2>
+        <p>Develop prioriza la rapidez: el push basta para desplegar. Producción prioriza el control: alguien elige la tienda y la versión aprobada, aprueba y el pipeline revalida el estado real antes de tocar el clúster.</p>
+      </div>
+      <div class="operation-flow" aria-label="Flujo de despliegue">
+        <div class="control-chain" aria-label="Componentes">
+          <div class="control-card"><span>01</span><strong>GitHub</strong><small>Código y workflow de GitHub Actions</small></div>
+          <div class="control-card"><span>02</span><strong>Azure DevOps</strong><small>Pipelines, Environment y artefactos</small></div>
+          <div class="control-card"><span>03</span><strong>ACR + AKS</strong><small>Imágenes y un release Helm por tienda</small></div>
+        </div>
+        <div class="operation-lanes">
+          <article class="operation-lane start-lane">
+            <header><span class="lane-badge">Develop</span><h3>Despliegue automático</h3></header>
+            <ol class="lane-steps">
+              <li><span>1</span><div><strong>Push</strong><small>A la rama develop</small></div></li>
+              <li><span>2</span><div><strong>GitHub Actions</strong><small>Lanza el pipeline por API</small></div></li>
+              <li><span>3</span><div><strong>Imagen</strong><small>Construir y comprobar</small></div></li>
+              <li><span>4</span><div><strong>Actualizar</strong><small>Cuatro tiendas de prueba</small></div></li>
+            </ol>
+          </article>
+          <article class="operation-lane stop-lane">
+            <header><span class="lane-badge">Producción</span><h3>Despliegue controlado</h3></header>
+            <ol class="lane-steps">
+              <li><span>1</span><div><strong>Elegir</strong><small>Tiendas y versión aprobada</small></div></li>
+              <li><span>2</span><div><strong>Aprobar</strong><small>Environment con bloqueo</small></div></li>
+              <li><span>3</span><div><strong>Planificar</strong><small>Revalidar el estado real</small></div></li>
+              <li><span>4</span><div><strong>Aplicar</strong><small>Y guardar el resultado</small></div></li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="pipelines-title">
+      <div class="section-header compact-header">
+        <p class="kicker">Qué incluye</p>
+        <h2 id="pipelines-title">Seis pipelines de operación</h2>
+      </div>
+      <ul class="learning-list">
+        <li><strong>Catálogo:</strong> consulta AKS y ACR y actualiza las listas de tiendas y versiones de los formularios, para elegir solo destinos que existen.</li>
+        <li><strong>Publicar imagen:</strong> construye la imagen y la publica en ACR; publicar no actualiza ninguna tienda.</li>
+        <li><strong>Actualizar una tienda:</strong> cambia la versión de una tienda, con simulación previa opcional.</li>
+        <li><strong>Actualizar por lote:</strong> lleva varias tiendas a una misma versión, con concurrencia configurable.</li>
+        <li><strong>Rollback:</strong> recupera la imagen anterior de una o varias tiendas, en serie y deteniéndose al primer fallo.</li>
+        <li><strong>Crear tienda:</strong> da de alta una tienda nueva a partir de una versión aprobada.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="runbook-title">
+      <div class="section-header compact-header">
+        <p class="kicker">Procedimiento</p>
+        <h2 id="runbook-title">Cómo se opera un cambio en producción</h2>
+      </div>
+      <ul class="learning-list">
+        <li><strong>1. Publicar imagen</strong> si hace falta una versión nueva; esto todavía no cambia ninguna tienda.</li>
+        <li><strong>2. Actualizar el catálogo</strong> para que los formularios muestren las tiendas y versiones vigentes.</li>
+        <li><strong>3. Simular:</strong> elegir tiendas y versión aprobada, y revisar imágenes, alcance y plan.</li>
+        <li><strong>4. Aplicar:</strong> una corrida nueva aprueba, genera y revalida su propio plan con el estado actual, y aplica.</li>
+        <li><strong>5. Validar</strong> acceso, aplicación e integraciones antes de ampliar el lote a más tiendas.</li>
+      </ul>
+    </section>
+
+    <section class="section" aria-label="Tecnologías aplicadas">
+      <div class="section-header compact-header">
+        <p class="kicker">Base técnica</p>
+        <h2>Tecnologías aplicadas</h2>
+      </div>
+      <div class="core-tech-list">
+        <span>Azure DevOps Pipelines</span><span>GitHub Actions</span><span>AKS</span><span>Helm</span><span>Azure Container Registry</span><span>PowerShell</span><span>Azure CLI</span><span>kubectl</span><span>Gateway API</span><span>YAML</span>
+      </div>
+    </section>
+
+    <section class="workflow-section automation-workflow" aria-labelledby="implementation-title">
+      <div class="section-copy workflow-heading">
+        <p class="kicker">Implementación resumida</p>
+        <h2 id="implementation-title">Cómo está armado</h2>
+        <p>Los fragmentos son ilustrativos y simplificados: siguen la estructura real, pero no son una copia de los pipelines ni contienen nombres, recursos o configuraciones internas.</p>
+      </div>
+
+      <details class="project-details">
+        <summary>Ver estructura y fragmentos ilustrativos</summary>
+      <div class="case-chapters">
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">01</span><p class="eyebrow">Develop</p><h3>Un push dispara el pipeline y espera su resultado</h3><p>El workflow llama a la API de Azure DevOps con el commit exacto, espera a que la corrida termine y falla si el pipeline falla. El pipeline comprueba que el código descargado coincida con ese commit. El token se guarda como secreto y no aparece en el log; una ejecución manual simula por defecto y el grupo de concurrencia evita dos despliegues a la vez.</p></div>
+          <div class="chapter-content">
+          <pre class="command-block" data-label="GitHub Actions · Ilustrativo"><code>on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+    inputs:
+      operation: { type: choice, options: [simular, aplicar], default: simular }
+
+concurrency:
+  group: develop-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lanzar pipeline y esperar resultado
+        env:
+          AZDO_TOKEN: ${{ secrets.AZDO_TOKEN }}
+          SOURCE_COMMIT: ${{ github.sha }}
+        run: |
+          # POST a la API de runs con el commit, luego consultar
+          # el estado cada 30 s hasta completed; salir con error
+          # si el resultado no es succeeded.</code></pre>
+          </div>
+        </article>
+
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">02</span><p class="eyebrow">Producción</p><h3>Formularios cerrados y simulación por defecto</h3><p>Los parámetros son listas cerradas que mantiene el pipeline de catálogo. Quien ejecuta elige tiendas y una versión aprobada; si no cambia nada, el pipeline solo simula.</p></div>
+          <div class="chapter-content">
+          <pre class="command-block" data-label="Azure Pipelines · Ilustrativo"><code>trigger: none
+parameters:
+- name: operation
+  type: string
+  default: simular
+  values: [simular, aplicar]
+- name: stores
+  type: object        # lista que actualiza el pipeline de catálogo
+- name: imageTag
+  type: string
+  values: ['&lt;VERSION_APROBADA&gt;']</code></pre>
+          </div>
+        </article>
+
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">03</span><p class="eyebrow">Control</p><h3>Aprobación, bloqueo y plan revalidado</h3><p>La etapa usa un Environment con aprobación y bloqueo exclusivo, así dos operaciones no tocan el clúster a la vez. Antes de aplicar se genera un plan nuevo con el estado real, porque el clúster puede haber cambiado desde la última simulación.</p></div>
+          <div class="chapter-content">
+          <pre class="command-block" data-label="Azure Pipelines · Ilustrativo"><code>- stage: Update
+  jobs:
+  - deployment: Apply
+    environment: &lt;ENTORNO_CON_APROBACION_Y_BLOQUEO&gt;
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - pwsh: ./scripts/Invoke-Update.ps1 -Operation planificar
+          - pwsh: ./scripts/Invoke-Update.ps1 -Operation aplicar</code></pre>
+          </div>
+        </article>
+
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Alta de tiendas</p><h3>Validar todo antes de crear</h3><p>Antes de instalar, el pipeline renderiza la tienda localmente y la valida con un dry-run de Kubernetes, sin crear nada. Rechaza nombres reservados, releases o recursos que ya existen y hosts ocupados; comprueba permisos, almacenamiento, certificado y nodos compatibles. La instalación usa Helm en modo atómico y al final verifica imagen y disponibilidad.</p></div>
+          <div class="chapter-content">
+          <pre class="command-block" data-label="Helm y kubectl · Genérico"><code>helm template &lt;TIENDA&gt; ./chart -f values.yaml -f values-entorno.yaml \
+  | kubectl create --dry-run=client -o json -f -
+
+helm install &lt;TIENDA&gt; ./chart -n &lt;NAMESPACE&gt; \
+  -f values.yaml -f values-entorno.yaml --atomic --wait</code></pre>
+          </div>
+        </article>
+
+        <article class="case-chapter">
+          <div class="chapter-intro"><span class="step-number">05</span><p class="eyebrow">Seguridad y trazabilidad</p><h3>Acceso mínimo y resultado guardado</h3><p>Construir imágenes y operar el clúster usan identidades distintas. El acceso al clúster es un kubeconfig temporal sin permisos de administrador que se elimina al terminar, incluso si el pipeline falla. Cada corrida guarda su plan y su resultado como artefacto.</p></div>
+          <div class="chapter-content">
+          <div class="validation-strip" aria-label="Controles del flujo">
+            <div><strong>Aprobación</strong><span>Environment antes de aplicar</span></div>
+            <div><strong>Bloqueo</strong><span>Una operación a la vez</span></div>
+            <div><strong>Artefactos</strong><span>Plan y resultado de cada corrida</span></div>
+          </div>
+          <pre class="command-block" data-label="Azure Pipelines · Ilustrativo"><code>- task: PowerShell@2
+  displayName: Limpiar acceso temporal
+  condition: always()
+  inputs:
+    pwsh: true
+    targetType: inline
+    script: Remove-Item "$env:AGENT_TEMPDIRECTORY/cluster.kubeconfig" -ErrorAction SilentlyContinue
+
+- task: PublishPipelineArtifact@1
+  condition: always()
+  inputs:
+    targetPath: resultados
+    artifact: resultado-$(Build.BuildId)</code></pre>
+          </div>
+        </article>
+      </div>
+      </details>
+    </section>
+
+    <section class="learning-section" aria-labelledby="troubleshooting-title">
+      <div class="section-copy">
+        <p class="kicker">Troubleshooting</p>
+        <h2 id="troubleshooting-title">Problemas reales y cómo los resolví</h2>
+      </div>
+      <ul class="learning-list">
+        <li><strong>El rollback se detenía antes de tiempo:</strong> cuando varias revisiones seguidas tenían la misma imagen, el rollback no encontraba la versión anterior. Ahora busca la primera revisión exitosa con una imagen distinta. Agregué una prueba de regresión que fallaba antes del cambio y pasa después.</li>
+        <li><strong>Deriva entre Kubernetes y Helm:</strong> un rollback cambia la imagen directamente, así que el Deployment y el historial de Helm quedan distintos. Un segundo rollback podía avanzar en vez de retroceder. Ahora el pipeline bloquea otra recuperación hasta reconciliar ambos estados.</li>
+        <li><strong>Una alta falló antes de crear nada:</strong> el dry-run de kubectl devolvía un objeto por recurso y el script esperaba un único JSON. Cambié el análisis para procesar cada recurso por separado, sin imprimir manifiestos. Como la validación es previa a la instalación, el fallo no dejó recursos a medias.</li>
+        <li><strong>Falso éxito en rollback:</strong> si la imagen destino ya era la activa, el pipeline mostraba un rollback exitoso sin haber cambiado nada. Ahora falla antes de tocar Kubernetes.</li>
+        <li><strong>Timeouts ambiguos de Helm:</strong> un mensaje de timeout genérico no distingue si falló una actualización o un rollback. El pipeline resuelve el destino revisando el historial de revisiones exitosas en vez de suponerlo.</li>
+      </ul>
+    </section>
+
+    <section class="learning-section" aria-labelledby="limits-title">
+      <div class="section-copy"><p class="kicker">Alcance y límites</p><h2 id="limits-title">Qué muestra este caso</h2></div>
+      <ul class="learning-list">
+        <li><strong>Pruebas del kit, no de la aplicación:</strong> las suites prueban los scripts del kit con Azure y AKS simulados; los pipelines no ejecutan pruebas de la aplicación ni escaneos de seguridad.</li>
+        <li><strong>Producción manual:</strong> en producción el lanzamiento es manual y con aprobación; el disparo automático existe solo en develop.</li>
+        <li><strong>El bloqueo no cubre todo:</strong> coordina las operaciones que pasan por el Environment, pero no protege frente a comandos ejecutados directamente en consola.</li>
+        <li><strong>Rollback solo de imagen:</strong> recupera la imagen anterior, pero no revierte datos ni base de datos, y un alta fallida no se deshace con rollback.</li>
+        <li><strong>Validación funcional aparte:</strong> un rollout terminado confirma el estado en Kubernetes; la aplicación y sus integraciones se validan antes de ampliar un lote.</li>
+        <li><strong>Versión pública:</strong> caso anonimizado. No se publica código, nombres, repositorios, recursos ni logs internos, porque pertenecen a la empresa.</li>
+      </ul>
+    </section>
+
+    <section class="learning-section" aria-labelledby="learning-title">
+      <div class="section-copy">
+        <p class="kicker">Aprendizajes</p>
+        <h2 id="learning-title">Lo que me dejó este proyecto</h2>
+      </div>
+      <ul class="learning-list">
+        <li>Publicar una imagen y actualizar tiendas tienen que ser pasos separados, para decidir cuándo y dónde se aplica cada versión.</li>
+        <li>Un formulario con listas cerradas evita más errores que una buena documentación sobre qué escribir.</li>
+        <li>El plan debe generarse justo antes de aplicar: una simulación de hace una hora ya no describe el clúster actual.</li>
+        <li>Un rollback por imagen es rápido, pero deja deriva con Helm; hay que conocerla y controlarla.</li>
+        <li>Las pruebas de regresión de los scripts de operación valen tanto como las de la aplicación.</li>
+        <li>No todos los ambientes necesitan el mismo control: develop gana con la automatización y producción con la aprobación.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer"><p>&copy; 2026 José Díaz</p></footer>
+</body>
+</html>

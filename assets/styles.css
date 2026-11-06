@@ -1860,6 +1860,14 @@ code {
     text-align-last: left;
     hyphens: auto;
   }
+
+  /* Columnas angostas (pasos de flujo, fichas cortas): justificar abre espacios grandes. */
+  main .lane-steps li,
+  main .project-at-a-glance p,
+  main .case-overview p,
+  main .chapter-intro p {
+    text-align: left;
+  }
 }
 
 @media (max-width: 900px) {
