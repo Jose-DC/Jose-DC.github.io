@@ -1854,8 +1854,8 @@ code {
 /* Párrafos y viñetas justificados en pantallas anchas; en móvil se mantienen a la izquierda
    para evitar espacios grandes entre palabras. */
 @media (min-width: 761px) {
-  main p:not(.term-cmd):not(.kicker):not(.eyebrow):not(.fetch-user):not(.fetch-rule):not(.summary-label),
-  main li {
+  main :where(p:not(.term-cmd):not(.kicker):not(.eyebrow):not(.fetch-user):not(.fetch-rule):not(.summary-label)),
+  main :where(li) {
     text-align: justify;
     text-align-last: left;
     hyphens: auto;
@@ -2251,4 +2251,171 @@ code {
   .cursor {
     animation: none;
   }
+}
+
+/* ---------- Diagramas y maquetas de fichas de proyecto ---------- */
+.diagram {
+  margin: 0;
+  padding: clamp(18px, 3vw, 28px);
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--navy);
+}
+
+.diagram svg {
+  display: block;
+  width: 100%;
+  min-width: 640px;
+  height: auto;
+}
+
+.diagram figcaption {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.d-box { fill: var(--surface-soft); stroke: var(--line-strong); stroke-width: 1.2; }
+.d-box-accent { fill: rgba(114, 159, 207, 0.12); stroke: var(--accent); stroke-width: 1.4; }
+.d-box-prompt { fill: rgba(138, 226, 52, 0.08); stroke: var(--prompt); stroke-width: 1.4; }
+.d-box-warn { fill: rgba(252, 233, 79, 0.08); stroke: var(--planned); stroke-width: 1.4; }
+.d-zone { fill: none; stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 5 5; }
+.d-title { fill: var(--ink); font-family: var(--code-font); font-size: 15px; font-weight: 700; }
+.d-text { fill: var(--muted); font-family: "Ubuntu", sans-serif; font-size: 12.5px; }
+.d-label { fill: var(--accent); font-family: var(--code-font); font-size: 12px; }
+.d-label-prompt { fill: var(--prompt); font-family: var(--code-font); font-size: 12px; }
+.d-label-warn { fill: var(--planned); font-family: var(--code-font); font-size: 12px; }
+.d-line { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+.d-line-dash { fill: none; stroke: var(--prompt); stroke-width: 1.6; stroke-dasharray: 6 5; }
+.d-line-muted { fill: none; stroke: var(--line-strong); stroke-width: 1.4; }
+.d-arrow { fill: var(--accent); }
+.d-arrow-prompt { fill: var(--prompt); }
+
+/* Vista de etapas, como en Azure DevOps */
+.stage-view {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stage {
+  position: relative;
+  padding: 14px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-small);
+  background: var(--surface-soft);
+}
+
+.stage::before {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 10px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--functional);
+  color: var(--on-accent);
+  content: "\2713";
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.stage.is-gate::before { background: var(--planned); content: "\25CF"; font-size: 9px; }
+.stage.is-gate { border-color: var(--planned); }
+.stage strong { display: block; color: var(--ink); font-family: var(--code-font); font-size: 0.95rem; }
+.stage small { display: block; margin-top: 4px; color: var(--muted); font-size: 0.78rem; line-height: 1.4; }
+
+/* Maqueta del formulario "Run pipeline" */
+.mock-form {
+  max-width: 560px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.mock-form-head {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.mock-form-body { display: grid; gap: 14px; padding: 18px; }
+.mock-field span { display: block; margin-bottom: 6px; color: var(--muted); font-size: 0.82rem; }
+
+.mock-select {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--code-font);
+  font-size: 0.9rem;
+}
+
+.mock-select::after { color: var(--muted); content: "\25BE"; }
+.mock-checks { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.mock-checks i {
+  padding: 5px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: var(--muted);
+  font-family: var(--code-font);
+  font-size: 0.82rem;
+  font-style: normal;
+}
+
+.mock-checks i.on { border-color: var(--prompt); color: var(--prompt); }
+.mock-checks i.on::before { content: "\2713  "; }
+
+.mock-run {
+  justify-self: end;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: var(--prompt);
+  color: var(--on-accent);
+  font-family: var(--code-font);
+  font-weight: 700;
+}
+
+.split-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 40px);
+  align-items: center;
+}
+
+/* Grilla de pipelines */
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pipeline-grid article {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+}
+
+.pipeline-grid h3 { margin-bottom: 6px; font-size: 1rem; }
+.pipeline-grid h3::before { color: var(--prompt); content: "\25B8  "; }
+.pipeline-grid p { margin: 0; font-size: 0.88rem; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .stage-view { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .split-visual,
+  .pipeline-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .stage-view { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
