@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Caso de trabajo anonimizado: pipelines de Azure DevOps para desplegar en producción una aplicación con una instancia por cliente en AKS." />
+  <meta name="description" content="Caso de experiencia laboral: automatización y despliegues controlados en AKS con Azure DevOps." />
   <meta property="og:title" content="José Díaz | Despliegues en AKS con Azure DevOps" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jose-dc.github.io/proyectos/despliegues-aks.html" />
@@ -37,9 +37,9 @@
       <div class="terminal-bar" aria-hidden="true"><span class="terminal-title">jose@ubuntu: ~/proyectos/despliegues-aks</span><span class="win-controls"><span>&#8211;</span><span>&#9633;</span><span class="win-close">&#215;</span></span></div>
       <div class="terminal-body">
         <p class="term-cmd"><span class="ps1" aria-hidden="true"><b>jose@ubuntu</b>:<i>~/proyectos/despliegues-aks</i>$</span>cat README.md</p>
-        <p class="kicker">Caso de mi trabajo actual, anonimizado</p>
+        <p class="kicker">Caso de experiencia laboral</p>
         <h1>Despliegues en AKS con Azure DevOps</h1>
-        <p class="lead">En mi trabajo operamos una aplicación que corre como una instancia por cliente en AKS. Antes, cada cambio se hacía corriendo scripts a mano. Armé pipelines en Azure DevOps para hacer esos cambios en producción de forma ordenada, con revisión y aprobación antes de tocar el clúster.</p>
+        <p class="lead">Diseñé e implementé automatizaciones con Azure DevOps para ejecutar despliegues en AKS con validaciones, revisión y trazabilidad. Este caso explica las decisiones técnicas y los problemas que resolví, sin exponer código ni información interna.</p>
         <div class="project-actions doc-actions">
           <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
         </div>
@@ -48,177 +48,149 @@
 
     <section class="section" aria-labelledby="problem-title">
       <div class="section-header compact-header">
-        <p class="kicker">El problema</p>
-        <h2 id="problem-title">Cambios a mano, uno por uno</h2>
-        <p>Cada instancia es un release de Helm. Para subir de versión, crear una instancia nueva o volver atrás, había que correr scripts desde un equipo, instancia por instancia. Era fácil equivocarse de destino o de versión, y después no quedaba registro claro de qué se había aplicado ni cuándo.</p>
+        <p class="kicker">El desafío</p>
+        <h2 id="problem-title">De tareas manuales a un proceso más ordenado</h2>
+        <p>En la operación de aplicaciones sobre Kubernetes, tareas como publicar una versión, preparar una nueva instancia o volver a una versión anterior requerían ejecutar scripts manualmente. Cada cambio exigía identificar el destino correcto, seleccionar la versión y revisar el resultado. Al depender de pasos repetidos desde un equipo, era más difícil mantener un proceso consistente y saber después qué se había ejecutado.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="arch-title">
       <div class="section-header compact-header">
-        <p class="kicker">Cómo funciona</p>
-        <h2 id="arch-title">Producción a mano, desarrollo automático</h2>
-        <p>En producción, una persona lanza el pipeline y lo aprueba. En desarrollo no hace falta: cada push a la rama develop lanza el pipeline solo, a través de GitHub Actions.</p>
+        <p class="kicker">La solución</p>
+        <h2 id="arch-title">Automatización con puntos de control</h2>
+        <p>El objetivo fue convertir esas tareas en un proceso repetible y revisable. Diseñé pipelines en Azure DevOps y scripts de PowerShell que integran el registro de imágenes, Helm y herramientas de Kubernetes para preparar y ejecutar cambios en AKS. La solución permite simular un cambio, revisar el plan y ejecutar la aplicación por separado, con aprobación y registro.</p>
       </div>
       <figure class="diagram">
-        <svg viewBox="0 0 920 360" role="img" aria-labelledby="arch-svg-title arch-svg-desc">
-          <title id="arch-svg-title">Flujo de despliegue</title>
-          <desc id="arch-svg-desc">Un operador lanza manualmente el pipeline de producción en Azure DevOps, que pasa por un Environment con aprobación y despliega en AKS. En desarrollo, un push en GitHub dispara GitHub Actions, que lanza el pipeline de desarrollo. Las imágenes se publican en Azure Container Registry y cada instancia es un release de Helm.</desc>
-          <defs>
-            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="d-arrow" d="M0,0 L10,5 L0,10 z"/></marker>
-            <marker id="ar-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="d-arrow-prompt" d="M0,0 L10,5 L0,10 z"/></marker>
-          </defs>
-          <rect class="d-box-accent" x="20" y="40" width="150" height="70" rx="6"/>
-          <text class="d-title" x="95" y="70" text-anchor="middle">Operador</text>
-          <text class="d-text" x="95" y="92" text-anchor="middle">lanza y aprueba</text>
-          <rect class="d-box" x="20" y="230" width="150" height="80" rx="6"/>
-          <text class="d-title" x="95" y="258" text-anchor="middle">GitHub</text>
-          <text class="d-text" x="95" y="278" text-anchor="middle">push a develop</text>
-          <text class="d-label-prompt" x="95" y="298" text-anchor="middle">GitHub Actions</text>
-          <rect class="d-zone" x="230" y="20" width="300" height="320" rx="10"/>
-          <text class="d-label" x="246" y="42">Azure DevOps</text>
-          <rect class="d-box-accent" x="255" y="55" width="250" height="60" rx="6"/>
-          <text class="d-title" x="380" y="80" text-anchor="middle">Pipeline de producción</text>
-          <text class="d-text" x="380" y="100" text-anchor="middle">simular, planificar, aplicar</text>
-          <rect class="d-box-warn" x="255" y="140" width="250" height="56" rx="6"/>
-          <text class="d-title" x="380" y="164" text-anchor="middle">Aprobación</text>
-          <text class="d-label-warn" x="380" y="184" text-anchor="middle">una operación a la vez</text>
-          <rect class="d-box-prompt" x="255" y="240" width="250" height="60" rx="6"/>
-          <text class="d-title" x="380" y="265" text-anchor="middle">Pipeline de desarrollo</text>
-          <text class="d-text" x="380" y="285" text-anchor="middle">construye la imagen y actualiza</text>
-          <rect class="d-box" x="580" y="222" width="130" height="56" rx="6"/>
-          <text class="d-title" x="645" y="246" text-anchor="middle">ACR</text>
-          <text class="d-text" x="645" y="266" text-anchor="middle">imágenes</text>
-          <rect class="d-zone" x="745" y="20" width="160" height="320" rx="10"/>
-          <text class="d-label" x="760" y="42">AKS</text>
-          <rect class="d-box" x="765" y="60" width="120" height="44" rx="5"/>
-          <text class="d-text" x="825" y="87" text-anchor="middle">cliente A</text>
-          <rect class="d-box" x="765" y="116" width="120" height="44" rx="5"/>
-          <text class="d-text" x="825" y="143" text-anchor="middle">cliente B</text>
-          <rect class="d-box" x="765" y="172" width="120" height="44" rx="5"/>
-          <text class="d-text" x="825" y="199" text-anchor="middle">cliente C</text>
-          <rect class="d-box-prompt" x="765" y="250" width="120" height="44" rx="5"/>
-          <text class="d-text" x="825" y="277" text-anchor="middle">desarrollo</text>
-          <text class="d-label" x="825" y="324" text-anchor="middle">un release Helm c/u</text>
-          <path class="d-line" d="M170,75 L253,85" marker-end="url(#ar)"/>
-          <path class="d-line" d="M380,115 L380,138" marker-end="url(#ar)"/>
-          <path class="d-line" d="M505,168 C620,110 680,90 763,82" marker-end="url(#ar)"/>
-          <path class="d-line" d="M505,168 C640,150 700,140 763,138" marker-end="url(#ar)"/>
-          <path class="d-line" d="M505,168 C640,180 700,192 763,194" marker-end="url(#ar)"/>
-          <path class="d-line-dash" d="M170,270 L253,270" marker-end="url(#ar-p)"/>
-          <path class="d-line-dash" d="M505,262 L578,256" marker-end="url(#ar-p)"/>
-          <path class="d-line-dash" d="M505,280 C620,300 700,290 763,276" marker-end="url(#ar-p)"/>
+        <svg viewBox="0 0 920 190" role="img" aria-labelledby="arch-svg-title arch-svg-desc">
+          <title id="arch-svg-title">Flujo conceptual de despliegue</title>
+          <desc id="arch-svg-desc">Un cambio pasa por automatización, revisión y despliegue en AKS. Es una representación conceptual, no un diagrama de la infraestructura real.</desc>
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="d-arrow" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+          <rect class="d-box" x="20" y="55" width="170" height="70" rx="6"/>
+          <text class="d-title" x="105" y="96" text-anchor="middle">Cambio</text>
+          <rect class="d-box-accent" x="250" y="55" width="190" height="70" rx="6"/>
+          <text class="d-title" x="345" y="86" text-anchor="middle">Automatización</text>
+          <text class="d-text" x="345" y="107" text-anchor="middle">Azure DevOps</text>
+          <rect class="d-box-warn" x="500" y="55" width="160" height="70" rx="6"/>
+          <text class="d-title" x="580" y="96" text-anchor="middle">Revisión</text>
+          <rect class="d-box-prompt" x="720" y="55" width="180" height="70" rx="6"/>
+          <text class="d-title" x="810" y="86" text-anchor="middle">Despliegue</text>
+          <text class="d-text" x="810" y="107" text-anchor="middle">AKS / Helm</text>
+          <path class="d-line" d="M190,90 L248,90" marker-end="url(#ar)"/>
+          <path class="d-line" d="M440,90 L498,90" marker-end="url(#ar)"/>
+          <path class="d-line" d="M660,90 L718,90" marker-end="url(#ar)"/>
         </svg>
-        <figcaption>Línea continua: producción. Línea punteada: desarrollo. Los nombres de clientes son ficticios.</figcaption>
+        <figcaption>Flujo conceptual simplificado; no representa la arquitectura interna.</figcaption>
       </figure>
     </section>
 
-    <section class="section" aria-labelledby="pipelines-title">
+    <section class="section" aria-labelledby="mock-title">
+      <div class="split-visual">
+        <div class="section-header compact-header">
+          <p class="kicker">Ejemplo ilustrativo</p>
+          <h2 id="mock-title">Una operación preparada para ser revisada</h2>
+          <p>En vez de depender de comandos escritos para cada cambio, el operador selecciona las opciones y puede revisar qué se propone hacer. La simulación permite revisar el plan antes de decidir si se inicia una ejecución separada para aplicar el cambio.</p>
+          <p>Los parámetros, nombres y estados de esta maqueta son inventados. No muestra una pantalla ni registros de la empresa.</p>
+        </div>
+        <figure class="diagram">
+          <div class="mock-form" aria-label="Maqueta no interactiva de despliegue">
+            <div class="mock-form-head">Preparar despliegue <span aria-hidden="true"> · </span> ejemplo</div>
+            <div class="mock-form-body">
+              <div class="mock-field"><span>Aplicación</span><div class="mock-select">servicio-ejemplo</div></div>
+              <div class="mock-field"><span>Versión</span><div class="mock-select">v2.1.0</div></div>
+              <div class="mock-field"><span>Modo</span><div class="mock-checks"><i class="on">Simulación</i><i>Aplicación</i></div></div>
+              <div class="mock-field"><span>Primera ejecución</span><div class="mock-select">Simular → revisar plan</div></div>
+              <div class="mock-field"><span>Para aplicar</span><div class="mock-select">Nueva ejecución → revisión</div></div>
+              <span class="mock-run">Vista de ejemplo</span>
+            </div>
+          </div>
+          <figcaption>Representación conceptual; no ejecuta operaciones ni corresponde a datos reales.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="scope-title">
       <div class="section-header compact-header">
-        <p class="kicker">Lo que armé</p>
-        <h2 id="pipelines-title">Seis pipelines, uno por tarea</h2>
-        <p>Todos se lanzan a mano desde Azure DevOps y, si no se cambia la opción, solo simulan.</p>
+        <p class="kicker">Alcance</p>
+        <h2 id="scope-title">Qué permite hacer la solución</h2>
+        <p>El trabajo abarcó distintas etapas del ciclo de despliegue, desde preparar una versión hasta apoyar su recuperación. Estas capacidades se presentan agrupadas para explicar el alcance sin reproducir la configuración interna.</p>
       </div>
       <div class="pipeline-grid">
-        <article><h3>Publicar imagen</h3><p>Construye la imagen y la sube al registro. No toca ninguna instancia.</p></article>
-        <article><h3>Actualizar catálogo</h3><p>Lee qué instancias y versiones existen y actualiza las opciones de los formularios.</p></article>
-        <article><h3>Actualizar una instancia</h3><p>Cambia la versión de una instancia.</p></article>
-        <article><h3>Actualizar varias</h3><p>Hasta 10 instancias a la misma versión. Por defecto, de a una.</p></article>
-        <article><h3>Rollback</h3><p>Vuelve a la imagen anterior de hasta 10 instancias, una tras otra. Si una falla, se detiene.</p></article>
-        <article><h3>Crear instancia</h3><p>Revisa nombre, recursos y permisos antes de instalar. Si la instalación falla, Helm la revierte.</p></article>
+        <article><h3>Preparar una versión</h3><p>Automatizar la construcción y publicación de imágenes de aplicación en un registro de contenedores para tener una versión disponible para desplegar.</p></article>
+        <article><h3>Desplegar y actualizar</h3><p>Apoyar la creación y actualización de instancias en Kubernetes, usando Helm y parámetros validados para seleccionar el cambio que se quiere realizar.</p></article>
+        <article><h3>Recuperar una versión</h3><p>Apoyar el retorno a una imagen anterior cuando sea necesario, con comprobaciones para identificar si el cambio solicitado tiene sentido.</p></article>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="steps-title">
-      <div class="section-header compact-header">
-        <p class="kicker">En la práctica</p>
-        <h2 id="steps-title">Cómo subo una versión a producción</h2>
-      </div>
-      <ul class="learning-list steps-list">
-        <li><strong>1. Publico la imagen</strong> si es una versión nueva.</li>
-        <li><strong>2. Actualizo el catálogo</strong> para que la versión aparezca en los formularios.</li>
-        <li><strong>3. Simulo:</strong> elijo las instancias y la versión, y reviso qué cambiaría.</li>
-        <li><strong>4. Aplico:</strong> lanzo otra corrida en modo aplicar. Espera la aprobación y, recién ahí, vuelve a revisar el estado actual del clúster y aplica.</li>
-        <li><strong>5. Reviso</strong> que la aplicación funcione en esas instancias antes de seguir con otras.</li>
-      </ul>
-    </section>
 
-    <section class="section" aria-labelledby="controls-title">
-      <div class="section-header compact-header">
-        <p class="kicker">Controles</p>
-        <h2 id="controls-title">Qué evita errores</h2>
-      </div>
-      <ul class="learning-list">
-        <li><strong>Listas cerradas:</strong> no se escribe el nombre de la instancia ni la versión; se eligen de una lista.</li>
-        <li><strong>Aprobación con bloqueo:</strong> un cambio en producción necesita aprobación, y mientras uno corre no puede empezar otro.</li>
-        <li><strong>Plan fresco:</strong> el plan se arma justo antes de aplicar, no se reutiliza el de una simulación anterior.</li>
-        <li><strong>Accesos acotados:</strong> una identidad para publicar imágenes y otra para operar el clúster. El acceso al clúster es temporal, sin permisos de administrador, y se borra al terminar aunque el pipeline falle.</li>
-        <li><strong>Registro:</strong> cada corrida guarda su plan y su resultado.</li>
-        <li><strong>Límites de tiempo:</strong> 60 minutos por job, 15 minutos por actualización de Helm y 5 minutos por instancia en un rollback.</li>
-      </ul>
-    </section>
 
-    <section class="section" aria-labelledby="rollback-title">
+    <section class="section" aria-labelledby="example-title">
       <div class="section-header compact-header">
-        <p class="kicker">Un problema real</p>
-        <h2 id="rollback-title">El rollback que no volvía atrás</h2>
-        <p>Si las dos últimas revisiones de Helm tenían la misma imagen, el rollback elegía la anterior y no cambiaba nada. Lo corregí para que busque la primera revisión que tenga una imagen distinta, y agregué una prueba que falla con el código antiguo y pasa con el nuevo.</p>
+        <p class="kicker">Decisión técnica</p>
+        <h2 id="example-title">Una recuperación debe cambiar algo</h2>
+        <p>Detecté un caso en que dos revisiones consecutivas de Helm podían apuntar a la misma imagen. Volver a la revisión anterior no necesariamente recuperaba la versión esperada.</p>
+        <p>Mejoré la selección para buscar una revisión con una imagen distinta y agregué una prueba para ese escenario. También reforcé las validaciones para detectar operaciones que no producirían el cambio esperado.</p>
       </div>
       <figure class="diagram">
-        <svg viewBox="0 0 880 210" role="img" aria-labelledby="rb-title rb-desc">
-          <title id="rb-title">Qué revisión elige el rollback</title>
-          <desc id="rb-desc">La revisión 70 está activa con la versión 1.4.2. La 69 también tiene 1.4.2. La 68 tiene 1.4.1. Antes, el rollback elegía la 69 y no cambiaba nada. Ahora elige la 68.</desc>
-          <defs>
-            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="d-arrow-prompt" d="M0,0 L10,5 L0,10 z"/></marker>
-          </defs>
-          <path class="d-line-muted" d="M60,90 L820,90"/>
-          <rect class="d-box-accent" x="640" y="55" width="170" height="70" rx="6"/>
-          <text class="d-title" x="725" y="84" text-anchor="middle">rev 70 · activa</text>
-          <text class="d-label" x="725" y="106" text-anchor="middle">v1.4.2</text>
-          <rect class="d-box-warn" x="380" y="55" width="170" height="70" rx="6"/>
-          <text class="d-title" x="465" y="84" text-anchor="middle">rev 69</text>
-          <text class="d-label-warn" x="465" y="106" text-anchor="middle">v1.4.2 · misma imagen</text>
-          <rect class="d-box-prompt" x="120" y="55" width="170" height="70" rx="6"/>
-          <text class="d-title" x="205" y="84" text-anchor="middle">rev 68</text>
-          <text class="d-label-prompt" x="205" y="106" text-anchor="middle">v1.4.1 · distinta</text>
-          <text class="d-label-warn" x="465" y="160" text-anchor="middle">antes elegía esta</text>
-          <path class="d-line-dash" d="M640,140 C520,200 320,200 210,130" marker-end="url(#ar2)"/>
-          <text class="d-label-prompt" x="330" y="200" text-anchor="middle">ahora elige esta</text>
+        <svg viewBox="0 0 880 190" role="img" aria-labelledby="example-svg-title example-svg-desc">
+          <title id="example-svg-title">Ejemplo de revisiones de Helm</title>
+          <desc id="example-svg-desc">Una revisión activa y la anterior usan la misma imagen; una revisión más antigua usa una imagen diferente. Los valores son ficticios.</desc>
+          <rect class="d-box-accent" x="35" y="45" width="220" height="75" rx="6"/>
+          <text class="d-title" x="145" y="75" text-anchor="middle">Revisión activa</text>
+          <text class="d-text" x="145" y="100" text-anchor="middle">imagen v2</text>
+          <rect class="d-box-warn" x="330" y="45" width="220" height="75" rx="6"/>
+          <text class="d-title" x="440" y="75" text-anchor="middle">Revisión anterior</text>
+          <text class="d-text" x="440" y="100" text-anchor="middle">imagen v2</text>
+          <rect class="d-box-prompt" x="625" y="45" width="220" height="75" rx="6"/>
+          <text class="d-title" x="735" y="75" text-anchor="middle">Revisión previa</text>
+          <text class="d-text" x="735" y="100" text-anchor="middle">imagen v1</text>
+          <text class="d-label" x="440" y="155" text-anchor="middle">Buscar una imagen distinta, no solo la revisión anterior</text>
         </svg>
-        <figcaption>Revisiones y versiones de ejemplo.</figcaption>
+        <figcaption>Ejemplo ilustrativo con versiones ficticias.</figcaption>
       </figure>
     </section>
-
-    <section class="section" aria-labelledby="other-title">
+    <section class="section" aria-labelledby="contribution-title">
       <div class="section-header compact-header">
-        <p class="kicker">Otros problemas</p>
-        <h2 id="other-title">Lo que también corregí</h2>
+        <p class="kicker">Mi aporte</p>
+        <h2 id="contribution-title">Cómo preparé los despliegues</h2>
+        <p>Trabajé en la automatización y en los controles que permiten revisar un cambio antes de ejecutarlo.</p>
       </div>
-      <ul class="learning-list">
-        <li><strong>Rollback que decía "listo" sin hacer nada:</strong> si la versión de destino ya era la activa, el pipeline terminaba en verde. Ahora falla antes de tocar el clúster.</li>
-        <li><strong>Diferencias entre Kubernetes y Helm:</strong> el rollback cambia la imagen directo en Kubernetes, así que Helm queda con otra versión registrada. Ahora no deja hacer otro rollback hasta corregir esa diferencia.</li>
-        <li><strong>Error al crear una instancia:</strong> la validación previa esperaba un solo resultado y kubectl devolvía uno por recurso. Lo corregí; como falló antes de instalar, no quedó nada creado.</li>
-      </ul>
+      <div class="pipeline-grid">
+        <article><h3>Parámetros y validación</h3><p>Organicé la selección del destino y la versión con opciones predefinidas y validaciones previas, para reducir errores al ingresar datos.</p></article>
+        <article><h3>Revisión antes de aplicar</h3><p>Incorporé una simulación para revisar el cambio. La aplicación se inicia por separado y contempla aprobación y comprobaciones previas.</p></article>
+        <article><h3>Registro y seguimiento</h3><p>Las ejecuciones conservan información sobre el plan y el resultado, facilitando la revisión posterior y el diagnóstico de errores.</p></article>
+        <article><h3>Manejo de errores</h3><p>Agregué comprobaciones para detener operaciones que no cumplen las condiciones esperadas y comunicar los fallos durante la ejecución.</p></article>
+        <article><h3>Acceso controlado</h3><p>Consideré permisos acotados para las tareas de automatización y la protección de credenciales usadas por las integraciones.</p></article>
+        <article><h3>Recuperación</h3><p>Revisé escenarios de retorno a versiones anteriores y sus límites, considerando que una reversión de imagen no recupera datos.</p></article>
+      </div>
     </section>
 
     <section class="section" aria-labelledby="dev-title">
       <div class="section-header compact-header">
-        <p class="kicker">Desarrollo</p>
-        <h2 id="dev-title">El único despliegue automático</h2>
-        <p>Para el ambiente de desarrollo hice un workflow de GitHub Actions. Con cada push a develop llama a Azure DevOps con ese commit, espera que el pipeline termine y queda en rojo si el pipeline falla. El token de acceso está guardado como secreto y no aparece en el log.</p>
+        <p class="kicker">Integración</p>
+        <h2 id="dev-title">Desarrollo y producción tienen necesidades distintas</h2>
+        <p>Para desarrollo creé un workflow de GitHub Actions que inicia un pipeline de Azure DevOps y comunica si su ejecución falla. Para operaciones en producción preparé flujos de ejecución manual con revisión y aprobación.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="result-title">
+      <div class="section-header compact-header">
+        <p class="kicker">Resultado</p>
+        <h2 id="result-title">Un proceso más fácil de revisar y repetir</h2>
+        <p>El trabajo permitió desarrollar automatizaciones centralizadas para tareas que antes se ejecutaban manualmente, con una forma de revisar los cambios y consultar sus resultados. No se presentan cifras de reducción de tiempo o errores.</p>
+        <p>En la implementación combiné desarrollo de scripts, integración de herramientas, revisión de fallos y pruebas de escenarios específicos. El valor del caso está tanto en automatizar como en considerar la operación y la recuperación.</p>
       </div>
     </section>
 
     <section class="section" aria-labelledby="limits-title">
       <div class="section-header compact-header">
-        <p class="kicker">Lo que no cubre</p>
-        <h2 id="limits-title">Límites</h2>
+        <p class="kicker">Validación y alcance</p>
+        <h2 id="limits-title">Automatizar no reemplaza la validación funcional</h2>
       </div>
       <ul class="learning-list">
-        <li>Tengo pruebas para los scripts de los pipelines, pero los pipelines no prueban la aplicación ni buscan vulnerabilidades.</li>
-        <li>El bloqueo funciona para lo que pasa por los pipelines; un comando manual en consola no lo respeta.</li>
-        <li>El rollback devuelve la imagen anterior, no los datos. Tampoco se deshacen los datos que una instalación fallida alcanzó a escribir.</li>
-        <li>No publico código ni nombres porque son de la empresa.</li>
+        <li><strong>Pruebas locales:</strong> desarrollé pruebas para scripts y escenarios de error, incluido el caso de recuperación descrito arriba. Las pruebas con servicios simulados no validan por sí solas el comportamiento en AKS.</li>
+        <li><strong>Validación en el entorno:</strong> la ejecución del pipeline y la disponibilidad de los recursos no confirman por sí solas que la aplicación funcione correctamente; se requiere una comprobación funcional posterior.</li>
+        <li><strong>Recuperación:</strong> volver a una imagen anterior no revierte los datos. La recuperación debe considerar también el estado de la aplicación.</li>
+        <li><strong>Código privado:</strong> este es un caso de experiencia laboral; no publico el repositorio ni detalles internos. Los diagramas son conceptuales.</li>
       </ul>
     </section>
 

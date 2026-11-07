@@ -75,6 +75,19 @@
       </div>
     </section>
 
+    <section class="section" aria-labelledby="results-preview-title">
+      <div class="section-header compact-header">
+        <p class="kicker">Resultados del trabajo de título</p>
+        <h2 id="results-preview-title">Del despliegue manual a un entorno reproducible</h2>
+        <p>En las pruebas controladas del trabajo de título comparé el aprovisionamiento manual con la plataforma y evalué su comportamiento bajo carga. Estas mediciones corresponden a ese entorno; no fueron repetidas en la validación de la copia pública.</p>
+      </div>
+      <div class="validation-strip" aria-label="Resultados de pruebas controladas">
+        <div><strong>35 → ~1 min</strong><span>comparación con configuración manual en VPS</span></div>
+        <div><strong>15</strong><span>plantillas consideradas en las pruebas de aprovisionamiento</span></div>
+        <div><strong>1.000 VUs</strong><span>sin errores en el escenario de carga evaluado</span></div>
+      </div>
+    </section>
+
     <section class="workflow-section" aria-labelledby="workflow-title">
       <div class="section-copy workflow-heading">
         <p class="kicker">Implementación y evidencia</p>
@@ -90,6 +103,8 @@
             <figure class="evidence-figure"><a class="evidence-link" href="../assets/img/proyectos/plataforma-docker-lab/stack-generation.png" target="_blank" rel="noreferrer"><img src="../assets/img/proyectos/plataforma-docker-lab/stack-generation.png" alt="Salida del generador mostrando creación de entorno Docker, red, contenedores y conexión del proxy" loading="lazy" /></a><figcaption>Salida del generador: plantilla, variables, red, contenedores saludables y conexión del proxy. Abrir para ampliar.</figcaption></figure>
           </div>
         </article>
+        <details class="project-details">
+          <summary>Explorar las pruebas y evidencias del laboratorio</summary>
         <article class="case-chapter">
           <div class="chapter-intro"><span class="step-number">02</span><p class="eyebrow">Validar plantillas</p><h3>Comprobar distintas combinaciones</h3><p>El catálogo contiene 15 plantillas. La validación local documenta su generación y sintaxis Compose, además de pruebas de ejecución de los módulos principales. Las capturas históricas muestran los entornos utilizados durante la práctica.</p></div>
           <div class="validation-strip" aria-label="Resumen de validación de plantillas">
@@ -129,6 +144,7 @@
             <div><strong>66%</strong><span>ocupación de RAM en el punto de consolidación máxima (34% de margen)</span></div>
           </div>
         </article>
+        </details>
       </div>
     </section>
 

@@ -39,7 +39,7 @@
         <p class="term-cmd"><span class="ps1" aria-hidden="true"><b>jose@ubuntu</b>:<i>~/proyectos/automatizacion-costos-azure</i>$</span>cat README.md</p>
         <p class="kicker">Caso de automatización operativa</p>
         <h1>Automatización horaria de recursos en Azure</h1>
-        <p class="lead">Desarrollé y validé una automatización con PowerShell y Azure Automation para iniciar y detener AKS y PostgreSQL según el horario de uso de un ambiente de testing. El flujo respeta dependencias, comprueba estados y valida la recuperación de los servicios.</p>
+        <p class="lead">Desarrollé y validé una automatización con PowerShell y Azure Automation para iniciar y detener AKS y PostgreSQL según el horario de uso de un ambiente de testing. El flujo respeta dependencias y comprueba estados de infraestructura y cargas al iniciar.</p>
         <div class="project-actions doc-actions">
           <a class="button primary" href="https://github.com/Jose-DC/automatizacion-costos-azure" target="_blank" rel="noreferrer">Abrir repositorio</a>
           <a class="button secondary" href="../proyectos.html">Volver a proyectos</a>
@@ -50,7 +50,7 @@
     <section class="case-overview" aria-label="Resumen del caso">
       <article><p class="eyebrow">Situación</p><h2>Problema</h2><p>El ambiente seguía consumiendo recursos fuera de su horario de uso. La operación manual, además, podía detener la base de datos antes que las aplicaciones o iniciar el clúster sin que PostgreSQL estuviera listo.</p></article>
       <article><p class="eyebrow">Decisión</p><h2>Solución</h2><p>Un runbook externo al clúster coordina el inicio y la detención. Dos schedules definen la ventana de uso; la identidad administrada y RBAC autorizan las acciones sobre los recursos.</p></article>
-      <article><p class="eyebrow">Validación</p><h2>Resultado</h2><p>Ciclo Start/Stop y ejecución programada validados en testing, con comprobaciones de nodos y workloads. La versión pública es simplificada y anonimizada; el ahorro mensual aún no está cuantificado.</p></article>
+      <article><p class="eyebrow">Validación</p><h2>Resultado</h2><p>El caso de referencia registra un ciclo Start/Stop y ejecución programada en testing, con comprobaciones de nodos y deployments. La copia pública es simplificada y no incluye evidencia de una nueva ejecución; el ahorro mensual no está cuantificado.</p></article>
     </section>
 
     <section class="architecture-section">
@@ -95,6 +95,15 @@
       </div>
       <div class="core-tech-list">
         <span>Azure Automation</span><span>AKS</span><span>kubectl</span><span>PostgreSQL Flexible Server</span><span>PowerShell</span><span>Azure CLI</span><span>Managed Identity</span><span>RBAC</span><span>Azure Cost Management</span>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="incident-title">
+      <div class="section-header compact-header">
+        <p class="kicker">Un problema real</p>
+        <h2 id="incident-title">Cuando el primer inicio automático falló</h2>
+        <p>Un encendido programado encontró un problema transitorio al cargar módulos de PowerShell. Para evitar que el flujo continuara sin sus dependencias, incorporé una comprobación explícita y un reintento del inicio antes de declarar el error.</p>
+        <p>La decisión operativa fue comprobar cada estado antes de volver a actuar: reintentar no debe significar repetir a ciegas una operación que ya está en curso.</p>
       </div>
     </section>
 
@@ -148,7 +157,7 @@ STOP:  lunes a viernes, &lt;HORA_FIN&gt;, America/Santiago</code></pre>
         </article>
 
         <article class="case-chapter">
-          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Validación automática</p><h3>Comprobar que el horario funciona, incluso ante fallas transitorias</h3><p>La prueba controlada se realizó antes de habilitar la recurrencia. El runbook es idempotente: revisa el estado real de cada recurso antes de actuar y reintenta con espera creciente si Azure no tiene capacidad disponible de inmediato. Al encender, valida además que los nodos y los despliegues queden disponibles dentro del propio clúster, no solo el estado reportado por el servicio administrado.</p></div>
+          <div class="chapter-intro"><span class="step-number">04</span><p class="eyebrow">Validación automática</p><h3>Comprobar que el horario funciona, incluso ante fallas transitorias</h3><p>La prueba controlada se realizó antes de habilitar la recurrencia. El runbook revisa el estado de cada recurso antes de actuar e incluye reintentos para fallas transitorias. Al encender, valida además que los nodos y los despliegues queden disponibles dentro del propio clúster, no solo el estado reportado por el servicio administrado.</p></div>
           <div class="chapter-content">
           <div class="validation-strip" aria-label="Validaciones del proyecto">
             <div><strong><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5-13-7.5z" fill="currentColor"></path></svg></span>Start</strong><span>PostgreSQL Ready y AKS Running</span></div>
@@ -175,7 +184,8 @@ Start-Sleep -Seconds $delaySeconds</code></pre>
     <section class="learning-section" aria-labelledby="limits-title">
       <div class="section-copy"><p class="kicker">Alcance y límites</p><h2 id="limits-title">Qué valida este caso</h2></div>
       <ul class="learning-list">
-        <li><strong>Ambiente de testing:</strong> la validación corresponde a una ventana de uso autorizada. Aplicar el patrón a producción requiere evaluar disponibilidad y consumidores externos.</li>
+        <li><strong>Evidencia:</strong> el caso de referencia se validó en testing. La versión pública es simplificada y no incluye registros internos ni evidencia pública de una nueva ejecución.</li>
+        <li><strong>Validación funcional:</strong> comprobar nodos y deployments no prueba HTTP, SQL ni transacciones de la aplicación.</li>
         <li><strong>Costos:</strong> detener cómputo no elimina todos los cargos. Almacenamiento, respaldos y otros servicios pueden continuar generando consumo.</li>
         <li><strong>Permisos:</strong> los roles integrados tienen alcance a los recursos objetivo, pero permiten más acciones que Start/Stop. Un rol personalizado es una mejora pendiente.</li>
         <li><strong>Recuperación:</strong> ante una falla se revisan estados y logs antes de repetir el flujo. Los pasos de operación y recuperación se documentan en el repositorio.</li>
@@ -206,7 +216,7 @@ Start-Sleep -Seconds $delaySeconds</code></pre>
         <li>Entendí por qué una automatización de encendido no debe depender del propio clúster.</li>
         <li>Trabajé con identidad administrada, RBAC y separación de responsabilidades.</li>
         <li>Aprendí a validar recuperación y schedules, no solo a ejecutar comandos.</li>
-        <li>Un primer encendido automático falló por un problema transitorio al cargar módulos de PowerShell; lo resolví agregando una validación explícita de dependencias y un reintento completo del flujo antes de declarar error.</li>
+
       </ul>
     </section>
   </main>
