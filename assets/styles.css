@@ -2446,3 +2446,22 @@ code {
 #terminal-form button { padding: 6px 10px; border: 1px solid #a78ca2; border-radius: 4px; background: transparent; color: #fff; font: inherit; cursor: pointer; }
 #terminal-form input:focus-visible, #terminal-form button:focus-visible, .terminal-shortcuts button:focus-visible { outline: 3px solid #f6d36f; outline-offset: 3px; }
 .interactive-terminal .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Ejemplos desplegables y caso destacado en la portada. */
+.focus-detail { margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--line); }
+.focus-detail summary { color: var(--accent-strong); cursor: pointer; font-weight: 700; line-height: 1.4; }
+.focus-detail summary:focus-visible { outline: 3px solid var(--accent-strong); outline-offset: 4px; }
+.focus-detail[open] summary { margin-bottom: 10px; }
+.focus-detail p { margin-bottom: 10px; }
+.focus-detail a { color: var(--accent-strong); font-weight: 700; }
+.project-teaser-featured { border-top: 3px solid var(--accent-strong); }
+@media (prefers-reduced-motion: no-preference) {
+  .focus-detail[open] p, .focus-detail[open] a { animation: home-detail-in .2s ease-out both; }
+  @keyframes home-detail-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+}
+
+/* Una portada con tres casos y enlaces de evidencia visibles. */
+@media (min-width: 901px) {
+  .project-preview .project-teaser-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.experience-case-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }

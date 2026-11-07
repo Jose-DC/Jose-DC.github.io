@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet" href="assets/styles.css?v=20261106-simple" />
+  <link rel="stylesheet" href="assets/styles.css?v=20261107-home" />
 </head>
 <body>
   <header class="site-header">
@@ -86,17 +86,20 @@
         <article>
           <span class="focus-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1.2"></rect><rect x="3" y="10.5" width="18" height="5" rx="1.2"></rect><rect x="3" y="17" width="18" height="4" rx="1.2"></rect><circle cx="6.3" cy="6.5" r="0.6" fill="currentColor" stroke="none"></circle></svg></span>
           <h3>Cloud e infraestructura</h3>
-          <p>Operación en Azure y AKS/Kubernetes, despliegues a producción por pipeline, creación de node pools y diagnóstico mediante logs, métricas y eventos.</p>
+          <p>Operación en Azure y AKS/Kubernetes, despliegues y diagnóstico mediante logs, métricas y eventos.</p>
+          <details class="focus-detail"><summary>Ver ejemplo de trabajo</summary><p>Creé un node pool en AKS y migré cargas; también reviso el estado de servicios y participo en validaciones después de cambios.</p><a href="experiencia.html">Conocer mi experiencia →</a></details>
         </article>
         <article>
           <span class="focus-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3"></path><path d="M18 4.2v3.5h-3.5"></path><path d="M20 12a8 8 0 0 1-14 5.3"></path><path d="M6 19.8v-3.5h3.5"></path></svg></span>
           <h3>Automatización y mejora</h3>
           <p>Pipelines de despliegue en Azure DevOps, automatización con PowerShell y reducción de costos de infraestructura en Azure.</p>
+          <details class="focus-detail"><summary>Ver ejemplo de trabajo</summary><p>Desarrollé automatizaciones para iniciar y detener recursos de un ambiente de testing, considerando dependencias y estados.</p><a href="proyectos/automatizacion-costos-azure.html">Explorar el caso Azure →</a></details>
         </article>
         <article>
           <span class="focus-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"></path><rect x="3" y="13" width="4.2" height="6" rx="1.4"></rect><rect x="16.8" y="13" width="4.2" height="6" rx="1.4"></rect></svg></span>
           <h3>Observabilidad y soporte</h3>
           <p>Revisión de dashboards y alertas para distinguir capacidad, disponibilidad y falta de datos, y escalar con evidencia.</p>
+          <details class="focus-detail"><summary>Ver ejemplo de trabajo</summary><p>Trabajo con dashboards de Grafana como código y alertas de Azure para apoyar el diagnóstico y la continuidad operativa.</p><a href="experiencia.html">Ver experiencia en observabilidad →</a></details>
         </article>
       </div>
     </section>
@@ -107,6 +110,12 @@
         <h2>Evidencia técnica</h2>
       </div>
       <div class="project-teaser-grid">
+        <article class="project-teaser-card project-teaser-featured">
+          <div class="project-teaser-head"><span class="status status-functional">Experiencia laboral</span></div>
+          <h3>Despliegues en AKS con Azure DevOps</h3>
+          <p>Automatización de cambios en Kubernetes con validaciones, revisión y trazabilidad. Incluye un caso de recuperación de imágenes.</p>
+          <a class="text-link" href="proyectos/despliegues-aks.html">Explorar el caso <span aria-hidden="true">→</span></a>
+        </article>
         <article class="project-teaser-card">
           <div class="project-teaser-head"><span class="status status-functional">Laboratorio funcional</span></div>
           <h3>Plataforma Docker Lab</h3>
@@ -116,7 +125,7 @@
         <article class="project-teaser-card">
           <div class="project-teaser-head"><span class="status status-functional">Automatización validada</span></div>
           <h3>Automatización horaria de recursos en Azure</h3>
-          <p>Inicio y detención programados de AKS y PostgreSQL en testing, con comprobación de estados, dependencias y recuperación.</p>
+          <p>Inicio y detención programados de AKS y PostgreSQL en testing, con comprobación de estados y dependencias.</p>
           <a class="text-link" href="proyectos/automatizacion-costos-azure.html">Ver proyecto <span aria-hidden="true">→</span></a>
         </article>
       </div>
