@@ -62,7 +62,18 @@
           <a class="button secondary" href="experiencia.html">experiencia/</a>
           <!-- Integración de CV pendiente: confirmar publicación del teléfono personal antes de copiar el PDF activo a assets/cv/ y añadir su enlace relativo. -->
         </div>
-        <p class="term-cmd term-idle" aria-hidden="true"><span class="ps1" aria-hidden="true"><b>jose@ubuntu</b>:<i>~</i>$</span><span class="cursor"></span></p>
+        <div class="interactive-terminal" id="terminal-demo" hidden>
+          <p class="terminal-invitation">Explora el portafolio desde la terminal <span>· simulación interactiva</span></p>
+          <div class="terminal-shortcuts" aria-label="Comandos disponibles">
+            <button type="button" data-command="ayuda">ayuda</button><button type="button" data-command="proyectos">proyectos</button><button type="button" data-command="experiencia">experiencia</button><button type="button" data-command="contacto">contacto</button>
+          </div>
+          <div class="terminal-output" id="terminal-output" aria-live="polite" aria-atomic="true"></div>
+          <form id="terminal-form" autocomplete="off">
+            <label class="ps1" for="terminal-input"><b>visitante@portafolio</b>:<i>~</i>$ <span class="sr-only">Escribe un comando</span></label>
+            <input id="terminal-input" type="text" maxlength="60" placeholder="Escribe ayuda" spellcheck="false" />
+            <button type="submit">Ejecutar</button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -188,5 +199,6 @@
     </section>
   </main>
   <footer class="site-footer"><p>&copy; 2026 José Díaz</p></footer>
+  <script src="assets/terminal.js" defer></script>
 </body>
 </html>
