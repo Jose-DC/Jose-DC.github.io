@@ -2465,3 +2465,14 @@ code {
   .project-preview .project-teaser-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .experience-case-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+
+/* La presentación prioriza lectura y acceso temprano a proyectos. */
+.hero .terminal-body .lead { text-align: left; text-align-last: auto; }
+@media (max-width: 640px) {
+  .nav-links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .hero .terminal-body > .hero-actions + .term-cmd { margin-top: 24px; }
+  .hero .fetch { grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: start; }
+  .hero .fetch .avatar { width: 72px; height: 72px; }
+  .hero .fetch-info { font-size: .75rem; gap: 4px; }
+  .hero .fetch-palette span { width: 19px; height: 10px; }
+}
